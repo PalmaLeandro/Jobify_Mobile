@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2015 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/person_card"
+    android:layout_gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="88dp"
+    card_view:cardCornerRadius="2dp"
+    card_view:cardElevation="2dp"
+    android:layout_margin="4dp"
+    android:padding="8dp">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/person_image"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:contentDescription="Imagen del curso"
+                android:scaleType="fitXY"
+                android:layout_alignParentStart="true"
+                />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/person_image"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/person_name"
+                    android:text="person name"
+                    android:textSize="18sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="false"
+                    android:layout_toRightOf="@+id/person_image"
+                    android:layout_centerVertical="true"
+                    android:textIsSelectable="false"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:textSize="12sp"
+                    android:id="@+id/person_description"
+                    android:text="person descrption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/person_name"
+                    android:layout_alignStart="@+id/person_name" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/linearLayout"
+                android:padding="10dp"
+                android:gravity="center_horizontal"
+                android:layout_alignStart="@+id/person_freshness">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:id="@+id/imageView"
+                    android:src="@drawable/abc_ic_star_black_36dp"
+                    android:tint="#ffbf00" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/person_rating" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/person_freshness"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:background="@color/new_blue"
+                android:padding="2dp"
+                android:layout_gravity="bottom"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:text="@string/personNewTag" />
+
+            <TextView
+                android:id="@+id/person_opening"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:background="@color/close_red"
+                android:padding="2dp"
+                android:layout_gravity="bottom"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:text="@string/personOpenSoonTag" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">jobify</string>
+    <string name="personOpenSoonTag">EMPIEZA PRONTO!</string>
+    <string name="personNewTag">NUEVO</string>
+    <string name="personListTitle">Cursos</string>
+    <string name="noPersonsMessage">No hay cursos prontos a empezar, los estamos preparando para vos! Vuelve pronto.</string>
+    <string name="noCategoriesMessage">Aún no hay cursos para mostrarte, los estamos preparando para vos ! Vuelve pronto.</string>
+    <string name="unknown_error">UNKNOWN_ERROR</string>
+</resources>
