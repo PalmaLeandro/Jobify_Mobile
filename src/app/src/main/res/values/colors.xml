@@ -1,9 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
     <color name="new_blue">#306FFF</color>
     <color name="old_white">#FFFFFF</color>
     <color name="close_red">#DD0000</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="lighterColorPrimary">#7a86c7</color>
+    <color name="lighterColorAccent">#EA4F6E</color>
+
+    <color name="toolbar_background">@color/colorPrimary</color>
+    <color name="toolbar_titles">@color/white</color>
+
+    <color name="course">@color/lighterColorAccent</color>
+    <color name="category">#9978C1</color>
+
+    <color name="new_course">#4699C4</color>
+    <color name="starting_course">#228B22</color>
+    <color name="unit_number">#FFFFFF</color>
+
+    <color name="light_gray">#DADADA</color>
+
+    <color name="exercise_answer">@color/lighterColorAccent</color>
+    <color name="exam_buttons_background">@color/lighterColorPrimary</color>
+    <color name="exam_buttons_title">@color/white</color>
+    <color name="exam_approved">#8cd17b</color>
+    <color name="exam_disapproved">#e24949</color>
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
 </resources>

@@ -1,10 +1,11 @@
 package com.example.root.jobify.Utilities;
 
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 /**
  *  Custom Fragment implementation to bind basic elements and force the use of
@@ -55,5 +56,21 @@ public abstract class WoloxFragment<T extends BasePresenter> extends Fragment {
      * Create the presenter for this fragment
      */
     protected abstract T createPresenter();
+
+    protected void replaceFragment(int resId, Fragment f) {
+        getChildFragmentManager()
+                .beginTransaction()
+                .add(resId, f)
+                .commit();
+    }
+
+
+    public void showToast(String s) {
+        Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show();
+    }
+
+    public void showToast(int resId) {
+        Toast.makeText(getActivity(), resId, Toast.LENGTH_SHORT).show();
+    }
 
 }

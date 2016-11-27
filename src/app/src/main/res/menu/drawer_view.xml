@@ -20,19 +20,23 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_dashboard"
-            android:title="Inicio" />
+            android:title="@string/home_string" />
         <item
-            android:id="@+id/nav_persons"
-            android:icon="@drawable/ic_view_agenda_black_24dp"
-            android:title="Mis cursos" />
+            android:id="@+id/nav_mypeople"
+            android:icon="@drawable/ic_people_black_24dp"
+            android:title="@string/contacts_string" />
         <item
-            android:id="@+id/nav_certificates"
-            android:icon="@drawable/ic_receipt_black_24dp"
-            android:title="Certificados" />
+            android:id="@+id/nav_chats"
+            android:icon="@drawable/ic_forum"
+            android:title="@string/chats_string" />
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_account_circle_black_48dp"
+            android:title="@string/profile_string" />
         <item
             android:id="@+id/nav_exit"
             android:icon="@drawable/ic_exit_to_app_black_24dp"
-            android:title="Salir" />
+            android:title="@string/logout_string" />
     </group>
 
 </menu>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_gravity="center"
+        android:textColor="@android:color/darker_gray"
+        android:text="@string/jobify"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textSize="60sp"
+        android:layout_marginTop="@dimen/auth_top_margin"
+        android:layout_margin="@dimen/card_margin"/>
+
+    <EditText
+        android:id="@+id/user_email_input"
+        android:hint="@string/email_input_hint_string"
+        android:inputType="textEmailAddress"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/auth_top_margin"
+        android:layout_margin="@dimen/card_margin"/>
+
+    <EditText
+        android:id="@+id/user_password_input"
+        android:hint="@string/password_input_hint_string"
+        android:inputType="textPassword"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/auth_top_margin"
+        android:layout_margin="@dimen/card_margin"/>
+
+    <Button
+        android:id="@+id/credentials_button_login"
+        android:text="@string/loguearse"
+        android:textColor="@color/cardview_light_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorAccent"
+        android:textSize="@dimen/choose_button_font_size"
+        android:layout_marginTop="@dimen/auth_top_margin"
+        android:layout_margin="@dimen/card_margin"/>
+    <Button
+        android:id="@+id/facebook_button"
+        android:text="@string/facebook_login_text_button"
+        android:textColor="@android:color/background_light"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#3b5998"
+        android:layout_margin="@dimen/card_margin"
+        android:textSize="@dimen/choose_button_font_size"
+        android:paddingLeft="@dimen/choose_button_side_space"
+        android:layout_marginTop="@dimen/auth_top_margin"
+        android:paddingRight="@dimen/choose_button_side_space"/>
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/choose_signup_button"
+        android:layout_gravity="center"
+        android:text="Sin cuenta? Registrate"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:textSize="@dimen/choose_button_font_size"
+        android:layout_margin="@dimen/card_margin"
+        android:textAlignment="center" />
+</LinearLayout>

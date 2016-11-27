@@ -1,52 +1,25 @@
 package com.example.root.jobify.Utilities;
 
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.root.jobify.R;
 
-public abstract class WoloxActivity extends FragmentActivity {
+public abstract class WoloxActivity extends AppCompatActivity {
 
-    protected DrawerLayout mDrawerLayout;
-    protected NavigationView mNavView;
-    protected LinearLayout mContentView;
+    public static String ACTIVITY_APPBAR_TITLE_KEY = "title";
 
-    private void setContent() {
-        setContentView(R.layout.app_activity_layout);
-        mContentView= (LinearLayout) findViewById(R.id.content_view);
-        View.inflate(this, layout(), mContentView);
-    }
-/*
-    private void setupDrawerContent() {
-        mNavView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
-                menuItem.setChecked(true);
-                mDrawerLayout.closeDrawers();
-                return true;
-            }
-        });
-    }
-*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContent();
+        setContentView(layout());
         if (handleArguments(getIntent().getExtras())) {
-            //mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-            //mNavView = (NavigationView) findViewById(R.id.nav_view);
             init();
             setUi();
             populate();
-            //setupDrawerContent();
             setListeners();
         } else {
             showToast(R.string.unknown_error);
@@ -93,7 +66,7 @@ public abstract class WoloxActivity extends FragmentActivity {
         // Do nothing, override if needed!
     }
 
-    protected void showToast(int resId) {
+    public void showToast(int resId) {
         Toast.makeText(this, resId, Toast.LENGTH_SHORT).show();
     }
 
