@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.root.jobify.R;
 
@@ -85,7 +86,13 @@ public class PersonDetailView {
     }
 
     public void setPersonImageURL(String base64Image) {
-        mPersonImageView.setImageBitmap(BitmapFactory.decodeStream(new ByteArrayInputStream(Base64.decode(base64Image.getBytes(),Base64.DEFAULT))));
+        if(base64Image!=null){
+            try {
+                mPersonImageView.setImageBitmap(BitmapFactory.decodeStream(new ByteArrayInputStream(Base64.decode(base64Image.getBytes(),Base64.DEFAULT))));
+            }catch (Exception e){
+                Toast.makeText(getContext(), R.string.couldn_load_profile_picture,Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     public void setPersonCity(String personCity) {

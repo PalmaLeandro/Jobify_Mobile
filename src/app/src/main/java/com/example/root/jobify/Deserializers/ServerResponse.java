@@ -1,4 +1,4 @@
-package com.example.root.jobify.Services;
+package com.example.root.jobify.Deserializers;
 
 import java.util.ArrayList;
 

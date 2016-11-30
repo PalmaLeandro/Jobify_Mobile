@@ -18,7 +18,7 @@
 
     <EditText
         android:id="@+id/user_name_input"
-        android:hint="Name"
+        android:hint="@string/name_hint_string"
         android:inputType="textPersonName"
         android:layout_gravity="center"
         android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
 
     <EditText
         android:id="@+id/user_email_input"
-        android:hint="Email"
+        android:hint="@string/email_input_hint_string"
         android:inputType="textEmailAddress"
         android:layout_gravity="center"
         android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
 
     <EditText
         android:id="@+id/user_password_input"
-        android:hint="Password"
+        android:hint="@string/password_input_hint_string"
         android:inputType="textPassword"
         android:layout_gravity="center"
         android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
 
     <Button
         android:id="@+id/credentials_button_signup"
-        android:text="REGISTRARSE"
+        android:text="@string/signup_button_text"
         android:textColor="@color/cardview_light_background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
         android:layout_margin="@dimen/card_margin"/>
     <Button
         android:id="@+id/facebook_button"
-        android:text="Registrarse con Facebook"
+        android:text="@string/facebook_signup_text_button"
         android:textColor="@android:color/background_light"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -16,8 +16,6 @@ import com.example.root.jobify.Utilities.WoloxFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.provider.Telephony.Mms.Part.CONTENT_ID;
-
 /**
  * Created by root on 06/09/16.
  */
@@ -45,8 +43,9 @@ public abstract class ContentListFragment extends WoloxFragment<ContentListPrese
     }
 
     @Override
-    protected void populate() {
-        mPresenter.fetchPeople();
+    public void populate() {
+        mPresenter=createPresenter();
+        mPresenter.fetchContents();
     }
 
     @Override

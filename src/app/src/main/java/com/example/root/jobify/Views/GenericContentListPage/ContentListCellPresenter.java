@@ -25,7 +25,7 @@ public class ContentListCellPresenter extends BasePresenter<ContentListCellView>
         //populate view with data!
         if (mContent!=null){
             mView.setContentTitle(mContent.getTitle());
-            mView.setContentBase64Image(mContent.getBase64Image());
+            mView.setContentBase64Image(mContent.getPicture());
             mView.setContentSubtitle(mContent.getSubTitle());
         }
     }

@@ -41,7 +41,7 @@ public class ContentListPresenter extends BasePresenter<ContentListFragment> {
         ContentListViewAdapter.notifyDataSetChanged();
     }
 
-    public void fetchPeople() {
+    public void fetchContents() {
         mService.getContents(new Callback<ArrayList<Content>>() {
             @Override
             public void onResponse(Call<ArrayList<Content>> call, Response<ArrayList<Content>> response) {

@@ -5,7 +5,7 @@ import android.widget.Toast;
 import com.example.root.jobify.Models.Person;
 import com.example.root.jobify.R;
 import com.example.root.jobify.Services.Auth.UserAuthService;
-import com.example.root.jobify.Services.People.PersonService;
+import com.example.root.jobify.Services.People.PeopleService;
 import com.example.root.jobify.Utilities.BasePresenter;
 
 import retrofit2.Call;
@@ -26,7 +26,7 @@ public class ProfileEditionPresenter extends BasePresenter<ProfileEditionView> {
     }
 
     public void saveProfile() {
-        new PersonService().savePerson(new Person(authService.getUser().getEmail(),
+        new PeopleService().savePerson(new Person(authService.getUser().getEmail(),
                 getView().getUserNameInputText(),
                 getView().getUserCityInputText(),
                 getView().getUserDateOfBirthInputText(),
@@ -35,16 +35,16 @@ public class ProfileEditionPresenter extends BasePresenter<ProfileEditionView> {
                 getView().getUserProfileInputText(),
                 authService.getUserProfile().getSkills(),
                 authService.getUserProfile().getPreviousExperience(),
-                authService.getUserProfile().getBase64Image()),
+                        null, null, null, authService.getUserProfile().getPicture()),
                 new Callback() {
                     @Override
                     public void onResponse(Call call, Response response) {
-                        Toast.makeText(getView().getContext(), R.string.profile_saved,Toast.LENGTH_LONG);
+                        Toast.makeText(getView().getContext(), R.string.profile_saved,Toast.LENGTH_LONG).show();
                     }
 
                     @Override
                     public void onFailure(Call call, Throwable t) {
-                        Toast.makeText(getView().getContext(), R.string.couldnt_save_profile,Toast.LENGTH_LONG);
+                        Toast.makeText(getView().getContext(), R.string.couldnt_save_profile,Toast.LENGTH_LONG).show();
                     }
                 });
     }

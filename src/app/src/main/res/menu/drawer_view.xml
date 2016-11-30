@@ -22,6 +22,10 @@
             android:icon="@drawable/ic_dashboard"
             android:title="@string/home_string" />
         <item
+            android:id="@+id/nav_search"
+            android:icon="@android:drawable/ic_menu_search"
+            android:title="@string/search_string" />
+        <item
             android:id="@+id/nav_mypeople"
             android:icon="@drawable/ic_people_black_24dp"
             android:title="@string/contacts_string" />

@@ -58,8 +58,7 @@ public class Experience implements Content{
         return getPosition()+"\n"+getDescription()+"\n"+getDuration();
     }
 
-    @Override
-    public String getBase64Image() {
+    public String getPicture() {
         return null;
     }
 }

@@ -8,7 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.root.jobify.R;
-import com.example.root.jobify.Services.People.PersonService;
+import com.example.root.jobify.Services.People.PeopleService;
 import com.example.root.jobify.Views.GenericContentListPage.Content;
 import com.example.root.jobify.Views.GenericContentListPage.ContentListFragment;
 import com.example.root.jobify.Views.GenericContentListPage.ContentListProvider;
@@ -24,6 +24,8 @@ import retrofit2.Response;
  * Created by root on 06/09/16.
  */
 public class SkillsFragment extends ContentListFragment {
+
+    private String personId;
 
     @Override
     protected int layout() {
@@ -45,7 +47,7 @@ public class SkillsFragment extends ContentListFragment {
         return new ContentListProvider() {
             @Override
             public void getContents(final Callback<ArrayList<Content>> callback) {
-                new PersonService().getPersonSkills(new Callback<ArrayList<String>>() {
+                new PeopleService().getPersonSkills(new Callback<ArrayList<String>>() {
                     @Override
                     public void onResponse(Call<ArrayList<String>> call, Response<ArrayList<String>> response) {
                         ArrayList<Content> contents = new ArrayList<Content>();
@@ -56,12 +58,7 @@ public class SkillsFragment extends ContentListFragment {
 
                     @Override
                     public void onFailure(Call<ArrayList<String>> call, Throwable t) {
-                        ArrayList<Content> contents = new ArrayList<>();
-                        contents.add(createContentFromSkill("lavar platos"));
-                        contents.add(createContentFromSkill("barrer"));
-                        contents.add(createContentFromSkill("trapear"));
-                        contents.add(createContentFromSkill("lavar vidrios"));
-                        callback.onResponse(null, Response.success(contents));
+                        callback.onFailure(null,t);
                     }
                 });
             }
@@ -85,8 +82,7 @@ public class SkillsFragment extends ContentListFragment {
                 return null;
             }
 
-            @Override
-            public String getBase64Image() {
+            public String getPicture() {
                 return null;
             }
         };
@@ -114,7 +110,7 @@ public class SkillsFragment extends ContentListFragment {
                             .setItems(new String[]{context.getString(R.string.remove_dialog_option_string)}, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    new PersonService().removeProfileSkill(content.getId(), new Callback() {
+                                    new PeopleService().removeProfileSkill(content.getId(), new Callback() {
                                         @Override
                                         public void onResponse(Call call, Response response) {
                                             Toast.makeText(context,getString(R.string.removed_skill_message),Toast.LENGTH_LONG);
@@ -145,4 +141,8 @@ public class SkillsFragment extends ContentListFragment {
     public void allowDeletion(Boolean allowDeletion) {
         this.allowDeletion = allowDeletion;
     }
+    public void setPersonId(String personId) {
+        this.personId = personId;
+    }
+
 }

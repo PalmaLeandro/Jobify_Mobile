@@ -2,7 +2,13 @@ package com.example.root.jobify.Views.ProfileEditionPage;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.root.jobify.R;
 import com.example.root.jobify.Services.Auth.User;
@@ -12,13 +18,23 @@ import com.example.root.jobify.Views.ExperiencesEditionPage.ExperiencesEditionAc
 import com.example.root.jobify.Views.MainApplicationActivity;
 import com.example.root.jobify.Views.SkillsEditionPage.SkillsEditionActivity;
 
+import static android.app.Activity.RESULT_OK;
+
 /**
  * Created by root on 09/11/16.
  */
 public class ProfileEditionFragment extends WoloxFragment<ProfileEditionPresenter> implements UserAuthListener, View.OnClickListener {
 
     Context mContext;
-    ProfileEditionView view;
+    public ProfileEditionView view;
+
+    //private Object mGoogleApiClient;
+
+    public void setImageButtonClickListener(View.OnClickListener imageButtonClickListener) {
+        this.imageButtonClickListener = imageButtonClickListener;
+    }
+
+    private View.OnClickListener imageButtonClickListener;
 
     @Override
     protected int layout() {
@@ -33,7 +49,13 @@ public class ProfileEditionFragment extends WoloxFragment<ProfileEditionPresente
 
     @Override
     protected void init() {
-
+        /*
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
+                */
     }
 
     @Override
@@ -47,7 +69,7 @@ public class ProfileEditionFragment extends WoloxFragment<ProfileEditionPresente
         view.skillsButton.setOnClickListener(this);
         view.experiencesButton.setOnClickListener(this);
         view.saveProfileButton.setOnClickListener(this);
-        view.pickImageButton.setOnClickListener(this);
+        view.pickImageButton.setOnClickListener(imageButtonClickListener);
     }
 
     @Override
@@ -62,10 +84,6 @@ public class ProfileEditionFragment extends WoloxFragment<ProfileEditionPresente
                 break;
             }
             case R.id.save_profile: {
-                mPresenter.saveProfile();
-                break;
-            }
-            case R.id.pick_image_button: {
                 mPresenter.saveProfile();
                 break;
             }
@@ -86,4 +104,5 @@ public class ProfileEditionFragment extends WoloxFragment<ProfileEditionPresente
             mContext.startActivity(new Intent(mContext, MainApplicationActivity.class));
         }
     }
+
 }

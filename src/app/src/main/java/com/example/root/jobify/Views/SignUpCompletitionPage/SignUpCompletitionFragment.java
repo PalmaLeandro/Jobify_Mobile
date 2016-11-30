@@ -3,10 +3,12 @@ package com.example.root.jobify.Views.SignUpCompletitionPage;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.root.jobify.R;
 import com.example.root.jobify.Services.Auth.User;
 import com.example.root.jobify.Services.Auth.UserAuthListener;
+import com.example.root.jobify.Services.Auth.UserAuthService;
 import com.example.root.jobify.Utilities.WoloxFragment;
 import com.example.root.jobify.Views.FacebookSignUpPage.FacebookSignUpActivity;
 import com.example.root.jobify.Views.MainApplicationActivity;
@@ -32,7 +34,7 @@ public class SignUpCompletitionFragment extends WoloxFragment<SignUpCompletition
 
     @Override
     protected void init() {
-
+        UserAuthService.getInstance().addUserListener(this);
     }
 
     @Override
@@ -50,7 +52,6 @@ public class SignUpCompletitionFragment extends WoloxFragment<SignUpCompletition
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.credentials_button_signup: {
-                view.showProgressDialog();
                 mPresenter.registerUser();
                 break;
             }
@@ -73,6 +74,8 @@ public class SignUpCompletitionFragment extends WoloxFragment<SignUpCompletition
         view.hideProgressDialog();
         if (user!=null){
             mContext.startActivity(new Intent(mContext, MainApplicationActivity.class));
+        }else {
+            //Toast.makeText(mContext, R.string.couldnt_signup_string,Toast.LENGTH_LONG).show();
         }
     }
 }
