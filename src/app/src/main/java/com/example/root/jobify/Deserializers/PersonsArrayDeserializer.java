@@ -2,7 +2,7 @@ package com.example.root.jobify.Deserializers;
 
 import com.example.root.jobify.Globals;
 import com.example.root.jobify.Models.Person;
-import com.example.root.jobify.Services.Persons.PersonsArrayResponse;
+import com.example.root.jobify.Services.People.PersonsArrayResponse;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;

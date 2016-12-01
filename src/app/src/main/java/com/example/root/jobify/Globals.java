@@ -2,7 +2,7 @@ package com.example.root.jobify;
 
 import android.util.Log;
 
-import com.example.root.jobify.Services.Persons.PersonService;
+import com.example.root.jobify.Services.People.PersonService;
 import com.google.gson.JsonObject;
 
 import java.text.ParseException;

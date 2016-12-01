@@ -8,6 +8,13 @@ import retrofit2.Callback;
 public interface PersonProvider {
     void getPerson(final String personId, Callback callback);
 
-    void getPersonExperiences(String personId, Callback callback);
+    void addPerson(String personId, Callback callback);
 
+    void removePerson(String personId, Callback callback);
+
+    void recommendFolk(String personId, Callback callback);
+
+    void unrecommendFolk(String personId, Callback callback);
+
+    void engageChat(String personId, Callback callback);
 }
