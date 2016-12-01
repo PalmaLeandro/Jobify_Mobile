@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.root.jobify.Models.JobPosition;
 import com.example.root.jobify.R;
 import com.example.root.jobify.Services.People.PeopleService;
 import com.example.root.jobify.Views.GenericContentListPage.Content;

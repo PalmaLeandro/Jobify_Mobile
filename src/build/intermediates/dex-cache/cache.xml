@@ -52,7 +52,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="b42d93d34da6f74fe6da58d0a862150fe0145e2a">
+        sha1="9d6edacf678e20776630f64122df82808bb63409">
         <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_447140c3101ef242a5f1881124e0b43dd44663d4/classes.dex" />
     </item>
     <item
@@ -268,7 +268,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="3afcc17e2143aeb5ca7670cc1fae63e14273a5c3">
+        sha1="08c5913f75726324f8aee9a08058e6705c01ceea">
         <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_70248c837a6b28881b3949b7c93cf75a7a72e171/classes.dex" />
     </item>
     <item

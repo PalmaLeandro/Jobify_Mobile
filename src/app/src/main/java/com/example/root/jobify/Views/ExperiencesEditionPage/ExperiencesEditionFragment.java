@@ -13,7 +13,6 @@ import com.example.root.jobify.R;
 import com.example.root.jobify.Services.Auth.UserAuthService;
 import com.example.root.jobify.Utilities.WoloxFragment;
 import com.example.root.jobify.Views.ExperiencesListPage.ExperienceListFragment;
-import com.example.root.jobify.Views.SkillsListPage.SkillsFragment;
 
 /**
  * Created by root on 26/11/16.
