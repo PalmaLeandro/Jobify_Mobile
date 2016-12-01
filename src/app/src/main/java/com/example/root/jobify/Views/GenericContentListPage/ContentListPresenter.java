@@ -1,7 +1,9 @@
 package com.example.root.jobify.Views.GenericContentListPage;
 
+import android.app.ProgressDialog;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.root.jobify.Models.Experience;
 import com.example.root.jobify.R;
@@ -42,18 +44,23 @@ public class ContentListPresenter extends BasePresenter<ContentListFragment> {
     }
 
     public void fetchContents() {
+        getView().showProgressDialog();
         mService.getContents(new Callback<ArrayList<Content>>() {
             @Override
             public void onResponse(Call<ArrayList<Content>> call, Response<ArrayList<Content>> response) {
                 mContents = response.body();
                 loadContents();
+                getView().hideProgressDialog();
             }
 
             @Override
             public void onFailure(Call<ArrayList<Content>> call, Throwable t) {
-                Log.e("GET_CONTENT",getView().getContext().getString(R.string.cant_get_content_string), t);
+                Log.e("GET_CONTENT", getView().getContext().getString(R.string.cant_get_content_string), t);
+                getView().hideProgressDialog();
+                Toast.makeText(getView().mRecyclerView.getContext(), getView().getContext().getString(R.string.cant_get_content_string), Toast.LENGTH_LONG).show();
             }
         });
-
     }
+
 }
+

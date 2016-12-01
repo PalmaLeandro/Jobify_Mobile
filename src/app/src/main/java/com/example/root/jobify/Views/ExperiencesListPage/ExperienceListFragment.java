@@ -118,4 +118,19 @@ public class ExperienceListFragment extends ContentListFragment{
     public void setPersonId(String personId) {
         this.personId = personId;
     }
+
+
+    @Override
+    public void showProgressDialog() {
+        if(allowDeletion){
+            super.showProgressDialog();
+        }
+    }
+
+    @Override
+    public void hideProgressDialog() {
+        if(allowDeletion){
+            super.hideProgressDialog();
+        }
+    }
 }

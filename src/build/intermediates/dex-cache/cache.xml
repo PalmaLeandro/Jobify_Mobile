@@ -75,21 +75,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.github.clans/fab/1.6.4/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="1c3b9743fe8bb166a90a7e98b9b9f1f8021d80cd">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.github.clans-fab-1.6.4_f7634f5e479a4df012ff686db715eb32310f1ec0/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/root/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
         sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
         <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/picasso-2.5.2_f07471cc8daabba9b33b6c2492a169834e3c6749/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.github.clans/fab/1.6.4/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="1c3b9743fe8bb166a90a7e98b9b9f1f8021d80cd">
+        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.github.clans-fab-1.6.4_f7634f5e479a4df012ff686db715eb32310f1ec0/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -120,15 +120,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.6.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="eccaaa9ffa6bb4bfbd2e870f01aaf69655d353be">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-9.6.1_96bad78235dbd59b3f758b622231d4112a7fe4f5/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -138,12 +129,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.6.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="02ba7dae599abc23c8e45b94afdf02c7a2cae219">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_daa87f4cbd4c1d2ad72941423d67d7781a239e68/classes.dex" />
+        sha1="eccaaa9ffa6bb4bfbd2e870f01aaf69655d353be">
+        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-9.6.1_96bad78235dbd59b3f758b622231d4112a7fe4f5/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -153,6 +144,15 @@
         revision="24.0.2"
         sha1="c5e6490573cd2cc8018417f60ddd251138b6ed61">
         <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-cardview-v7-24.2.1_116d620b675f30043809ef79f5f9982fba63fbd8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="ead87f5ee077088707d465eced1e97c62694e897">
+        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_daa87f4cbd4c1d2ad72941423d67d7781a239e68/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -169,7 +169,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="617cf01cf56621e9b3fc55f094712157ef9e666c">
+        sha1="918d5eace56f35a29302ade8ee53d3537036e2e9">
         <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_8ddfdeed694ae3d81720e1b277fafafbae3004db/classes.dex" />
     </item>
     <item

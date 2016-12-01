@@ -1,7 +1,10 @@
 package com.example.root.jobify.Views.GenericContentListPage;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
@@ -24,7 +27,6 @@ public abstract class ContentListFragment extends WoloxFragment<ContentListPrese
 
     protected RecyclerView mRecyclerView;
     public static String CONTENT_ID = "contentId";
-    public static String CONTENT_NAME = "contentName";
 
     @Override
     protected int layout() {
@@ -50,20 +52,12 @@ public abstract class ContentListFragment extends WoloxFragment<ContentListPrese
 
     @Override
     protected void setListeners() {
-
     }
 
     @Override
     protected ContentListPresenter createPresenter() {
         return new ContentListPresenter(this, createService(),this);
     }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        populate();
-    }
-
 
     protected abstract ContentListProvider createService();
 
@@ -125,5 +119,20 @@ public abstract class ContentListFragment extends WoloxFragment<ContentListPrese
                 context.startActivity(intent);
             }
         });
+    }
+
+
+    private ProgressDialog progressDialog;
+
+
+    public void showProgressDialog() {
+        progressDialog =  ProgressDialog.show(getContext(), "",
+                getString(R.string.getting_data_string), true);
+    }
+
+    public void hideProgressDialog(){
+        if (progressDialog!=null){
+            progressDialog.dismiss();
+        }
     }
 }

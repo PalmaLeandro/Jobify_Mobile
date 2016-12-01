@@ -105,4 +105,12 @@ public class ProfileEditionFragment extends WoloxFragment<ProfileEditionPresente
         }
     }
 
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        populate();
+    }
+
 }

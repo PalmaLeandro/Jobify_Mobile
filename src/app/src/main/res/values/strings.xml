@@ -1,15 +1,15 @@
 <resources>
     <string name="app_name">jobify</string>
     <string name="unknown_error">UNKNOWN_ERROR</string>
-    <string name="credential_login_error">No fue posible autenticar al usuario</string>
+    <string name="credential_login_error">Couldn\'t sign in. Try again</string>
     <string name="sign_up_button">Not a member? Signin</string>
     <string name="person_removed_string">Contact removed</string>
     <string name="undo_string">Undo</string>
-    <string name="cant_add_person_string">No fue posible realizar la inscripción</string>
-    <string name="cant_remove_person_string">No fue posible realizar la desinscripción</string>
+    <string name="cant_add_person_string">Couldn\'t add the person</string>
+    <string name="cant_remove_person_string">Couldn\'t remove the person</string>
     <string name="person_added_string">Contact added</string>
-    <string name="cant_fetch_person_string">There wasn\'t possible to fetch the requested person</string>
-    <string name="cant_get_content_string">It wasn\'t possible to fetch the requested folks</string>
+    <string name="cant_fetch_person_string">There wasnt possible to fetch the requested person</string>
+    <string name="cant_get_content_string">It wasnt possible to fetch the requested data</string>
     <string name="experience">Experience</string>
     <string name="skills_title_string">Skills</string>
     <string name="actions_title_string">Actions</string>
@@ -74,8 +74,13 @@
     <string name="invalid_email_string">You must use a valid email address</string>
     <string name="couldnt_login_string">Could\'t login. Verify your credentials and try again.</string>
     <string name="couldnt_signup_string">Couldn\'t signup. Please try again</string>
-    <string name="no_image_selected_string">You haven\'t picked Image</string>
+    <string name="no_image_selected_string">You havent picked Image</string>
     <string name="couldnt_load_image_string">Something went wrong</string>
     <string name="no_person_parched_string">No person matched</string>
     <string name="couldn_load_profile_picture">Couldn\'t load person picture.</string>
+    <string name="recomended_succesfully_sring">Fellow recommended successfully</string>
+    <string name="couldn_recommend_tring">Couldn\'t recommend the fellow</string>
+    <string name="unrecommended_succesfully">Fellow unrecommended successfully</string>
+    <string name="loging_in_string">Signing in. Please wait...</string>
+    <string name="getting_data_string">Getting data. Please wait...</string>
 </resources>

@@ -12,6 +12,7 @@
         android:id="@+id/content_card"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         card_view:cardCornerRadius="2dp"
         card_view:cardElevation="2dp"
         android:layout_margin="@dimen/cardview_default_elevation"

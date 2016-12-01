@@ -31,7 +31,7 @@ public class ChatPresenter extends BasePresenter<ChatFragment>{
             @Override
             public void onResponse(Call call, Response response) {
                 Toast.makeText(getView().getContext(), R.string.message_set_string,Toast.LENGTH_LONG).show();
-                getView().populate();
+                getView().messageListFragment.populate();
             }
 
             @Override
