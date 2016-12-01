@@ -18,23 +18,23 @@ public class SinglePersonProvider implements PersonProvider{
 
 
     @Override
-    public void addPerson(String personId, Callback callback) {
-
+    public void addPerson(Person personId, Callback callback) {
+        new PeopleService().addPerson(personId,callback);
     }
 
     @Override
-    public void removePerson(String personId, Callback callback) {
-
+    public void removePerson(Person personId, Callback callback) {
+        new PeopleService().removePerson(personId,callback);
     }
 
     @Override
-    public void recommendFolk(String personId, Callback callback) {
-
+    public void recommendFolk(Person personId, Callback callback) {
+        new PeopleService().recommendFolk(personId,callback);
     }
 
     @Override
-    public void unrecommendFolk(String personId, Callback callback) {
-
+    public void unrecommendFolk(Person personId, Callback callback) {
+        new PeopleService().unrecommendFolk(personId,callback);
     }
 
     @Override

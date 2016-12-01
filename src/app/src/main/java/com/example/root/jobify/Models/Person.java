@@ -22,13 +22,13 @@ public class Person implements Content {
     private final ArrayList<Experience> previous_exp;
     private final String profile;
     private final ArrayList<String> skills;
-    private final ArrayList<Person> contacts;
-    private final ArrayList<Person> recommended_by;
-    private final ArrayList<Person> chats;
+    private final ArrayList<String> contacts;
+    private final ArrayList<String> recommended_by;
+    private final ArrayList<String> chats;
 
     private String picture;
 
-    public Person(String email, String name, String city, String dateOfBirth, String gender, String nationality, String profile, ArrayList<String> skills, ArrayList<Experience> experience, ArrayList<Person> contacts, ArrayList<Person> recommended_by, ArrayList<Person> chats, String base64Image) {
+    public Person(String email, String name, String city, String dateOfBirth, String gender, String nationality, String profile, ArrayList<String> skills, ArrayList<Experience> experience, ArrayList<String> contacts, ArrayList<String> recommended_by, ArrayList<String> chats, String base64Image) {
         this.username = email;
         this.city = city;
         this.dob = dateOfBirth;
@@ -96,25 +96,25 @@ public class Person implements Content {
             return new ArrayList<Experience>();
     }
 
-    public ArrayList<Person> getMyPeople() {
+    public ArrayList<String> getMyPeople() {
         if (contacts!=null)
             return contacts;
         else
-            return new ArrayList<Person>();
+            return new ArrayList<String>();
     }
 
-    public ArrayList<Person> getFellowsWhoRecommendMe() {
+    public ArrayList<String> getFellowsWhoRecommendMe() {
         if (recommended_by!=null)
             return recommended_by;
         else
-            return new ArrayList<Person>();
+            return new ArrayList<>();
     }
 
-    public ArrayList<Person> getChats() {
+    public ArrayList<String> getChats() {
         if (chats!=null)
             return chats;
         else
-            return new ArrayList<Person>();
+            return new ArrayList<>();
     }
 
     public String getProfile() {
@@ -166,18 +166,18 @@ public class Person implements Content {
     }
 
     public void removeFellowFromConacts(final Person fellowToRemove){
-        for(Person person: getMyPeople()){
-            if(person.getEmail().equals(fellowToRemove.getEmail())){
-                getMyPeople().remove(getMyPeople().indexOf(person));
+        for(String personEmail: getMyPeople()){
+            if(personEmail.equals(fellowToRemove.getEmail())){
+                getMyPeople().remove(getMyPeople().indexOf(personEmail));
                 break;
             }
         }
     }
 
     public void removeFellowFromGuysWhomRecommendedMe(final Person fellowToRemove){
-        for(Person person: getMyPeople()){
-            if(person.getEmail().equals(fellowToRemove.getEmail())){
-                getMyPeople().remove(getMyPeople().indexOf(person));
+        for(String personEmail: getMyPeople()){
+            if(personEmail.equals(fellowToRemove.getEmail())){
+                getMyPeople().remove(getMyPeople().indexOf(personEmail));
                 break;
             }
         }

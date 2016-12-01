@@ -25,7 +25,7 @@ public class ExperiencesEditionPresenter extends BasePresenter<ExperiencesEditio
             @Override
             public void onResponse(Call call, Response response) {
                 Toast.makeText(getView().getContext(),R.string.added_skill_message,Toast.LENGTH_LONG).show();
-                getView().populate();
+                getView().experienceListFragment.populate();
             }
 
             @Override

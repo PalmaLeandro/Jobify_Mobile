@@ -64,15 +64,15 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
             personDetailView.mPersonActionFAB.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View view) {
-                    new PeopleService().changeProfileAddition(mPerson);
-                    new SinglePersonProvider().removePerson(mPerson.getUsername(), new Callback() {
+                    new SinglePersonProvider().removePerson(mPerson, new Callback() {
                         @Override
                         public void onResponse(Call call, Response response) {
+                            new PeopleService().changeProfileAddition(mPerson);
                             Snackbar.make(view, R.string.person_removed_string, Snackbar.LENGTH_LONG)
                                     .setAction(R.string.undo_string, new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
-                                            new SinglePersonProvider().addPerson(mPerson.getUsername(), new Callback() {
+                                            new SinglePersonProvider().addPerson(mPerson, new Callback() {
                                                 @Override
                                                 public void onResponse(Call call, Response response) {
                                                     new PeopleService().changeProfileAddition(mPerson);
@@ -101,15 +101,15 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
             personDetailView.mPersonActionFAB.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View view) {
-                    new PeopleService().changeProfileAddition(mPerson);
-                    new SinglePersonProvider().addPerson(mPerson.getUsername(), new Callback() {
+                    new SinglePersonProvider().addPerson(mPerson, new Callback() {
                         @Override
                         public void onResponse(Call call, Response response) {
+                            new PeopleService().changeProfileAddition(mPerson);
                             Snackbar.make(view, R.string.person_added_string, Snackbar.LENGTH_LONG)
                                     .setAction(R.string.undo_string, new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
-                                            new SinglePersonProvider().removePerson(mPerson.getUsername(), new Callback() {
+                                            new SinglePersonProvider().removePerson(mPerson, new Callback() {
                                                 @Override
                                                 public void onResponse(Call call, Response response) {
                                                     new PeopleService().changeProfileAddition(mPerson);
@@ -170,26 +170,26 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
     }
 
     void recommendFolk(){
-        new SinglePersonProvider().recommendFolk(personId, new Callback() {
+        new SinglePersonProvider().recommendFolk(mPerson, new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
-                updateRecomendationButons();
                 new PeopleService().changeProfileRecomendation(mPerson);
-                mPerson.getFellowsWhoRecommendMe().add(UserAuthService.getInstance().getUserProfile());
-                Snackbar.make(getView().recommendProfileButtton, R.string.person_added_string, Snackbar.LENGTH_LONG)
+                updateRecomendationButons();
+                mPerson.getFellowsWhoRecommendMe().add(UserAuthService.getInstance().getUserProfile().getEmail());
+                Snackbar.make(getView().recommendProfileButtton, R.string.recomended_succesfully_sring, Snackbar.LENGTH_LONG)
                         .setAction(R.string.undo_string, new View.OnClickListener() {
                             @Override
                             public void onClick(final View v) {
-                                new SinglePersonProvider().unrecommendFolk(mPerson.getUsername(), new Callback() {
+                                new SinglePersonProvider().unrecommendFolk(mPerson, new Callback() {
                                     @Override
                                     public void onResponse(Call call, Response response) {
-                                        updateRecomendationButons();
                                         new PeopleService().changeProfileRecomendation(mPerson);
+                                        updateRecomendationButons();
                                     }
 
                                     @Override
                                     public void onFailure(Call call, Throwable t) {
-                                        Snackbar.make(v, R.string.cant_add_person_string, Snackbar.LENGTH_LONG).show();
+                                        Snackbar.make(v, R.string.couldn_recommend_tring, Snackbar.LENGTH_LONG).show();
                                     }
                                 });
                             }
@@ -205,26 +205,26 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
 
 
     void unrecommendFolk(){
-        new SinglePersonProvider().unrecommendFolk(personId, new Callback() {
+        new SinglePersonProvider().unrecommendFolk(mPerson, new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
-                updateRecomendationButons();
                 new PeopleService().changeProfileRecomendation(mPerson);
-                Snackbar.make(getView().recommendProfileButtton, R.string.person_added_string, Snackbar.LENGTH_LONG)
+                updateRecomendationButons();
+                Snackbar.make(getView().recommendProfileButtton, R.string.unrecommended_succesfully, Snackbar.LENGTH_LONG)
                         .setAction(R.string.undo_string, new View.OnClickListener() {
                             @Override
                             public void onClick(final View v) {
-                                new SinglePersonProvider().recommendFolk(mPerson.getUsername(), new Callback() {
+                                new SinglePersonProvider().recommendFolk(mPerson, new Callback() {
                                     @Override
                                     public void onResponse(Call call, Response response) {
+                                        new PeopleService().changeProfileRecomendation(mPerson);
                                         updateRecomendationButons();
                                         new PeopleService().changeProfileRecomendation(mPerson);
-                                        mPerson.getFellowsWhoRecommendMe().add(UserAuthService.getInstance().getUserProfile());
                                     }
 
                                     @Override
                                     public void onFailure(Call call, Throwable t) {
-                                        Snackbar.make(v, R.string.cant_add_person_string, Snackbar.LENGTH_LONG).show();
+                                        Snackbar.make(v,R.string.couldn_recommend_tring, Snackbar.LENGTH_LONG).show();
                                     }
                                 });
                             }

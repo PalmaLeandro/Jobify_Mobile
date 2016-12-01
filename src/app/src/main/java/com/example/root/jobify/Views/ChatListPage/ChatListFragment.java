@@ -122,4 +122,5 @@ public class ChatListFragment extends ContentListFragment {
     public Class<? extends WoloxActivity> getContentDetailActivity() {
         return ChatActivity.class;
     }
+
 }

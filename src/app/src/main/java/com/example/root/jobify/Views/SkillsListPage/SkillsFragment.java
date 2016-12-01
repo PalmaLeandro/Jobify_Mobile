@@ -2,7 +2,9 @@ package com.example.root.jobify.Views.SkillsListPage;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,9 +40,24 @@ public class SkillsFragment extends ContentListFragment {
         TextView subcontentTextView=(TextView) v.findViewById(R.id.subcontent_title);
         subcontentTextView.setText(v.getContext().getResources().getText(R.string.skills_title_string));
         mRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(mRecyclerView.getContext()));
+
     }
 
     private Boolean allowDeletion;
+
+    @Override
+    public void showProgressDialog() {
+        if(allowDeletion){
+            super.showProgressDialog();
+        }
+    }
+
+    @Override
+    public void hideProgressDialog() {
+        if(allowDeletion){
+            super.hideProgressDialog();
+        }
+    }
 
     @Override
     protected ContentListProvider createService() {
@@ -89,12 +106,6 @@ public class SkillsFragment extends ContentListFragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        populate();
-    }
-
-    @Override
     public void setListener(final Content content, View contentView) {
         if (allowDeletion){
             contentView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -113,12 +124,12 @@ public class SkillsFragment extends ContentListFragment {
                                     new PeopleService().removeProfileSkill(content.getId(), new Callback() {
                                         @Override
                                         public void onResponse(Call call, Response response) {
-                                            Toast.makeText(context,getString(R.string.removed_skill_message),Toast.LENGTH_LONG);
+                                            Toast.makeText(context,getString(R.string.removed_skill_message),Toast.LENGTH_LONG).show();
                                         }
 
                                         @Override
                                         public void onFailure(Call call, Throwable t) {
-                                            Toast.makeText(context, R.string.couldnt_remove_skill_message,Toast.LENGTH_LONG);
+                                            Toast.makeText(context, R.string.couldnt_remove_skill_message,Toast.LENGTH_LONG).show();
                                         }
                                     });
                                 }
