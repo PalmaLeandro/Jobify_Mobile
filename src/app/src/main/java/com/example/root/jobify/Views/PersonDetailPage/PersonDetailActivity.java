@@ -6,6 +6,7 @@ import com.example.root.jobify.R;
 import com.example.root.jobify.Services.Auth.UserAuthService;
 import com.example.root.jobify.Utilities.WoloxActivity;
 import com.example.root.jobify.Views.ExperiencesListPage.ExperienceListFragment;
+import com.example.root.jobify.Views.GenericContentListPage.ContentListFragment;
 import com.example.root.jobify.Views.SkillsListPage.SkillsFragment;
 
 /**
@@ -17,7 +18,7 @@ public class PersonDetailActivity extends WoloxActivity{
     PersonDetailView personDetailView;
     ExperienceListFragment experienceListFragment;
 
-    public static final String PERSON_USERNAME= "person_id";
+    public static final String PERSON_USERNAME= ContentListFragment.CONTENT_ID;
 
     @Override
     protected int layout() {
@@ -26,11 +27,15 @@ public class PersonDetailActivity extends WoloxActivity{
 
     @Override
     protected void init() {
+        final String fellowId = getIntent().getStringExtra(PERSON_USERNAME);
         personDetailView = new PersonDetailView(findViewById(R.id.main_person_detail_layout));
         SkillsFragment skillsFragment= new SkillsFragment();
-        skillsFragment.allowDeletion(UserAuthService.getInstance().getUser().getEmail().equals(getIntent().getStringExtra(PERSON_USERNAME)));
+        skillsFragment.setPersonId(fellowId);
+        skillsFragment.allowDeletion(false);
         replaceFragment(R.id.person_skills_fragment,skillsFragment);
         experienceListFragment = new ExperienceListFragment();
+        experienceListFragment.setPersonId(fellowId);
+        experienceListFragment.allowDeletion(false);
         replaceFragment(R.id.person_experiences_fragment,experienceListFragment);
     }
 

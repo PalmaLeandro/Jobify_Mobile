@@ -14,6 +14,10 @@ import com.example.root.jobify.R;
  */
 
 public class LogInCompletitionView {
+    public Context getContext() {
+        return context;
+    }
+
     private Context context;
 
     public LogInCompletitionView(View view) {

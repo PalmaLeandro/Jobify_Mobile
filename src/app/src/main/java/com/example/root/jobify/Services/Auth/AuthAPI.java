@@ -1,9 +1,12 @@
 package com.example.root.jobify.Services.Auth;
 
+import com.example.root.jobify.Models.Person;
+import com.example.root.jobify.Deserializers.ServerResponse;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.Header;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 /**
@@ -11,17 +14,14 @@ import retrofit2.http.POST;
  */
 public interface AuthAPI {
 
-    @POST("login")
-    @Headers("Auth: {base64Authetication}")
-    Call<Authentication> login(@Header("base64Authetication") final String base64Authetication);
+    @GET("login")
+    Call<ServerResponse<Authentication>> login(@Header("Authorization") final String base64Authetication);
 
     @POST("signup")
-    @Headers("Auth: {base64Authetication}")
-    Call<Authentication> signUp(@Header("base64Authetication") final String base64Authetication, @Body SignUpData signUpData);
+    Call<ServerResponse<Authentication>> signUp(@Header("Authorization") final String base64Authetication, @Body SignUpData signUpData);
 
-    @POST("users/me")
-    @Headers("Auth: {base64Authetication}")
-    Call<SignUpData> getUser(@Header("base64Authetication") final String base64Authetication);
+    @GET("users/me")
+    Call<ServerResponse<Person>> getUserProfile(@Header("Token") final String base64Authetication);
 
 
     class Authentication {

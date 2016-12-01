@@ -49,7 +49,11 @@ public class ContentListCellView {
 
     public void setContentBase64Image(String base64Image) {
         if(base64Image!=null){
-            mContentImageImageView.setImageBitmap(BitmapFactory.decodeStream(new ByteArrayInputStream(Base64.decode(base64Image.getBytes(),Base64.DEFAULT))));
+            try {
+                mContentImageImageView.setImageBitmap(BitmapFactory.decodeStream(new ByteArrayInputStream(Base64.decode(base64Image.getBytes(),Base64.DEFAULT))));
+            }catch (Exception e){
+
+            }
             mContentImageImageView.setVisibility(View.VISIBLE);
         } else {
             mContentImageImageView.setVisibility(View.GONE);

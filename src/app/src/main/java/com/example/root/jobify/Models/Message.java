@@ -33,8 +33,7 @@ public class Message implements Content{
         return text;
     }
 
-    @Override
-    public String getBase64Image() {
+    public String getPicture() {
         return null;
     }
 }

@@ -1,6 +1,7 @@
 package com.example.root.jobify.Views.SkillsEditionPage;
 
 import com.example.root.jobify.R;
+import com.example.root.jobify.Services.Auth.UserAuthService;
 import com.example.root.jobify.Utilities.WoloxActivity;
 
 /**

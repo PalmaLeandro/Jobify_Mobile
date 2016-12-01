@@ -60,4 +60,8 @@ public class SignUpCompletitionView {
             progressDialog.dismiss();
         }
     }
+
+    public Context getContext() {
+        return context;
+    }
 }

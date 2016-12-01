@@ -3,13 +3,13 @@ package com.example.root.jobify.Models;
 import com.example.root.jobify.Views.GenericContentListPage.Content;
 
 import java.util.ArrayList;
+import java.util.function.Predicate;
 
 /**
  * Created by root on 06/09/16.
  */
 public class Person implements Content {
 
-    private static String image="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";
 
     private final String username;
     private final String city;
@@ -22,25 +22,13 @@ public class Person implements Content {
     private final ArrayList<Experience> previous_exp;
     private final String profile;
     private final ArrayList<String> skills;
-    private String base64Image;
+    private final ArrayList<Person> contacts;
+    private final ArrayList<Person> recommended_by;
+    private final ArrayList<Person> chats;
 
-    public Person(String username, String city, String dob, String email, String gender, String name, String nationality, ArrayList<Experience> previous_exp, String profile, ArrayList<String> skills, String base64Image) {
-        this.username = username;
-        this.city = city;
-        this.dob = dob;
-        this.email = email;
-        this.gender = gender;
-        this.name = name;
-        this.nationality = nationality;
-        this.previous_exp = previous_exp;
-        this.profile = profile;
-        this.skills = skills;
-        this.base64Image = base64Image;
-        if(base64Image==null)
-            this.base64Image=image;
-    }
+    private String picture;
 
-    public Person(String email, String name, String city, String dateOfBirth, String gender, String nationality, String profile, ArrayList<String> skills, ArrayList<Experience> experience, String base64Image) {
+    public Person(String email, String name, String city, String dateOfBirth, String gender, String nationality, String profile, ArrayList<String> skills, ArrayList<Experience> experience, ArrayList<Person> contacts, ArrayList<Person> recommended_by, ArrayList<Person> chats, String base64Image) {
         this.username = email;
         this.city = city;
         this.dob = dateOfBirth;
@@ -51,67 +39,111 @@ public class Person implements Content {
         this.profile = profile;
         this.skills = skills;
         this.previous_exp = experience;
-        this.base64Image = base64Image;
-        if(base64Image==null)
-            this.base64Image=image;
+        this.contacts = contacts;
+        this.recommended_by = recommended_by;
+        this.chats = chats;
+        this.picture = base64Image;
     }
 
     public String getName() {
-        return name;
+        if(name!=null){
+            return name;
+        }else{
+            return "";
+        }
     }
 
     public String getCity() {
-        return city;
+        if(city!=null){
+            return city;
+        } else {
+            return "";
+        }
     }
 
     public String getDateOfBirth() {
-        return dob;
+        if(dob!=null)
+            return dob;
+        else
+            return "";
     }
 
     public String getEmail() {
-        return email;
+        if(email!=null)
+            return email;
+        else
+            return "";
     }
 
-    public String getGender() {
+    public String getGender(){
+    if(gender!=null)
         return gender;
+    else
+        return "";
     }
 
     public String getNationality() {
-        return nationality;
+        if(nationality!=null)
+            return nationality;
+        else
+            return "";
     }
 
     public ArrayList<Experience> getPreviousExperience() {
-        return previous_exp;
+        if (previous_exp!=null)
+            return previous_exp;
+        else
+            return new ArrayList<Experience>();
+    }
+
+    public ArrayList<Person> getMyPeople() {
+        if (contacts!=null)
+            return contacts;
+        else
+            return new ArrayList<Person>();
+    }
+
+    public ArrayList<Person> getFellowsWhoRecommendMe() {
+        if (recommended_by!=null)
+            return recommended_by;
+        else
+            return new ArrayList<Person>();
+    }
+
+    public ArrayList<Person> getChats() {
+        if (chats!=null)
+            return chats;
+        else
+            return new ArrayList<Person>();
     }
 
     public String getProfile() {
-        return profile;
+        if (profile!=null)
+            return profile;
+        else
+            return "";
     }
 
     public ArrayList<String> getSkills() {
-        return skills;
+
+        if (skills!=null)
+            return skills;
+        else
+            return new ArrayList<String>();
     }
 
     public String getPosition() {
-        if (previous_exp.size()>0)
+        if (previous_exp!=null && previous_exp.size()>0)
             return previous_exp.get(0).getPosition();
         else
-            return profile;
+            return getProfile();
     }
 
     public String getUsername() {
-        return username;
-    }
-
-    public boolean userIsAlreadyAddedByCurrentProfile() {
-        return false; //TODO: do the logic
-    }
-
-    public void changeProfileAddition() {
-    }
-
-    public boolean isAlreadyRecomendedByCurrentUser() {
-        return false;
+        if (username!=null)
+            return username;
+        else
+            return "";
     }
 
     @Override
@@ -129,8 +161,41 @@ public class Person implements Content {
         return getPosition();
     }
 
-    @Override
-    public String getBase64Image() {
-        return base64Image;
+    public String getPicture() {
+        return picture;
+    }
+
+    public void removeFellowFromConacts(final Person fellowToRemove){
+        for(Person person: getMyPeople()){
+            if(person.getEmail().equals(fellowToRemove.getEmail())){
+                getMyPeople().remove(getMyPeople().indexOf(person));
+                break;
+            }
+        }
+    }
+
+    public void removeFellowFromGuysWhomRecommendedMe(final Person fellowToRemove){
+        for(Person person: getMyPeople()){
+            if(person.getEmail().equals(fellowToRemove.getEmail())){
+                getMyPeople().remove(getMyPeople().indexOf(person));
+                break;
+            }
+        }
+    }
+
+    public void setProfileImage(String profileImage) {
+        this.picture = profileImage;
+    }
+
+    public void removeSkills(final String skillId){
+        getSkills().remove(skillId);
+    }
+
+    public void removeExperience(final String experienceId){
+        for(Experience experience: getPreviousExperience()){
+            if(experience.getId().equals(experienceId)){
+                previous_exp.remove(experience);
+            }
+        }
     }
 }

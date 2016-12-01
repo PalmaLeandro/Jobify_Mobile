@@ -47,7 +47,7 @@ public class PersonDeserializer implements JsonDeserializer<Person> {
                 description, personInstances, new Random().nextDouble()*5, duration);
                 */
         //return new Person(null,null,null,null,null,null,null,null,null,null);
-        Person person = new Gson().fromJson(json.getAsJsonObject().get("response"),Person.class);
+        Person person = new Gson().fromJson(json,Person.class);
         return person;
     }
 }

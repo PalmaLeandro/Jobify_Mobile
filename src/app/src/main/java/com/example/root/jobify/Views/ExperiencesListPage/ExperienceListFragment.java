@@ -3,28 +3,19 @@ package com.example.root.jobify.Views.ExperiencesListPage;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.TypedValue;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.root.jobify.Models.Experience;
-import com.example.root.jobify.Models.Person;
 import com.example.root.jobify.R;
-import com.example.root.jobify.Services.People.PersonService;
-import com.example.root.jobify.Utilities.WoloxActivity;
-import com.example.root.jobify.Utilities.WoloxFragment;
+import com.example.root.jobify.Services.People.PeopleService;
 import com.example.root.jobify.Views.GenericContentListPage.Content;
 import com.example.root.jobify.Views.GenericContentListPage.ContentListFragment;
 import com.example.root.jobify.Views.GenericContentListPage.ContentListProvider;
 import com.example.root.jobify.Views.GenericContentListPage.SimpleDividerItemDecoration;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -62,7 +53,7 @@ public class ExperienceListFragment extends ContentListFragment{
         return new ContentListProvider() {
             @Override
             public void getContents(final Callback<ArrayList<Content>> callback) {
-                new PersonService().getPersonExperiences(personId, new Callback<ArrayList<Experience>>() {
+                new PeopleService().getPersonExperiences(personId, new Callback<ArrayList<Experience>>() {
                     @Override
                     public void onResponse(Call<ArrayList<Experience>> call, Response<ArrayList<Experience>> response) {
                         ArrayList<Content> contents = new ArrayList<Content>();
@@ -73,14 +64,7 @@ public class ExperienceListFragment extends ContentListFragment{
 
                     @Override
                     public void onFailure(Call<ArrayList<Experience>> call, Throwable t) {
-
-                        ArrayList<Experience> previous_exp = new ArrayList<Experience>();
-                        previous_exp.add(new Experience("1", "google","barrer pisos","asistente de limpieza","2010 - Actualidad"));
-                        previous_exp.add(new Experience("1", "microsoft","barrer pasillos","asistente de limpieza","2009 - 2010"));
-                        ArrayList<Content> contents = new ArrayList<Content>();
-                        for (Content content : previous_exp)
-                            contents.add(content);
-                        callback.onResponse(null, Response.success(contents));
+                        callback.onFailure(null,t);
                     }
                 });
             }
@@ -103,7 +87,7 @@ public class ExperienceListFragment extends ContentListFragment{
                             .setItems(new String[]{context.getString(R.string.remove_dialog_option_string)}, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    new PersonService().removeProfileExperience(content.getId(), new Callback() {
+                                    new PeopleService().removeProfileExperience(content.getId(), new Callback() {
                                         @Override
                                         public void onResponse(Call call, Response response) {
                                             Toast.makeText(context,getString(R.string.removed_skill_message),Toast.LENGTH_LONG);

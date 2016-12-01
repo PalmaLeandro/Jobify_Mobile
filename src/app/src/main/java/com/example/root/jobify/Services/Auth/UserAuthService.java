@@ -1,14 +1,15 @@
 package com.example.root.jobify.Services.Auth;
 
 import android.content.Context;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.util.Base64;
 
 import com.cloudrail.si.interfaces.Profile;
 import com.cloudrail.si.services.Facebook;
-import com.example.root.jobify.Models.Experience;
+import com.cloudrail.si.types.DateOfBirth;
+import com.example.root.jobify.Globals;
 import com.example.root.jobify.Models.Person;
+import com.example.root.jobify.Deserializers.ServerResponse;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,7 +25,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class UserAuthService implements Authenticable {
 
-    public static final String API_URL = "http://192.168.43.25:8080/";
+    public static final String API_URL = "http://192.168.43.25:8000/";
+
+    private AuthAPI authAPI;
 
     private static UserAuthService ourInstance = new UserAuthService();
 
@@ -34,6 +37,12 @@ public class UserAuthService implements Authenticable {
 
     private UserAuthService() {
         listeners = new ArrayList<>();
+        authAPI =new Retrofit
+                .Builder()
+                .baseUrl(API_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+                .create(AuthAPI.class);
     }
 
     private Profile profile;
@@ -88,35 +97,27 @@ public class UserAuthService implements Authenticable {
     @Override
     public void onUserAuthenticated(String token) {
         this.token = token;
+        this.user=null;
+        this.userProfile =null;
         if (token!=null){
-            Response<AuthAPI.SignUpData> getUserResponse = null;
+            this.user=null;
+            this.userProfile =null;
             try {
-                getUserResponse = new Retrofit
-                        .Builder()
-                        .baseUrl(API_URL)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build()
-                        .create(AuthAPI.class)
-                        .getUser(token)
+                Response<ServerResponse<Person>> getUserResponse = authAPI
+                        .getUserProfile(token)
                         .execute();
+                this.user=new User(getUserResponse.body().data.getName(),getUserResponse.body().data.getEmail(),"");
+                this.userProfile =getUserResponse.body().data;
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-            // TODO: update user profile
-            this.user=new User("user name","user email","user password");
-            ArrayList<Experience> previous_exp = new ArrayList<Experience>();
-            previous_exp.add(new Experience("1", "google","barrer pisos","asistente de limpieza","2010 - Actualidad"));
-            previous_exp.add(new Experience("1", "microsoft","barrer pasillos","asistente de limpieza","2009 - 2010"));
-            ArrayList< String > skills = new ArrayList<>();
-            skills.add("lavar platos");
-            skills.add("barrer");
-            skills.add("trapear");
-            skills.add("lavar vidrios");
-            this.userProfile = new Person("leopalma","san antonio de areco","25/10/1993","leandropalma0@gmail.com","male","Leandro Palma","Arg",previous_exp,"soy capo de la limpieza y tambien la muevo en la cocina",skills,null);
-
-            notifyListeners();
         }
+        notifyListeners();
+    }
+
+    @Override
+    public AuthAPI getAPI() {
+        return authAPI;
     }
 
     public void signUpWithCredentials(String userName, String userEmail, String userPassword) {
@@ -141,25 +142,17 @@ public class UserAuthService implements Authenticable {
         @Override
         protected Void doInBackground(Authenticable... params) {
             try {
-                final User user = params[0].getUser();
                 final String userName = params[0].getUser().getName();
                 final String userEmail = params[0].getUser().getEmail();
                 final String userPassword = params[0].getUser().getPassword();
-                final Response<AuthAPI.Authentication> authenticationResponse = new Retrofit
-                        .Builder()
-                        .baseUrl(API_URL)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build()
-                        .create(AuthAPI.class)
-                        .signUp(Base64.encodeToString(userEmail.concat(":").concat(userPassword).getBytes(),Base64.NO_WRAP),new AuthAPI.SignUpData(userEmail, userName,null,null,null,null,null,null))
+                final Response<ServerResponse<AuthAPI.Authentication>> authenticationResponse = params[0].getAPI()
+                        .signUp(Base64.encodeToString(userEmail.concat(":").concat(userPassword).getBytes(),Base64.NO_WRAP),new AuthAPI.SignUpData(userEmail, userName,null,null,null,null,null, Globals.defaultBase64Image))
                         .execute();
-                //params[0].onUserAuthenticated(authenticationResponse.body().getToken()); TODO: make this work with tokens
-                params[0].onUserAuthenticated(Base64.encodeToString(userEmail.concat(":").concat(userPassword).getBytes(),Base64.NO_WRAP));
-            } catch (Exception e){
+                params[0].onUserAuthenticated(authenticationResponse.body().data.getToken());
+            } catch (Exception e) {
                 e.printStackTrace();
+                params[0].onUserAuthenticated(null);
             }
-
-            params[0].onUserAuthenticated("");
             return null;
         }
     }
@@ -173,23 +166,26 @@ public class UserAuthService implements Authenticable {
                 final String userPassword = params[0].getProfile().getIdentifier();
                 final String userName = params[0].getProfile().getFullName();
                 final String userGender = params[0].getProfile().getGender();
-                final String userDateOfBirth = params[0].getProfile().getDateOfBirth().toString();
-                final String userImage = new URL(params[0].getProfile().getPictureURL()).openConnection().getInputStream().toString();
-                final Response<AuthAPI.Authentication> authenticationResponse = new Retrofit
-                        .Builder()
-                        .baseUrl(API_URL)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build()
-                        .create(AuthAPI.class)
+                DateOfBirth  dateOfBirth= params[0].getProfile().getDateOfBirth();
+                String userDateOfBirth = null;
+                if (dateOfBirth!=null){
+                    userDateOfBirth= dateOfBirth.getDay().toString()+"/"+dateOfBirth.getMonth().toString()+"/"+dateOfBirth.getYear().toString();
+                }
+                final String imageUrl = params[0].getProfile().getPictureURL();
+                String userImage =null;
+                if (imageUrl!=null){
+                    userImage=new URL(imageUrl).openConnection().getInputStream().toString();
+                }
+                if (userImage!=null)
+                    userImage=Globals.defaultBase64Image;
+                final Response<ServerResponse<AuthAPI.Authentication>> authenticationResponse = params[0].getAPI()
                         .signUp(Base64.encodeToString(userEmail.concat(":").concat(userPassword).getBytes(),Base64.NO_WRAP),new AuthAPI.SignUpData(userEmail, userName,userGender,userDateOfBirth,null,null,null,userImage))
                         .execute();
-                //params[0].onUserAuthenticated(authenticationResponse.body().getToken()); TODO: make this work with tokens
-                params[0].onUserAuthenticated(Base64.encodeToString(userEmail.concat(":").concat(userPassword).getBytes(),Base64.NO_WRAP));
+                params[0].onUserAuthenticated(authenticationResponse.body().data.getToken());
             } catch (Exception e){
                 e.printStackTrace();
+                params[0].onUserAuthenticated(null);
             }
-
-            params[0].onUserAuthenticated("");
             return null;
         }
     }
@@ -199,23 +195,16 @@ public class UserAuthService implements Authenticable {
         @Override
         protected Void doInBackground(Authenticable... params) {
             try {
-                final User user = params[0].getUser();
                 final String userEmail = params[0].getUser().getEmail();
                 final String userPassword = params[0].getUser().getPassword();
-                final Response<AuthAPI.Authentication> authenticationResponse = new Retrofit
-                        .Builder()
-                        .baseUrl(API_URL)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build()
-                        .create(AuthAPI.class)
+                final Response<ServerResponse<AuthAPI.Authentication>> authenticationResponse = params[0].getAPI()
                         .login(Base64.encodeToString(userEmail.concat(":").concat(userPassword).getBytes(),Base64.NO_WRAP))
                         .execute();
-                //params[0].onUserAuthenticated(authenticationResponse.body().getToken()); TODO: make this work with tokens
+                params[0].onUserAuthenticated(authenticationResponse.body().data.getToken());
             } catch (Exception e){
                 e.printStackTrace();
+                params[0].onUserAuthenticated(null);
             }
-
-            params[0].onUserAuthenticated("");
             return null;
         }
     }
@@ -227,21 +216,14 @@ public class UserAuthService implements Authenticable {
                 params[0].getProfile().login();
                 final String userEmail = params[0].getProfile().getEmail();
                 final String userPassword = params[0].getProfile().getIdentifier();
-                final Response<AuthAPI.Authentication> authenticationResponse = new Retrofit
-                        .Builder()
-                        .baseUrl(API_URL)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build()
-                        .create(AuthAPI.class)
+                final Response<ServerResponse<AuthAPI.Authentication>> authenticationResponse = params[0].getAPI()
                         .login(Base64.encodeToString(userEmail.concat(":").concat(userPassword).getBytes(),Base64.NO_WRAP))
                         .execute();
-                //params[0].onUserAuthenticated(authenticationResponse.body().getToken()); TODO: make this work with tokens
-                params[0].onUserAuthenticated(Base64.encodeToString(userEmail.concat(":").concat(userPassword).getBytes(),Base64.NO_WRAP));
+                params[0].onUserAuthenticated(authenticationResponse.body().data.getToken());
             } catch (Exception e){
                 e.printStackTrace();
+                params[0].onUserAuthenticated(null);
             }
-
-            params[0].onUserAuthenticated("");
             return null;
         }
     }

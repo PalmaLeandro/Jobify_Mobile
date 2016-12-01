@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "976809211423",
+    "firebase_url": "https://jobify-4fbd9.firebaseio.com",
+    "project_id": "jobify-4fbd9",
+    "storage_bucket": "jobify-4fbd9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:976809211423:android:08e4ccdbe166a409",
+        "android_client_info": {
+          "package_name": "com.example.root.jobify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "976809211423-b62khg5k77civrjajdp53dj5ottqgkfm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmvI4huv485fEBlXCye9fJgqBsMxGBfMM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

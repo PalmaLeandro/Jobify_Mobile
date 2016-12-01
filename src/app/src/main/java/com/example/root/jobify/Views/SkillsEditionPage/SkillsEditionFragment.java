@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.root.jobify.R;
+import com.example.root.jobify.Services.Auth.UserAuthService;
 import com.example.root.jobify.Utilities.WoloxFragment;
 import com.example.root.jobify.Views.SkillsListPage.SkillsFragment;
 
@@ -20,7 +21,7 @@ public class SkillsEditionFragment extends WoloxFragment<SkillsEditionPresenter>
 
     private static final int MAX_LEGTH_SKILL = 40;
     private FloatingActionButton addSkillButton;
-
+    SkillsFragment skillsFragment;
     @Override
     protected int layout() {
         return R.layout.skill_edition_page;
@@ -33,14 +34,16 @@ public class SkillsEditionFragment extends WoloxFragment<SkillsEditionPresenter>
 
     @Override
     protected void init() {
-        SkillsFragment skillsFragment = new SkillsFragment();
+        skillsFragment = new SkillsFragment();
         skillsFragment.allowDeletion(true);
+        skillsFragment.setPersonId(UserAuthService.getInstance().getUserProfile().getId());
         replaceFragment(R.id.skill_list,skillsFragment);
     }
 
     @Override
     protected void populate() {
-
+        mPresenter=createPresenter();
+        skillsFragment.populate();
     }
 
     @Override
@@ -92,6 +95,6 @@ public class SkillsEditionFragment extends WoloxFragment<SkillsEditionPresenter>
 
     @Override
     protected SkillsEditionPresenter createPresenter() {
-        return new SkillsEditionPresenter();
+        return new SkillsEditionPresenter(this);
     }
 }

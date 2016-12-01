@@ -1,5 +1,9 @@
 package com.example.root.jobify.Views.LogInCompletition;
 
+import android.widget.Toast;
+
+import com.cloudrail.si.interfaces.Email;
+import com.example.root.jobify.Globals;
 import com.example.root.jobify.Services.Auth.User;
 import com.example.root.jobify.Services.Auth.UserAuthListener;
 import com.example.root.jobify.Services.Auth.UserAuthService;
@@ -21,6 +25,13 @@ public class LogInCompletitionPresenter extends BasePresenter<LogInCompletitionV
     }
 
     public void authenticateUser(){
-        service.loginWithCredentials(getView().getUserEmailInputValue(),getView().getUserPasswordInputValue());
+        if (isValidLogin()){
+            getView().showProgressDialog();
+            service.loginWithCredentials(getView().getUserEmailInputValue(),getView().getUserPasswordInputValue());
+        }
+    }
+
+    private boolean isValidLogin(){
+        return Globals.areValidCredentials(getView().getUserEmailInputValue(),getView().getUserPasswordInputValue(),getView().getContext());
     }
 }

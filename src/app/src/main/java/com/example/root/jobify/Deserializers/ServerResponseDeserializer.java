@@ -1,4 +1,4 @@
-package com.example.root.jobify.Services;
+package com.example.root.jobify.Deserializers;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -33,26 +33,9 @@ public class ServerResponseDeserializer<T> implements JsonDeserializer<ServerRes
 
     @Override
     public ServerResponse<T> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-        ServerResponse<T> paginatedResponse = new GsonBuilder().create().fromJson(json,typeOfT);
-        /*
-        ArrayList<T> arrayList = new ArrayList<>();
-        for(JsonElement jsonElement:json.getAsJsonObject().get("data").getAsJsonArray()){
-            T responseElement=null;
-            if(classDeserializer!=null){
-                try {
-                    responseElement= classDeserializer.deserialize(jsonElement,dataType,context);
-                }catch (Throwable e){
-                    responseElement =new Gson().fromJson(jsonElement,dataType);
-                }
-            } else{
-                responseElement =new Gson().fromJson(jsonElement,dataType);
-            }
-            if (responseElement!=null){
-                arrayList.add( responseElement);
-            }
-        }
-        */
-        paginatedResponse.data = new Gson().fromJson(json.getAsJsonObject().get("data"),dataType);
+        ServerResponse<T> paginatedResponse = new ServerResponse<>(null,null);
+        JsonElement data = json.getAsJsonObject().get("data");
+        paginatedResponse.data = new Gson().fromJson(data,dataType);
         return paginatedResponse;
     }
 }

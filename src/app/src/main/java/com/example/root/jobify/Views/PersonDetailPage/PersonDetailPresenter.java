@@ -4,14 +4,15 @@ import android.app.ProgressDialog;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
-import com.example.root.jobify.Models.Experience;
+import com.example.root.jobify.Deserializers.ServerResponse;
 import com.example.root.jobify.Models.Person;
 import com.example.root.jobify.R;
+import com.example.root.jobify.Services.Auth.UserAuthService;
+import com.example.root.jobify.Services.People.PeopleService;
 import com.example.root.jobify.Services.People.SinglePersonProvider;
 import com.example.root.jobify.Utilities.BasePresenter;
-
-import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,7 +34,7 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
 
     public void loadPerson() {
         PersonDetailView personDetailView = getView();
-        personDetailView.setPersonImageURL(mPerson.getBase64Image());
+        personDetailView.setPersonImageURL(mPerson.getPicture());
         personDetailView.setPersonName(mPerson.getName());
         personDetailView.setPersonCity(mPerson.getCity());
         personDetailView.setPersonDob(mPerson.getDateOfBirth());
@@ -46,7 +47,7 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
     }
 
     private void updateRecomendationButons(){
-        if (mPerson.isAlreadyRecomendedByCurrentUser()){
+        if (new PeopleService().isAlreadyRecomendedByCurrentUser(mPerson)){
             getView().hideRecommendProfileButtton();
             getView().showUnrecommendProfileButtton();
         } else {
@@ -58,12 +59,12 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
 
     public void updatePersonPrimaryAction(){
         PersonDetailView personDetailView = getView();
-        if (mPerson.userIsAlreadyAddedByCurrentProfile()){
+        if (new PeopleService().userIsAlreadyAddedByCurrentUser(mPerson)){
             personDetailView.setPersonInscriptionActionIcon(R.drawable.ic_not_interested_white_24dp);
             personDetailView.mPersonActionFAB.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View view) {
-                    mPerson.changeProfileAddition();
+                    new PeopleService().changeProfileAddition(mPerson);
                     new SinglePersonProvider().removePerson(mPerson.getUsername(), new Callback() {
                         @Override
                         public void onResponse(Call call, Response response) {
@@ -74,7 +75,7 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
                                             new SinglePersonProvider().addPerson(mPerson.getUsername(), new Callback() {
                                                 @Override
                                                 public void onResponse(Call call, Response response) {
-                                                    mPerson.changeProfileAddition();
+                                                    new PeopleService().changeProfileAddition(mPerson);
                                                     loadPerson();
                                                 }
 
@@ -100,7 +101,7 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
             personDetailView.mPersonActionFAB.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View view) {
-                    mPerson.changeProfileAddition();
+                    new PeopleService().changeProfileAddition(mPerson);
                     new SinglePersonProvider().addPerson(mPerson.getUsername(), new Callback() {
                         @Override
                         public void onResponse(Call call, Response response) {
@@ -111,7 +112,7 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
                                             new SinglePersonProvider().removePerson(mPerson.getUsername(), new Callback() {
                                                 @Override
                                                 public void onResponse(Call call, Response response) {
-                                                    mPerson.changeProfileAddition();
+                                                    new PeopleService().changeProfileAddition(mPerson);
                                                     loadPerson();
                                                 }
 
@@ -139,29 +140,21 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
     public void setPersonId(String personId) {
         this.personId=personId;
         showProgressDialog();
-        new SinglePersonProvider().getPerson(personId,new Callback<Person>() {
+        new SinglePersonProvider().getPerson(personId,new Callback<ServerResponse<Person>>() {
             @Override
-            public void onResponse(Call<Person> call, Response<Person> response) {
-                //mPerson = response.body();
-                loadPerson();
+            public void onResponse(Call<ServerResponse<Person>> call, Response<ServerResponse<Person>> response) {
+                if(response.body()!=null && response.body().data!=null){
+                    mPerson = response.body().data;
+                    loadPerson();
+                }
                 hideProgressDialog();
             }
 
             @Override
-            public void onFailure(Call<Person> call, Throwable t) {
-                Log.e("GET_PERSON",getView().getContext().getString(R.string.cant_fetch_person_string),t);
+            public void onFailure(Call<ServerResponse<Person>> call, Throwable t) {
+                Log.e("GET_PERSON", getView().getContext().getString(R.string.cant_fetch_person_string), t);
+                Toast.makeText(getView().getContext(), getView().getContext().getString(R.string.cant_fetch_person_string), Toast.LENGTH_LONG).show();
                 hideProgressDialog();
-
-                ArrayList< Experience > previous_exp = new ArrayList<Experience>();
-                previous_exp.add(new Experience("1", "google","barrer pisos","asistente de limpieza","2010 - Actualidad"));
-                previous_exp.add(new Experience("1", "microsoft","barrer pasillos","asistente de limpieza","2009 - 2010"));
-                ArrayList< String > skills = new ArrayList<>();
-                skills.add("lavar platos");
-                skills.add("barrer");
-                skills.add("trapear");
-                skills.add("lavar vidrios");
-                mPerson = new Person("leopalma","san antonio de areco","25/10/1993","leandropalma0@gmail.com","male","Leandro Palma","Arg",previous_exp,"soy capo de la limpieza y tambien la muevo en la cocina",skills,null);
-                loadPerson();
             }
         });
     }
@@ -181,6 +174,8 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
             @Override
             public void onResponse(Call call, Response response) {
                 updateRecomendationButons();
+                new PeopleService().changeProfileRecomendation(mPerson);
+                mPerson.getFellowsWhoRecommendMe().add(UserAuthService.getInstance().getUserProfile());
                 Snackbar.make(getView().recommendProfileButtton, R.string.person_added_string, Snackbar.LENGTH_LONG)
                         .setAction(R.string.undo_string, new View.OnClickListener() {
                             @Override
@@ -189,6 +184,7 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
                                     @Override
                                     public void onResponse(Call call, Response response) {
                                         updateRecomendationButons();
+                                        new PeopleService().changeProfileRecomendation(mPerson);
                                     }
 
                                     @Override
@@ -213,6 +209,7 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
             @Override
             public void onResponse(Call call, Response response) {
                 updateRecomendationButons();
+                new PeopleService().changeProfileRecomendation(mPerson);
                 Snackbar.make(getView().recommendProfileButtton, R.string.person_added_string, Snackbar.LENGTH_LONG)
                         .setAction(R.string.undo_string, new View.OnClickListener() {
                             @Override
@@ -221,6 +218,8 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
                                     @Override
                                     public void onResponse(Call call, Response response) {
                                         updateRecomendationButons();
+                                        new PeopleService().changeProfileRecomendation(mPerson);
+                                        mPerson.getFellowsWhoRecommendMe().add(UserAuthService.getInstance().getUserProfile());
                                     }
 
                                     @Override

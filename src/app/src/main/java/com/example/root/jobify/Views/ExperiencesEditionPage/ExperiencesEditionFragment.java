@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.root.jobify.R;
+import com.example.root.jobify.Services.Auth.UserAuthService;
 import com.example.root.jobify.Utilities.WoloxFragment;
 import com.example.root.jobify.Views.ExperiencesListPage.ExperienceListFragment;
 import com.example.root.jobify.Views.SkillsListPage.SkillsFragment;
@@ -21,7 +22,7 @@ public class ExperiencesEditionFragment extends WoloxFragment<ExperiencesEdition
 
     private static final int MAX_LEGTH_EXPERIENCE = 40;
     private FloatingActionButton addExperienceButton;
-
+    ExperienceListFragment experienceListFragment;
     @Override
     protected int layout() {
         return R.layout.experiences_edition_page;
@@ -34,14 +35,16 @@ public class ExperiencesEditionFragment extends WoloxFragment<ExperiencesEdition
 
     @Override
     protected void init() {
-        ExperienceListFragment experienceListFragment = new ExperienceListFragment();
+        experienceListFragment = new ExperienceListFragment();
+        experienceListFragment.setPersonId(UserAuthService.getInstance().getUserProfile().getId());
         experienceListFragment.allowDeletion(true);
         replaceFragment(R.id.experiences_list,experienceListFragment);
     }
 
     @Override
     protected void populate() {
-
+        mPresenter=createPresenter();
+        experienceListFragment.populate();
     }
 
     @Override
@@ -102,6 +105,6 @@ public class ExperiencesEditionFragment extends WoloxFragment<ExperiencesEdition
 
     @Override
     protected ExperiencesEditionPresenter createPresenter() {
-        return new ExperiencesEditionPresenter();
+        return new ExperiencesEditionPresenter(this);
     }
 }

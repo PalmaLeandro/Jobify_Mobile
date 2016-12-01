@@ -3,6 +3,7 @@ package com.example.root.jobify.Views.LogInCompletition;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.root.jobify.R;
 import com.example.root.jobify.Services.Auth.User;
@@ -26,6 +27,8 @@ public class LogInCompletitionFragment extends WoloxFragment<LogInCompletitionPr
         view.hideProgressDialog();
         if (user!=null){
             mContext.startActivity(new Intent(mContext, MainApplicationActivity.class));
+        } else {
+            //Toast.makeText(getActivity(), R.string.couldnt_login_string,Toast.LENGTH_LONG).show();
         }
     }
 
@@ -63,7 +66,6 @@ public class LogInCompletitionFragment extends WoloxFragment<LogInCompletitionPr
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.credentials_button_login: {
-                view.showProgressDialog();
                 mPresenter.authenticateUser();
                 break;
             }

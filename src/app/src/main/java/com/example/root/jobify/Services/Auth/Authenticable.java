@@ -9,4 +9,5 @@ public interface Authenticable {
     Profile getProfile();
     User getUser();
     void onUserAuthenticated(String token);
+    AuthAPI getAPI();
 }

@@ -7,11 +7,10 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.root.jobify.Models.Experience;
 import com.example.root.jobify.Models.Message;
 import com.example.root.jobify.R;
 import com.example.root.jobify.Services.Auth.UserAuthService;
-import com.example.root.jobify.Services.People.PersonService;
+import com.example.root.jobify.Services.People.PeopleService;
 import com.example.root.jobify.Views.GenericContentListPage.Content;
 import com.example.root.jobify.Views.GenericContentListPage.ContentListFragment;
 import com.example.root.jobify.Views.GenericContentListPage.ContentListProvider;
@@ -49,7 +48,7 @@ public class MessageListFragment extends ContentListFragment{
         return new ContentListProvider() {
             @Override
             public void getContents(final Callback<ArrayList<Content>> callback) {
-                new PersonService().getChatMessages(personId, new Callback<ArrayList<Message>>() {
+                new PeopleService().getChatMessages(personId, new Callback<ArrayList<Message>>() {
                     @Override
                     public void onResponse(Call<ArrayList<Message>> call, Response<ArrayList<Message>> response) {
                         ArrayList<Content> contents = new ArrayList<Content>();
@@ -94,7 +93,7 @@ public class MessageListFragment extends ContentListFragment{
                             .setItems(new String[]{context.getString(R.string.remove_dialog_option_string)}, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    new PersonService().deleteMessage(content.getId(), new Callback() {
+                                    new PeopleService().deleteMessage(content.getId(), new Callback() {
                                         @Override
                                         public void onResponse(Call call, Response response) {
                                             Toast.makeText(context, R.string.message_deleted_text_string,Toast.LENGTH_LONG).show();

@@ -28,6 +28,7 @@ public class ProfileEditionView {
         this.skillsButton= (Button) view.findViewById(R.id.skills_button_access);
         this.experiencesButton= (Button) view.findViewById(R.id.experiences_button_access);
         this.saveProfileButton= (FloatingActionButton) view.findViewById(R.id.save_profile);
+        this.pickImageButton= (Button) view.findViewById(R.id.pick_image_button);
     }
 
     EditText userNameInput;
@@ -38,6 +39,11 @@ public class ProfileEditionView {
     EditText userProfileInput;
     Button skillsButton;
     Button experiencesButton;
+
+    public Button getPickImageButton() {
+        return pickImageButton;
+    }
+
     Button pickImageButton;
     FloatingActionButton saveProfileButton;
 

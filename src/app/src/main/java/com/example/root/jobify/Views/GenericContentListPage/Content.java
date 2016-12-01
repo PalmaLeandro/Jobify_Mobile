@@ -8,5 +8,5 @@ public interface Content {
     String getId();
     String getTitle();
     String getSubTitle();
-    String getBase64Image();
+    String getPicture();
 }
