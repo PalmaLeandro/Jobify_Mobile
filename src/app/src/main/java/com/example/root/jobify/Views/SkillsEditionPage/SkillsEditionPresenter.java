@@ -23,7 +23,7 @@ public class SkillsEditionPresenter extends BasePresenter<SkillsEditionFragment>
             @Override
             public void onResponse(Call call, Response response) {
                 Toast.makeText(getView().getContext(),R.string.added_skill_message,Toast.LENGTH_LONG).show();
-                getView().populate();
+                getView().skillsFragment.populate();
             }
 
             @Override

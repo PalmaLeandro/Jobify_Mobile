@@ -34,7 +34,7 @@ public interface PersonAPIService {
     @GET("users")
     Call<ServerArrayResponse<Person>> searchFolks(@Query("sort") final String order, @Query("filter") final String limit, @Query("job_position") final String position, @Query("skill") final String skill, @Header("Token") final String token);
 
-    @GET("users")
+    @GET("users/contacts")
     Call<ServerArrayResponse<Person>> getMyPeople(@Header("Token") final String token);
 
     @DELETE("skills")
@@ -69,4 +69,15 @@ public interface PersonAPIService {
     @GET("chats/{personId}")
     Call<ServerArrayResponse<Message>> getChatMessages(@Path("personId") final String personId, @Header("Token") final String token);
 
+    @POST("users/contacts")
+    Call<Void> addPerson(@Body final Person username, @Header("Token") final String token);
+
+    @DELETE("users/contacts")
+    Call<Void> removePerson(@Body final Person username, @Header("Token") final String token);
+
+    @POST("users/recommend")
+    Call<Void> recommendFolk(@Body final Person username, @Header("Token") final String token);
+
+    @DELETE("users/contacts")
+    Call<Void> unrecommendFolk(@Body final Person username, @Header("Token") final String token);
 }

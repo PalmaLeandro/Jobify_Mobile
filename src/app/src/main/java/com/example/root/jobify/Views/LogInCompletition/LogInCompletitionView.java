@@ -54,7 +54,7 @@ public class LogInCompletitionView {
 
     public void showProgressDialog() {
         progressDialog =  ProgressDialog.show(context, "",
-                "Ingresando. Por favor espere...", true);
+                context.getString(R.string.loging_in_string), true);
     }
 
     public void hideProgressDialog(){

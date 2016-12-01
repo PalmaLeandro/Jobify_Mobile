@@ -10,13 +10,13 @@ import retrofit2.Callback;
 public interface PersonProvider {
     void getPerson(String personId, Callback<ServerResponse<Person>> callback);
 
-    void addPerson(String personId, Callback callback);
+    void addPerson(Person personId, Callback callback);
 
-    void removePerson(String personId, Callback callback);
+    void removePerson(Person personId, Callback callback);
 
-    void recommendFolk(String personId, Callback callback);
+    void recommendFolk(Person personId, Callback callback);
 
-    void unrecommendFolk(String personId, Callback callback);
+    void unrecommendFolk(Person personId, Callback callback);
 
     void engageChat(String personId, Callback callback);
 }

@@ -3,6 +3,7 @@ package com.example.root.jobify.Views.SkillsEditionPage;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.text.InputFilter;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ public class SkillsEditionFragment extends WoloxFragment<SkillsEditionPresenter>
     private static final int MAX_LEGTH_SKILL = 40;
     private FloatingActionButton addSkillButton;
     SkillsFragment skillsFragment;
+
     @Override
     protected int layout() {
         return R.layout.skill_edition_page;
@@ -42,8 +44,6 @@ public class SkillsEditionFragment extends WoloxFragment<SkillsEditionPresenter>
 
     @Override
     protected void populate() {
-        mPresenter=createPresenter();
-        skillsFragment.populate();
     }
 
     @Override

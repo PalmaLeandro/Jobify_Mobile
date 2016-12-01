@@ -18,4 +18,6 @@ public class ProfileEditionActivity extends WoloxActivity {
         replaceFragment(R.id.activity_container,new ProfileEditionFragment());
     }
 
+
+
 }

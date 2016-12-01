@@ -236,16 +236,16 @@ public class PeopleService {
     }
 
     public boolean isAlreadyRecomendedByCurrentUser(Person notCurrentUserProfile){
-        for(Person person: notCurrentUserProfile.getFellowsWhoRecommendMe()){
-            if (person.getEmail().equals(authService.getUserProfile().getEmail()))
+        for(String personEmail: notCurrentUserProfile.getFellowsWhoRecommendMe()){
+            if (personEmail.equals(authService.getUserProfile().getEmail()))
                 return true;
         }
         return false;
     }
 
     public boolean userIsAlreadyAddedByCurrentUser(Person notCurrentUserProfile){
-        for(Person person: notCurrentUserProfile.getFellowsWhoRecommendMe()){
-            if (person.getEmail().equals(authService.getUserProfile().getEmail()))
+        for(String personEmail: authService.getUserProfile().getMyPeople()){
+            if (personEmail.equals(notCurrentUserProfile.getEmail()))
                 return true;
         }
         return false;
@@ -253,31 +253,47 @@ public class PeopleService {
 
     public void changeProfileAddition(Person mPerson) {
         boolean thatGuyWasAlreadyAddedToMyPeople = false;
-        ArrayList<Person> peopleOfCurrentUser = authService.getUserProfile().getMyPeople();
-        for (Person person: peopleOfCurrentUser){
-            if (person.getEmail().equals(mPerson.getEmail())){
+        ArrayList<String> peopleOfCurrentUser = authService.getUserProfile().getMyPeople();
+        for (String personEmail: peopleOfCurrentUser){
+            if (personEmail.equals(mPerson.getEmail())){
                 authService.getUserProfile().removeFellowFromConacts(mPerson);
                 thatGuyWasAlreadyAddedToMyPeople = true;
                 break;
             }
         }
         if(!thatGuyWasAlreadyAddedToMyPeople){
-            authService.getUserProfile().getMyPeople().add(mPerson);
+            authService.getUserProfile().getMyPeople().add(mPerson.getEmail());
         }
     }
 
     public void changeProfileRecomendation(Person mPerson) {
         boolean thatGuyWasAlreadyRecommendMe = false;
-        ArrayList<Person> peopleWhomAlreadyRecommendedThisFellow = mPerson.getFellowsWhoRecommendMe();
-        for (Person person: peopleWhomAlreadyRecommendedThisFellow){
-            if (person.getEmail().equals(mPerson.getEmail())){
+        ArrayList<String> peopleWhomAlreadyRecommendedThisFellow = mPerson.getFellowsWhoRecommendMe();
+        for (String personEmail: peopleWhomAlreadyRecommendedThisFellow){
+            if (personEmail.equals(mPerson.getEmail())){
                 mPerson.removeFellowFromGuysWhomRecommendedMe(authService.getUserProfile());
                 thatGuyWasAlreadyRecommendMe = true;
                 break;
             }
         }
         if(!thatGuyWasAlreadyRecommendMe){
-            mPerson.getFellowsWhoRecommendMe().add(authService.getUserProfile());
+            mPerson.getFellowsWhoRecommendMe().add(authService.getUserProfile().getEmail());
         }
+    }
+
+    public void addPerson(Person personId, Callback callback) {
+        apiService.addPerson(personId,authService.getToken()).enqueue(callback);
+    }
+
+    public void removePerson(Person personId, Callback callback) {
+        apiService.removePerson(personId,authService.getToken()).enqueue(callback);
+    }
+
+    public void recommendFolk(Person personId, Callback callback) {
+        apiService.recommendFolk(personId,authService.getToken()).enqueue(callback);
+    }
+
+    public void unrecommendFolk(Person personId, Callback callback) {
+        apiService.unrecommendFolk(personId,authService.getToken()).enqueue(callback);
     }
 }
