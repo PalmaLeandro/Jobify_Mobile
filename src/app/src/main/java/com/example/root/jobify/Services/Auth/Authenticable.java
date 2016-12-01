@@ -10,4 +10,5 @@ public interface Authenticable {
     User getUser();
     void onUserAuthenticated(String token);
     AuthAPI getAPI();
+    String getFirebaseToken();
 }

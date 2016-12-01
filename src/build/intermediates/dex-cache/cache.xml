@@ -3,327 +3,327 @@
 
     <item
         is-multidex="true"
-        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="d8bd2268fdcbfd52c76ade65d9900cd8def93a44">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-24.2.0_43eee67180f1a665c0c2486f4cf324a708fea102/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="867dad63c33388ff8c7644b236579355036d075f">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_452143eea6c8a25998e506d5c74313c8898c66e4/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/9.6.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="0efd1b44f47c134fb245914a1d54a55adbfc2f8d">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-impl-9.6.1_42074c70cd2754171429b1f1117f3498d000dc7d/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/libs/internal_impl-24.2.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="032a4b53def5e2ceedfc2e793b126c0163cfa1dd">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_ae2e1adecba5c98d916f812c68d3c4a8d055a4f7/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.google.firebase/firebase-messaging/9.6.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="80dd8bea08bc5fe10b10a3243b8279c856ccc690">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-messaging-9.6.1_f2538c50e9a9ec62364cb3ec0858731c2c0f4ee0/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.google.firebase/firebase-iid/9.6.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="1e14ebe1cda8491f152083e752ca5bf73cd37bff">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-iid-9.6.1_5064b1a5b676395ac292cebebacecec24afa6f0e/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="fcc945a86ebcbf527429acb8216ec7dae2c06417">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-24.2.0_8a5bd1d238fd0ef158dd6fd894acc63269f04948/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-24.2.1_0a984853dd0db890fb38b6748fba78db490d4695/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.github.clans/fab/1.6.4/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="1c3b9743fe8bb166a90a7e98b9b9f1f8021d80cd">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.github.clans-fab-1.6.4_f7634f5e479a4df012ff686db715eb32310f1ec0/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/root/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/picasso-2.5.2_f07471cc8daabba9b33b6c2492a169834e3c6749/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-24.2.1_fea841ba19dbc28fc1660ce2a2a692c70df16b5f/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/root/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.0.2/f8d87f15b94b8d74e7ccf61d7eedb558811cdb30/converter-gson-2.0.2.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="f8d87f15b94b8d74e7ccf61d7eedb558811cdb30">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/converter-gson-2.0.2_ec891edc466ee9ce2b2dcfb2db677489b4dcb45c/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/design/24.2.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="23eb0d2998a782213b56168cbf23a0688b9111d9">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-24.2.0_2d539d17dca36a3db04d53a9ef03c58cf190095a/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.6.1/jars/classes.jar"
+        jar="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.6.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
         sha1="eccaaa9ffa6bb4bfbd2e870f01aaf69655d353be">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-9.6.1_96bad78235dbd59b3f758b622231d4112a7fe4f5/classes.dex" />
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-9.6.1_133a488d6aa5e01bd7d1a6fada8cac56536125ae/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="c3c638be6e650b165ab9ae144857b64e82787fad">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-24.2.0_d4557e2b7b34d9f8ff366aef57a4e75a8f4b3993/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="02ba7dae599abc23c8e45b94afdf02c7a2cae219">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_daa87f4cbd4c1d2ad72941423d67d7781a239e68/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/24.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="c5e6490573cd2cc8018417f60ddd251138b6ed61">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-cardview-v7-24.2.1_116d620b675f30043809ef79f5f9982fba63fbd8/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/root/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.3.0/2b802460eea20f8f2ad9c08c74e0f14718e88aa9/okhttp-3.3.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="2b802460eea20f8f2ad9c08c74e0f14718e88aa9">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.3.0_2a3ff1bfa04450359ce309c176e2c955a7cd8144/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="617cf01cf56621e9b3fc55f094712157ef9e666c">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_8ddfdeed694ae3d81720e1b277fafafbae3004db/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/root/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.8.0/5ea7af56cc7c567ed9856d99efb30740e9b17ff/okio-1.8.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="05ea7af56cc7c567ed9856d99efb30740e9b17ff">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.8.0_4a0682afcf73df6f253e7d8add600870acc39aad/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/root/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/3.6.0/a7537446a030da8eb0da4c71424d16c2589f6c4a/glide-3.6.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="a7537446a030da8eb0da4c71424d16c2589f6c4a">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/glide-3.6.0_2dfd686d31cdb147b2abb3a862c5cebc0fb94219/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="f3ee23ef25c9a8fe3d40246d0b7097267963a612">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-24.2.0_07c8d2392ae1c46a4397efbc1489be64b92c5102/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/9.6.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="1ef72e72bc0d05602c366582afa9439f58bb31d6">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-common-9.6.1_0b32fa85f5c30be31f97a9113ecee633c0cbd6cd/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/jars/libs/internal_impl-24.2.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="045be695d968dd707691cc55d23746dbf8cf569a">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_dcc23bce7116d754fc5dbbc52ae819a3a678b84d/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics/9.6.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="a1c351dc10b92d638da57f3a6513f87cfbdc9f83">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-9.6.1_29745be3976c0903e2bb219e62a9404532e72218/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/root/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.1.0/2de7cd8b95b7021b1d597f049bcb422055119f2c/retrofit-2.1.0.jar"
+        jar="/home/ale/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.1.0/2de7cd8b95b7021b1d597f049bcb422055119f2c/retrofit-2.1.0.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
         sha1="2de7cd8b95b7021b1d597f049bcb422055119f2c">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/retrofit-2.1.0_370703eb4e0c707f691149cf13a2b98e1b339175/classes.dex" />
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/retrofit-2.1.0_f233f5467ce1318d1d30dfa105d67058c42499b3/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/root/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.1/support-annotations-24.2.1.jar"
+        jar="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.2.1_bc102048a27ff00c8e10fc3a76afaa77fbe3d1bd/classes.dex" />
+        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-24.2.1_b3ac8331d74c95570a2c523072b8b4085e08a64d/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/9.6.1/jars/classes.jar"
+        jar="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.google.firebase/firebase-messaging/9.6.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="80dd8bea08bc5fe10b10a3243b8279c856ccc690">
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-messaging-9.6.1_7caf97d7d9b17a391caa0d2c5cd0dfe2343a402f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ale/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/3.6.0/a7537446a030da8eb0da4c71424d16c2589f6c4a/glide-3.6.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="a7537446a030da8eb0da4c71424d16c2589f6c4a">
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/glide-3.6.0_1a2cda990deae39aae0cabcd756083c963af1ce0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="b42d93d34da6f74fe6da58d0a862150fe0145e2a">
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_447140c3101ef242a5f1881124e0b43dd44663d4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="032a4b53def5e2ceedfc2e793b126c0163cfa1dd">
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_66d86a480d66491805921f58aa03cc89501b4fb5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/9.6.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
         sha1="4a36600281a648769411ef642c331851732bf29e">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tasks-9.6.1_fe8ea4d97f5c2b6a203eed427c67fa4db4e0ba62/classes.dex" />
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tasks-9.6.1_1622c6fa0fe18c2afa206b6d3b278c2ed06bd6d6/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="45f5eda279825ff470e3f51019d374d1ef61e000">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.2.0_14a2bc87da2b714a86afad912264cc3169f3b39a/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/libs/internal_impl-24.2.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="60d7b23621d31e6f42f4f76f16af467e57a20cda">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_3910a8fc91767b4ec1b9e04151959e0190d51715/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/jars/classes.jar"
+        jar="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
         sha1="6eb9107eb34d2fe2b020662b7fbbec991dcba846">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-24.2.0_e217a82eb05ff5875adac9143f1764c8c6ce1fbc/classes.dex" />
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-24.2.0_760a92c3601a6d88ccc73b31d2b3e51b626e9671/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jar="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.github.clans/fab/1.6.4/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_316e451fa802cc1258fb6a299ffeb880f3e8c388/classes.dex" />
+        sha1="1c3b9743fe8bb166a90a7e98b9b9f1f8021d80cd">
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.github.clans-fab-1.6.4_982d58ea1611530f7acd7acdf215934dad0c2f26/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.0/jars/classes.jar"
+        jar="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-24.2.1_9eb5995dd702e70dbb0642e22cf44400c4f67b2c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
         sha1="beac40bcc8a320a896dd15f5109cfcaea5e1e0e3">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-24.2.0_6a75b59ce5c53f310c0c2d6891cab58b09dd2249/classes.dex" />
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-24.2.0_f35c0e808bba5aa93428daf7196ea88c95d8fc54/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.cloudrail/cloudrail-si-android/2.5.1/jars/classes.jar"
+        jar="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="1d71db176b1ad7d5096f45a438b2c2a1cad3e2f6">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.cloudrail-cloudrail-si-android-2.5.1_51221e30f1442f3d28114b3690bda9c762c7d853/classes.dex" />
+        sha1="fcc945a86ebcbf527429acb8216ec7dae2c06417">
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-24.2.0_b4ef8d4ec07a5dedc98fcbe69e84c98c5e4de841/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/24.2.1/jars/classes.jar"
+        jar="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/24.2.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-24.2.1_a6fdeb070864a112d5e1a70fc1fee8ba69ffeec5/classes.dex" />
+        sha1="c5e6490573cd2cc8018417f60ddd251138b6ed61">
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-cardview-v7-24.2.1_56bbb40272b003bd972fd9fbb3cd706d4fb65195/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/root/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.6.1/b9d63507329a7178e026fc334f87587ee5070ac5/gson-2.6.1.jar"
+        jar="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="d8bd2268fdcbfd52c76ade65d9900cd8def93a44">
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-24.2.0_054f2040ba5ed1d5eb0ebdba47c505fc7b4c14d6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ale/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.8.0/5ea7af56cc7c567ed9856d99efb30740e9b17ff/okio-1.8.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="05ea7af56cc7c567ed9856d99efb30740e9b17ff">
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.8.0_cef042fa15411fa13ef9ddea833aec4aa1cceb13/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="45f5eda279825ff470e3f51019d374d1ef61e000">
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.2.0_cb54ead9f09dd1b5765c09efa05387e33affb528/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ale/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.6.1/b9d63507329a7178e026fc334f87587ee5070ac5/gson-2.6.1.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
         sha1="b9d63507329a7178e026fc334f87587ee5070ac5">
-        <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.6.1_edd285938b329901c9dfa2b36aa0a5f7f4c8e4c1/classes.dex" />
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.6.1_14d64773dc767b371356486fa98958aca7c20a07/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="60d7b23621d31e6f42f4f76f16af467e57a20cda">
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_773a17ae4003e558ee024358559421cef52159b6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ale/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/picasso-2.5.2_63703e4a356d001e268f7c6353d0e5e9fcf41922/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/design/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="23eb0d2998a782213b56168cbf23a0688b9111d9">
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-24.2.0_d397b06fdf43d72733f4af671a6a26906ecca12f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.cloudrail/cloudrail-si-android/2.5.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="1d71db176b1ad7d5096f45a438b2c2a1cad3e2f6">
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.cloudrail-cloudrail-si-android-2.5.1_3b4b64fcd59cd41863dc5b5cd2c0e20cbe30355f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.google.firebase/firebase-iid/9.6.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="1e14ebe1cda8491f152083e752ca5bf73cd37bff">
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-iid-9.6.1_d4fc0b25c2bb10d0639159a478c7e4e62c3ae149/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ale/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.1/support-annotations-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.2.1_daf93d50c7367d7902f515f79512d9ffd25fcb29/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/9.6.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="1ef72e72bc0d05602c366582afa9439f58bb31d6">
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-common-9.6.1_5d169f3b36d33dd4f462ad94d2295f0ee97c881e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/9.6.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="0efd1b44f47c134fb245914a1d54a55adbfc2f8d">
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-impl-9.6.1_dfb3a91205d287fecb4e9d02ff838b83bc48b967/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="f3ee23ef25c9a8fe3d40246d0b7097267963a612">
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-24.2.0_4de46f0a0e0b996f2d4be355128149e5098e8d1c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="867dad63c33388ff8c7644b236579355036d075f">
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_c01732a907ae6c336353a0a853f522bc2ac5508d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_f7a9d629606fef4424ef20049115ea25e5f75ace/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="3afcc17e2143aeb5ca7670cc1fae63e14273a5c3">
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_70248c837a6b28881b3949b7c93cf75a7a72e171/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics/9.6.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="a1c351dc10b92d638da57f3a6513f87cfbdc9f83">
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-9.6.1_88293e2d0001c03c20dcb757f206937138f0558c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-24.2.1_a537a8775e34780673f2d82fce596e6e775bcf7a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ale/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.0.2/f8d87f15b94b8d74e7ccf61d7eedb558811cdb30/converter-gson-2.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="f8d87f15b94b8d74e7ccf61d7eedb558811cdb30">
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/converter-gson-2.0.2_b76df9d8d75ee771ee742d67686dedd9b30100c0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="045be695d968dd707691cc55d23746dbf8cf569a">
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_7e12a88920dfe008ca2bb33c98ea4171533f94ed/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ale/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.3.0/2b802460eea20f8f2ad9c08c74e0f14718e88aa9/okhttp-3.3.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="2b802460eea20f8f2ad9c08c74e0f14718e88aa9">
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.3.0_ddea46360b46af2520ed192a4b7eb7f5d7ff7f69/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="c3c638be6e650b165ab9ae144857b64e82787fad">
+        <dex dex="/home/ale/Desktop/TallerII/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-24.2.0_24c97aad62c3ab41ec9d658e1de362959ea597d3/classes.dex" />
     </item>
 
 </items>
