@@ -24,6 +24,7 @@ public class ChatPresenter extends BasePresenter<ChatFragment>{
 
     public void setPersonId(String personId) {
         this.personId=personId;
+
     }
 
     public void sendMessage(final String message) {

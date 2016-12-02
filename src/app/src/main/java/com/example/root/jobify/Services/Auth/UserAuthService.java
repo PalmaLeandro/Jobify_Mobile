@@ -33,7 +33,6 @@ public class UserAuthService implements Authenticable {
 
     private static final String TAG = "UserAuthService";
 
-
     private AuthAPI authAPI;
 
     private static UserAuthService ourInstance = new UserAuthService();
