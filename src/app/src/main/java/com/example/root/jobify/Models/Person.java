@@ -3,7 +3,7 @@ package com.example.root.jobify.Models;
 import com.example.root.jobify.Views.GenericContentListPage.Content;
 
 import java.util.ArrayList;
-import java.util.function.Predicate;
+//import java.util.function.Predicate;
 
 /**
  * Created by root on 06/09/16.
@@ -18,6 +18,7 @@ public class Person implements Content {
     private final String gender;
     private final String name;
 
+
     private final String nationality;
     private final ArrayList<Experience> previous_exp;
     private final String profile;
@@ -26,9 +27,11 @@ public class Person implements Content {
     private final ArrayList<String> recommended_by;
     private final ArrayList<String> chats;
 
+    private String coordenates;
+
     private String picture;
 
-    public Person(String email, String name, String city, String dateOfBirth, String gender, String nationality, String profile, ArrayList<String> skills, ArrayList<Experience> experience, ArrayList<String> contacts, ArrayList<String> recommended_by, ArrayList<String> chats, String base64Image) {
+    public Person(String email, String name, String city, String dateOfBirth, String gender, String nationality, String profile, ArrayList<String> skills, ArrayList<Experience> experience, ArrayList<String> contacts, ArrayList<String> recommended_by, ArrayList<String> chats, String base64Image, String coordenates) {
         this.username = email;
         this.city = city;
         this.dob = dateOfBirth;
@@ -43,6 +46,7 @@ public class Person implements Content {
         this.recommended_by = recommended_by;
         this.chats = chats;
         this.picture = base64Image;
+        this.coordenates = coordenates;
     }
 
     public String getName() {
@@ -198,4 +202,14 @@ public class Person implements Content {
             }
         }
     }
+
+    public String getCoordenates() {
+        return coordenates;
+    }
+
+    public void setCoordenates(String coordenates) {
+        this.coordenates = coordenates;
+    }
+
 }
+

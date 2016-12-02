@@ -42,6 +42,9 @@ public class PersonDetailView {
     private CardView mPersonProfileCardView;
     private TextView mPersonProfileTextView;
     FloatingActionButton mPersonActionFAB;
+    private double lat;
+    private double lng;
+    private String coordinates;
 
     public void showRecommendProfileButtton() {
         recommendProfileButtton.setVisibility(View.VISIBLE);
@@ -159,6 +162,15 @@ public class PersonDetailView {
 
     public void setPersonInscriptionActionIcon(int resId) {
         this.mPersonActionFAB.setImageResource(resId);
+    }
+
+    public void setCoordinates(double lat, double lng) {
+        this.lat = lat;
+        this.lng = lng;
+    }
+
+    public void setCoordinates(String coord) {
+        this.coordinates =coord;
     }
 }
 

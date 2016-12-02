@@ -1,11 +1,19 @@
 package com.example.root.jobify.Views.ProfileEditionPage;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -19,6 +27,7 @@ import com.example.root.jobify.Views.MainApplicationActivity;
 import com.example.root.jobify.Views.SkillsEditionPage.SkillsEditionActivity;
 
 import static android.app.Activity.RESULT_OK;
+import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
 /**
  * Created by root on 09/11/16.
@@ -27,6 +36,9 @@ public class ProfileEditionFragment extends WoloxFragment<ProfileEditionPresente
 
     Context mContext;
     public ProfileEditionView view;
+    private double lat;
+    private double lng;
+    private String coordinates;
 
     //private Object mGoogleApiClient;
 
@@ -62,6 +74,43 @@ public class ProfileEditionFragment extends WoloxFragment<ProfileEditionPresente
     protected void populate() {
         mPresenter=createPresenter();
         mPresenter.loadProfile();
+
+        Log.d("LocationManager", "QUIERO MI LOCATION MANAGER");
+
+        // Acquire a reference to the system Location Manager
+        LocationManager locationManager = (LocationManager) this.getActivity().getSystemService(Context.LOCATION_SERVICE);
+
+// Define a listener that responds to location updates
+        LocationListener locationListener = new LocationListener() {
+            public void onLocationChanged(Location location) {
+                // Called when a new location is found by the network location provider.
+//                makeUseOfNewLocation(location);
+                if(location != null){
+                    lat = location.getLatitude();
+                    lng = location.getLongitude();
+                    setCoordinates(lat,lng);
+                }
+//                personDetailView.setCoordinates(lat,lng);
+            }
+
+            public void onStatusChanged(String provider, int status, Bundle extras) {}
+
+            public void onProviderEnabled(String provider) {}
+
+            public void onProviderDisabled(String provider) {}
+        };
+        if (ActivityCompat.checkSelfPermission(this.getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this.getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            Log.d("LocationManager", "NO TENGO PERMISOS!!!");
+            return;
+        }
+
+// Register the listener with the Location Manager to receive location updates
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+
+
+
+
+
     }
 
     @Override
@@ -84,7 +133,7 @@ public class ProfileEditionFragment extends WoloxFragment<ProfileEditionPresente
                 break;
             }
             case R.id.save_profile: {
-                mPresenter.saveProfile();
+                mPresenter.saveProfile(coordinates);
                 break;
             }
             default:
@@ -113,4 +162,10 @@ public class ProfileEditionFragment extends WoloxFragment<ProfileEditionPresente
         populate();
     }
 
+    public void setCoordinates(double lat, double lng) {
+        this.lat = lat;
+        this.lng = lng;
+
+        coordinates = lat + ":" + lng;
+    }
 }

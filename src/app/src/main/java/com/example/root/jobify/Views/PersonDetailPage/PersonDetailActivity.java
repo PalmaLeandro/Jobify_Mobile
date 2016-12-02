@@ -1,5 +1,13 @@
 package com.example.root.jobify.Views.PersonDetailPage;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.view.View;
 
 import com.example.root.jobify.R;
@@ -17,6 +25,9 @@ public class PersonDetailActivity extends WoloxActivity{
     PersonDetailPresenter mPresenter;
     PersonDetailView personDetailView;
     ExperienceListFragment experienceListFragment;
+
+    private double lat;
+    private double lng;
 
     public static final String PERSON_USERNAME= ContentListFragment.CONTENT_ID;
 
@@ -37,6 +48,39 @@ public class PersonDetailActivity extends WoloxActivity{
         experienceListFragment.setPersonId(fellowId);
         experienceListFragment.allowDeletion(false);
         replaceFragment(R.id.person_experiences_fragment,experienceListFragment);
+
+        lat = 0;
+        lng = 0;
+
+        // Acquire a reference to the system Location Manager
+        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
+// Define a listener that responds to location updates
+        LocationListener locationListener = new LocationListener() {
+            public void onLocationChanged(Location location) {
+                // Called when a new location is found by the network location provider.
+//                makeUseOfNewLocation(location);
+                if(location != null){
+                    lat = location.getLatitude();
+                    lng = location.getLongitude();
+                    personDetailView.setCoordinates(location.toString());
+                }
+                personDetailView.setCoordinates(lat,lng);
+            }
+
+            public void onStatusChanged(String provider, int status, Bundle extras) {}
+
+            public void onProviderEnabled(String provider) {}
+
+            public void onProviderDisabled(String provider) {}
+        };
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            return;
+        }
+
+// Register the listener with the Location Manager to receive location updates
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
     }
 
     @Override

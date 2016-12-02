@@ -1,5 +1,14 @@
 package com.example.root.jobify.Views.ProfileEditionPage;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+
 import com.example.root.jobify.R;
 import com.example.root.jobify.Utilities.WoloxActivity;
 
@@ -8,6 +17,9 @@ import com.example.root.jobify.Utilities.WoloxActivity;
  */
 
 public class ProfileEditionActivity extends WoloxActivity {
+    private double lat;
+    private double lng;
+
     @Override
     protected int layout() {
         return R.layout.activity_container;
@@ -15,7 +27,21 @@ public class ProfileEditionActivity extends WoloxActivity {
 
     @Override
     protected void init() {
-        replaceFragment(R.id.activity_container,new ProfileEditionFragment());
+
+        final ProfileEditionFragment pf = new ProfileEditionFragment();
+
+
+
+
+
+
+
+//        pf.setCoordinates(lat,lng);
+
+
+
+
+        replaceFragment(R.id.activity_container, pf);
     }
 
 

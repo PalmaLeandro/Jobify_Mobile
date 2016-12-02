@@ -23,10 +23,12 @@ public class ProfileEditionPresenter extends BasePresenter<ProfileEditionView> {
     public ProfileEditionPresenter(ProfileEditionView viewInstance) {
         super(viewInstance);
         authService = UserAuthService.getInstance();
+
+
     }
 
-    public void saveProfile() {
-        new PeopleService().savePerson(new Person(authService.getUser().getEmail(),
+    public void saveProfile(String coordinates) {
+        new PeopleService().savePerson(new Person(authService.getUserProfile().getEmail(),
                 getView().getUserNameInputText(),
                 getView().getUserCityInputText(),
                 getView().getUserDateOfBirthInputText(),
@@ -35,7 +37,8 @@ public class ProfileEditionPresenter extends BasePresenter<ProfileEditionView> {
                 getView().getUserProfileInputText(),
                 authService.getUserProfile().getSkills(),
                 authService.getUserProfile().getPreviousExperience(),
-                        null, null, null, authService.getUserProfile().getPicture()),
+                        null, null, null, authService.getUserProfile().getPicture(),
+                coordinates),
                 new Callback() {
                     @Override
                     public void onResponse(Call call, Response response) {
