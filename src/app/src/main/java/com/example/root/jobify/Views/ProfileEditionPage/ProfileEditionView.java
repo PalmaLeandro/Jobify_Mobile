@@ -2,7 +2,6 @@ package com.example.root.jobify.Views.ProfileEditionPage;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.widget.Button;
@@ -47,7 +46,7 @@ public class ProfileEditionView {
     Button pickImageButton;
     FloatingActionButton saveProfileButton;
 
-    public final String  getUserProfileInputText() {
+    public final String getUserProfileInputText() {
         return userProfileInput.getText().toString();
     }
 

@@ -2,6 +2,7 @@ package com.example.root.jobify.Views.LogInCompletition;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -13,6 +14,7 @@ import com.example.root.jobify.Utilities.WoloxFragment;
 import com.example.root.jobify.Views.FacebookLogInPage.FacebookLogInActivity;
 import com.example.root.jobify.Views.MainApplicationActivity;
 import com.example.root.jobify.Views.SignUpCompletitionPage.SignUpCompletitionActivity;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 /**
  * Created by root on 09/11/16.
@@ -64,6 +66,8 @@ public class LogInCompletitionFragment extends WoloxFragment<LogInCompletitionPr
 
     @Override
     public void onClick(View v) {
+        String firebaseToken = FirebaseInstanceId.getInstance().getToken();
+        Log.d("MAIN ACTIVITY", "Refreshed firebase token: " + firebaseToken);
         switch (v.getId()) {
             case R.id.credentials_button_login: {
                 mPresenter.authenticateUser();

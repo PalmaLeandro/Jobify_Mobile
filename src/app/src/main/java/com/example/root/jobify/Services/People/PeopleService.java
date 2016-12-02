@@ -26,8 +26,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class PeopleService {
 
-    public static final String API_URL = "http://192.168.43.25:8000/";
-    private static final String RECOMMENDED_FILTER ="recommended" ;
+//    public static final String API_URL = "http://192.168.43.25:8000/";
+    public static final String API_URL = "http://192.168.0.115:8000/";
+    private static final String RECOMMENDED_FILTER ="recommended_by" ;
     private static final String RECOMMENDED_MAX_FILTER = "10";
 
     private PersonAPIService apiService;

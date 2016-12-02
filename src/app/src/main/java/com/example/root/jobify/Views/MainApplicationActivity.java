@@ -12,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -31,6 +32,7 @@ import com.example.root.jobify.Views.ProfileEditionPage.ProfileEditionFragment;
 import com.example.root.jobify.Views.ProfileSearchFilterPage.ProfileSearchActivity;
 import com.example.root.jobify.Views.ProfileSearchFilterPage.ProfileSearchFragment;
 import com.example.root.jobify.Views.RecomendedFolksPage.RecomendedFolksFragment;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
@@ -78,7 +80,6 @@ public class MainApplicationActivity extends WoloxActivity implements UserAuthLi
         onUserChanged(userAuthService.getUser());
         replaceFragment(R.id.main_content,new RecomendedFolksFragment());
         ab.setTitle(getString(R.string.recommended_string));
-
     }
 
     private void setupDrawerContent(NavigationView navigationView) {
