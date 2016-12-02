@@ -2,12 +2,6 @@ package com.example.root.jobify.Models;
 
 import com.example.root.jobify.Views.GenericContentListPage.Content;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Random;
-
-import retrofit2.Callback;
-
 /**
  * Created by root on 24/09/16.
  */
@@ -15,6 +9,7 @@ public class Experience implements Content{
     private String id;
     private String company;
     private String description;
+//    private JobPosition position;
     private String position;
     private String duration;
 

@@ -3,6 +3,7 @@ package com.example.root.jobify.Services.Auth;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Base64;
+import android.util.Log;
 
 import com.cloudrail.si.interfaces.Profile;
 import com.cloudrail.si.services.Facebook;
@@ -10,6 +11,7 @@ import com.cloudrail.si.types.DateOfBirth;
 import com.example.root.jobify.Globals;
 import com.example.root.jobify.Models.Person;
 import com.example.root.jobify.Deserializers.ServerResponse;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,7 +27,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class UserAuthService implements Authenticable {
 
-    public static final String API_URL = "http://192.168.1.4:8000/";
+    //    public static final String API_URL = "http://192.168.43.25:8000/";
+    public static final String API_URL = "http://192.168.0.115:8000/";
+//    public static final String API_URL = "http://pastebin.com/api/";
+
+    private static final String TAG = "UserAuthService";
 
     private AuthAPI authAPI;
 
@@ -52,16 +58,22 @@ public class UserAuthService implements Authenticable {
     private Context lastLoginContext;
     private List<UserAuthListener> listeners;
 
+    private String firebaseToken;
+
     public void loginWithFacebook(Context context){
         final String appClientId ="41c31ab8b911207a2f0f0a18fe8257a6";
         final String appClientSecret ="513042982225369";
         this.lastLoginContext = context;
         profile = new Facebook(context, appClientSecret, appClientId);
+        firebaseToken = FirebaseInstanceId.getInstance().getToken();
+        Log.d(TAG, "Refreshed firebase token: " + firebaseToken);
         new SocialLogin().execute(this);
     }
 
     public void loginWithCredentials(final String userEmail,final String userPassword){
         user = new User(userEmail,userPassword);
+        firebaseToken = FirebaseInstanceId.getInstance().getToken();
+        Log.d(TAG, "Refreshed firebase token: " + firebaseToken);
         new CredentialsLogin().execute(this);
     }
 
@@ -116,12 +128,19 @@ public class UserAuthService implements Authenticable {
     }
 
     @Override
+    public String getFirebaseToken() {
+        return firebaseToken;
+    }
+
+    @Override
     public AuthAPI getAPI() {
         return authAPI;
     }
 
     public void signUpWithCredentials(String userName, String userEmail, String userPassword) {
         this.user = new User(userName,userEmail,userPassword);
+        this.firebaseToken = FirebaseInstanceId.getInstance().getToken();
+        Log.d(TAG, "Refreshed firebase token: " + firebaseToken);
         new CredentialsSignUp().execute(this);
     }
 
@@ -130,6 +149,8 @@ public class UserAuthService implements Authenticable {
         final String appClientSecret ="513042982225369";
         this.lastLoginContext = context;
         profile = new Facebook(context, appClientSecret, appClientId);
+        this.firebaseToken = FirebaseInstanceId.getInstance().getToken();
+        Log.d(TAG, "Refreshed firebase token: " + firebaseToken);
         new SocialSignUp().execute(this);
     }
 
@@ -146,7 +167,7 @@ public class UserAuthService implements Authenticable {
                 final String userEmail = params[0].getUser().getEmail();
                 final String userPassword = params[0].getUser().getPassword();
                 final Response<ServerResponse<AuthAPI.Authentication>> authenticationResponse = params[0].getAPI()
-                        .signUp(Base64.encodeToString(userEmail.concat(":").concat(userPassword).getBytes(),Base64.NO_WRAP),new AuthAPI.SignUpData(userEmail, userName,null,null,null,null,null, Globals.defaultBase64Image))
+                        .signUp(Base64.encodeToString(userEmail.concat(":").concat(userPassword).getBytes(),Base64.NO_WRAP), params[0].getFirebaseToken(), new AuthAPI.SignUpData(userEmail, userName,null,null,null,null,null, Globals.defaultBase64Image))
                         .execute();
                 params[0].onUserAuthenticated(authenticationResponse.body().data.getToken());
             } catch (Exception e) {
@@ -179,7 +200,7 @@ public class UserAuthService implements Authenticable {
                 if (userImage!=null)
                     userImage=Globals.defaultBase64Image;
                 final Response<ServerResponse<AuthAPI.Authentication>> authenticationResponse = params[0].getAPI()
-                        .signUp(Base64.encodeToString(userEmail.concat(":").concat(userPassword).getBytes(),Base64.NO_WRAP),new AuthAPI.SignUpData(userEmail, userName,userGender,userDateOfBirth,null,null,null,userImage))
+                        .signUp(Base64.encodeToString(userEmail.concat(":").concat(userPassword).getBytes(),Base64.NO_WRAP), params[0].getFirebaseToken(),new AuthAPI.SignUpData(userEmail, userName,userGender,userDateOfBirth,null,null,null,userImage))
                         .execute();
                 params[0].onUserAuthenticated(authenticationResponse.body().data.getToken());
             } catch (Exception e){
@@ -198,7 +219,7 @@ public class UserAuthService implements Authenticable {
                 final String userEmail = params[0].getUser().getEmail();
                 final String userPassword = params[0].getUser().getPassword();
                 final Response<ServerResponse<AuthAPI.Authentication>> authenticationResponse = params[0].getAPI()
-                        .login(Base64.encodeToString(userEmail.concat(":").concat(userPassword).getBytes(),Base64.NO_WRAP))
+                        .login(Base64.encodeToString(userEmail.concat(":").concat(userPassword).getBytes(),Base64.NO_WRAP), params[0].getFirebaseToken())
                         .execute();
                 params[0].onUserAuthenticated(authenticationResponse.body().data.getToken());
             } catch (Exception e){
@@ -217,7 +238,7 @@ public class UserAuthService implements Authenticable {
                 final String userEmail = params[0].getProfile().getEmail();
                 final String userPassword = params[0].getProfile().getIdentifier();
                 final Response<ServerResponse<AuthAPI.Authentication>> authenticationResponse = params[0].getAPI()
-                        .login(Base64.encodeToString(userEmail.concat(":").concat(userPassword).getBytes(),Base64.NO_WRAP))
+                        .login(Base64.encodeToString(userEmail.concat(":").concat(userPassword).getBytes(),Base64.NO_WRAP), params[0].getFirebaseToken())
                         .execute();
                 params[0].onUserAuthenticated(authenticationResponse.body().data.getToken());
             } catch (Exception e){

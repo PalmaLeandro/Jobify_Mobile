@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.CardView;
 import android.util.Base64;
 import android.view.View;
@@ -16,7 +15,6 @@ import android.widget.Toast;
 import com.example.root.jobify.R;
 
 import java.io.ByteArrayInputStream;
-import java.util.List;
 
 /**
  * Created by root on 07/09/16.

@@ -3,7 +3,6 @@ package com.example.root.jobify.Models;
 import com.example.root.jobify.Views.GenericContentListPage.Content;
 
 import java.util.ArrayList;
-import java.util.function.Predicate;
 
 /**
  * Created by root on 06/09/16.

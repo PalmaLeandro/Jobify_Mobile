@@ -15,10 +15,10 @@ import retrofit2.http.POST;
 public interface AuthAPI {
 
     @GET("login")
-    Call<ServerResponse<Authentication>> login(@Header("Authorization") final String base64Authetication);
+    Call<ServerResponse<Authentication>> login(@Header("Authorization") final String base64Authetication, @Header("FirebaseToken") final String firebaseToken);
 
     @POST("signup")
-    Call<ServerResponse<Authentication>> signUp(@Header("Authorization") final String base64Authetication, @Body SignUpData signUpData);
+    Call<ServerResponse<Authentication>> signUp(@Header("Authorization") final String base64Authetication, @Header("FirebaseToken") final String firebaseToken, @Body SignUpData signUpData);
 
     @GET("users/me")
     Call<ServerResponse<Person>> getUserProfile(@Header("Token") final String base64Authetication);
