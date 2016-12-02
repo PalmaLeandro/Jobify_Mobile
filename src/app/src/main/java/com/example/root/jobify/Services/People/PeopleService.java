@@ -5,6 +5,7 @@ import com.example.root.jobify.Deserializers.PersonsArrayDeserializer;
 import com.example.root.jobify.Deserializers.ServerArrayResponse;
 import com.example.root.jobify.Deserializers.ServerArrayResponseDeserializer;
 import com.example.root.jobify.Models.Experience;
+import com.example.root.jobify.Models.Message;
 import com.example.root.jobify.Models.Person;
 import com.example.root.jobify.R;
 import com.example.root.jobify.Services.Auth.UserAuthService;
@@ -26,7 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class PeopleService {
 
-    public static final String API_URL = "http://192.168.43.25:8000/";
+    public static final String API_URL = "http://192.168.1.4:8000/";
     private static final String RECOMMENDED_FILTER ="recommended" ;
     private static final String RECOMMENDED_MAX_FILTER = "10";
 
@@ -206,7 +207,7 @@ public class PeopleService {
         apiService.getChatMessages(personId,authService.getToken()).enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
-                ServerArrayResponse<Person> serverResponse = (ServerArrayResponse<Person>) response.body();
+                ServerArrayResponse<Message> serverResponse = (ServerArrayResponse<Message>) response.body();
                 if (serverResponse!=null && serverResponse.data!=null)
                     callback.onResponse(call, Response.success(serverResponse.data));
             }

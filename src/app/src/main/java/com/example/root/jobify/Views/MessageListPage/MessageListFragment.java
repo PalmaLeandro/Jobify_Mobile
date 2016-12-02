@@ -59,16 +59,7 @@ public class MessageListFragment extends ContentListFragment{
 
                     @Override
                     public void onFailure(Call<ArrayList<Message>> call, Throwable t) {
-
-                        ArrayList<Message> messages = new ArrayList<Message>();
-                        messages.add(new Message("1", "Juan Costamagna","Hola ameo!"));
-                        messages.add(new Message("1", "Juan Costamagna","Que loco tp"));
-                        messages.add(new Message("1", "Leandro Palma","Llegamos justeli"));
-                        messages.add(new Message("1", "Juan Costamagna","Y no pudimos ir al casamiento de la hermana de Ale"));
-                        ArrayList<Content> contents = new ArrayList<Content>();
-                        for (Content content : messages)
-                            contents.add(content);
-                        callback.onResponse(null, Response.success(contents));
+                        callback.onFailure(null,t);
                     }
                 });
             }
