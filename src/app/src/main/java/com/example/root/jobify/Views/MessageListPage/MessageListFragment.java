@@ -88,6 +88,7 @@ public class MessageListFragment extends ContentListFragment{
                                         @Override
                                         public void onResponse(Call call, Response response) {
                                             Toast.makeText(context, R.string.message_deleted_text_string,Toast.LENGTH_LONG).show();
+                                            populate();
                                         }
 
                                         @Override

@@ -6,7 +6,6 @@ import com.example.root.jobify.Views.GenericContentListPage.Content;
  * Created by root on 24/09/16.
  */
 public class Experience implements Content{
-    private String id;
     private String company;
     private String description;
 //    private JobPosition position;
@@ -14,8 +13,7 @@ public class Experience implements Content{
     private String duration;
 
 
-    public Experience(String id, String company, String description, String position, String duration) {
-        this.id = id;
+    public Experience( String company, String description, String position, String duration) {
         this.company = company;
         this.description = description;
         this.position = position;
@@ -40,7 +38,7 @@ public class Experience implements Content{
 
     @Override
     public String getId() {
-        return id;
+        return getTitle()+getSubTitle();
     }
 
     @Override

@@ -34,6 +34,8 @@ public class ProfileSearchFragment extends WoloxFragment<ProfileSearchPresenter>
     @Override
     protected void populate() {
         mPresenter=createPresenter();
+        mPresenter.loadSkills();
+        mPresenter.loadJobPositions();
     }
 
     @Override
@@ -51,8 +53,13 @@ public class ProfileSearchFragment extends WoloxFragment<ProfileSearchPresenter>
         return new ProfileSearchPresenter(this);
     }
 
+
+    ContentListFragment searchResultListFragment;
     void replaceResultList(ContentListFragment contentListFragment){
         view.showResultsTitle();
+        if(searchResultListFragment!=null)
+            searchResultListFragment.getView().setVisibility(View.GONE);
+        searchResultListFragment=contentListFragment;
         replaceFragment(R.id.folks_list,contentListFragment);
     }
 

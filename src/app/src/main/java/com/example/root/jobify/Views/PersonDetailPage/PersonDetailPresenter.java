@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.root.jobify.Deserializers.ServerResponse;
+import com.example.root.jobify.Models.Message;
 import com.example.root.jobify.Models.Person;
 import com.example.root.jobify.R;
 import com.example.root.jobify.Services.Auth.UserAuthService;
@@ -67,7 +68,6 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
                     new SinglePersonProvider().removePerson(mPerson, new Callback() {
                         @Override
                         public void onResponse(Call call, Response response) {
-                            new PeopleService().changeProfileAddition(mPerson);
                             Snackbar.make(view, R.string.person_removed_string, Snackbar.LENGTH_LONG)
                                     .setAction(R.string.undo_string, new View.OnClickListener() {
                                         @Override
@@ -75,7 +75,6 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
                                             new SinglePersonProvider().addPerson(mPerson, new Callback() {
                                                 @Override
                                                 public void onResponse(Call call, Response response) {
-                                                    new PeopleService().changeProfileAddition(mPerson);
                                                     loadPerson();
                                                 }
 
@@ -104,7 +103,6 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
                     new SinglePersonProvider().addPerson(mPerson, new Callback() {
                         @Override
                         public void onResponse(Call call, Response response) {
-                            new PeopleService().changeProfileAddition(mPerson);
                             Snackbar.make(view, R.string.person_added_string, Snackbar.LENGTH_LONG)
                                     .setAction(R.string.undo_string, new View.OnClickListener() {
                                         @Override
@@ -112,7 +110,6 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
                                             new SinglePersonProvider().removePerson(mPerson, new Callback() {
                                                 @Override
                                                 public void onResponse(Call call, Response response) {
-                                                    new PeopleService().changeProfileAddition(mPerson);
                                                     loadPerson();
                                                 }
 
@@ -173,9 +170,7 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
         new SinglePersonProvider().recommendFolk(mPerson, new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
-                new PeopleService().changeProfileRecomendation(mPerson);
                 updateRecomendationButons();
-                mPerson.getFellowsWhoRecommendMe().add(UserAuthService.getInstance().getUserProfile().getEmail());
                 Snackbar.make(getView().recommendProfileButtton, R.string.recomended_succesfully_sring, Snackbar.LENGTH_LONG)
                         .setAction(R.string.undo_string, new View.OnClickListener() {
                             @Override
@@ -183,7 +178,6 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
                                 new SinglePersonProvider().unrecommendFolk(mPerson, new Callback() {
                                     @Override
                                     public void onResponse(Call call, Response response) {
-                                        new PeopleService().changeProfileRecomendation(mPerson);
                                         updateRecomendationButons();
                                     }
 
@@ -208,7 +202,6 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
         new SinglePersonProvider().unrecommendFolk(mPerson, new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
-                new PeopleService().changeProfileRecomendation(mPerson);
                 updateRecomendationButons();
                 Snackbar.make(getView().recommendProfileButtton, R.string.unrecommended_succesfully, Snackbar.LENGTH_LONG)
                         .setAction(R.string.undo_string, new View.OnClickListener() {
@@ -217,9 +210,7 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
                                 new SinglePersonProvider().recommendFolk(mPerson, new Callback() {
                                     @Override
                                     public void onResponse(Call call, Response response) {
-                                        new PeopleService().changeProfileRecomendation(mPerson);
                                         updateRecomendationButons();
-                                        new PeopleService().changeProfileRecomendation(mPerson);
                                     }
 
                                     @Override
@@ -234,6 +225,20 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
             @Override
             public void onFailure(Call call, Throwable t) {
 
+            }
+        });
+    }
+
+    public void sendMessage(final String message) {
+        new PeopleService().sendMessage(message,personId, new Callback() {
+            @Override
+            public void onResponse(Call call, Response response) {
+                Toast.makeText(getView().getContext(), R.string.message_set_string,Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                Toast.makeText(getView().getContext(), R.string.message_not_sent_string,Toast.LENGTH_LONG).show();
             }
         });
     }

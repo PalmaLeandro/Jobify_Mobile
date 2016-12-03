@@ -20,6 +20,11 @@ public class ChatFragment extends WoloxFragment<ChatPresenter>{
 
     private static final int MAX_LEGTH_SKILL = 40;
     private FloatingActionButton sendMessageButton;
+
+    public String getPersonId() {
+        return personId;
+    }
+
     private String personId;
     MessageListFragment messageListFragment;
 
@@ -42,8 +47,6 @@ public class ChatFragment extends WoloxFragment<ChatPresenter>{
 
     @Override
     protected void populate() {
-        mPresenter=createPresenter();
-        messageListFragment.populate();
     }
 
     @Override

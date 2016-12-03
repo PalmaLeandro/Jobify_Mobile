@@ -8,10 +8,19 @@ import android.util.Log;
 import com.cloudrail.si.interfaces.Profile;
 import com.cloudrail.si.services.Facebook;
 import com.cloudrail.si.types.DateOfBirth;
+import com.example.root.jobify.Deserializers.PersonDeserializer;
+import com.example.root.jobify.Deserializers.PersonsArrayDeserializer;
+import com.example.root.jobify.Deserializers.ServerArrayResponse;
+import com.example.root.jobify.Deserializers.ServerArrayResponseDeserializer;
+import com.example.root.jobify.Deserializers.ServerResponseDeserializer;
 import com.example.root.jobify.Globals;
+import com.example.root.jobify.Models.Experience;
 import com.example.root.jobify.Models.Person;
 import com.example.root.jobify.Deserializers.ServerResponse;
+import com.example.root.jobify.Services.People.PersonsArrayResponse;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.net.URL;
@@ -27,13 +36,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class UserAuthService implements Authenticable {
 
-    //    public static final String API_URL = "http://192.168.43.25:8000/";
-    public static final String API_URL = "http://192.168.0.115:8000/";
-//    public static final String API_URL = "http://pastebin.com/api/";
-
     private static final String TAG = "UserAuthService";
-
-    private AuthAPI authAPI;
 
     private static UserAuthService ourInstance = new UserAuthService();
 
@@ -41,14 +44,26 @@ public class UserAuthService implements Authenticable {
         return ourInstance;
     }
 
-    private UserAuthService() {
-        listeners = new ArrayList<>();
-        authAPI =new Retrofit
+    private AuthAPI getApi(){
+        return new Retrofit
                 .Builder()
-                .baseUrl(API_URL)
+                .baseUrl(Globals.getServerAddress())
                 .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory
+                        .create(new GsonBuilder()
+                                .registerTypeAdapter(Person.class,new PersonDeserializer())
+                                .registerTypeAdapter(PersonsArrayResponse.class,
+                                        new PersonsArrayDeserializer())
+                                .registerTypeAdapter(new TypeToken<ServerArrayResponse<Person>>(){}.getType(), new ServerArrayResponseDeserializer<Person>(Person.class,null))
+                                .registerTypeAdapter(new TypeToken<ServerResponse<Person>>(){}.getType(), new ServerResponseDeserializer<Person>(Person.class,new PersonDeserializer()))
+                                .registerTypeAdapter(new TypeToken<ServerResponse<Experience>>(){}.getType(), new ServerResponseDeserializer<Experience>(Experience.class))
+                                .create()))
                 .build()
                 .create(AuthAPI.class);
+    }
+
+    private UserAuthService() {
+        listeners = new ArrayList<>();
     }
 
     private Profile profile;
@@ -106,16 +121,14 @@ public class UserAuthService implements Authenticable {
         return profile;
     }
 
-    @Override
-    public void onUserAuthenticated(String token) {
-        this.token = token;
+    public void updateUserProfile(){
         this.user=null;
         this.userProfile =null;
         if (token!=null){
             this.user=null;
             this.userProfile =null;
             try {
-                Response<ServerResponse<Person>> getUserResponse = authAPI
+                Response<ServerResponse<Person>> getUserResponse = getApi()
                         .getUserProfile(token)
                         .execute();
                 this.user=new User(getUserResponse.body().data.getName(),getUserResponse.body().data.getEmail(),"");
@@ -128,13 +141,19 @@ public class UserAuthService implements Authenticable {
     }
 
     @Override
+    public void onUserAuthenticated(String token) {
+        this.token = token;
+        updateUserProfile();
+    }
+
+    @Override
     public String getFirebaseToken() {
         return firebaseToken;
     }
 
     @Override
     public AuthAPI getAPI() {
-        return authAPI;
+        return getApi();
     }
 
     public void signUpWithCredentials(String userName, String userEmail, String userPassword) {
@@ -156,6 +175,15 @@ public class UserAuthService implements Authenticable {
 
     public Person getUserProfile() {
         return userProfile;
+    }
+
+    public void setUserProfile(Person userProfile) {
+        this.userProfile = userProfile;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+        notifyListeners();
     }
 
 
@@ -197,7 +225,7 @@ public class UserAuthService implements Authenticable {
                 if (imageUrl!=null){
                     userImage=new URL(imageUrl).openConnection().getInputStream().toString();
                 }
-                if (userImage!=null)
+                if (userImage==null)
                     userImage=Globals.defaultBase64Image;
                 final Response<ServerResponse<AuthAPI.Authentication>> authenticationResponse = params[0].getAPI()
                         .signUp(Base64.encodeToString(userEmail.concat(":").concat(userPassword).getBytes(),Base64.NO_WRAP), params[0].getFirebaseToken(),new AuthAPI.SignUpData(userEmail, userName,userGender,userDateOfBirth,null,null,null,userImage))

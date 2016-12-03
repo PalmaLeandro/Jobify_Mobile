@@ -69,12 +69,6 @@ public class ChatListFragment extends ContentListFragment {
         };
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        populate();
-    }
-
 
     @Override
     public void setListener(final Content content, View contentView) {
@@ -96,6 +90,7 @@ public class ChatListFragment extends ContentListFragment {
                                     @Override
                                     public void onResponse(Call call, Response response) {
                                         Toast.makeText(context, R.string.chat_deleted_text_string,Toast.LENGTH_LONG).show();
+                                        populate();
                                     }
 
                                     @Override

@@ -43,12 +43,6 @@ public class MyPeopleFragment extends ContentListFragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        populate();
-    }
-
-    @Override
     public Class<? extends WoloxActivity> getContentDetailActivity() {
         return PersonDetailActivity.class;
     }

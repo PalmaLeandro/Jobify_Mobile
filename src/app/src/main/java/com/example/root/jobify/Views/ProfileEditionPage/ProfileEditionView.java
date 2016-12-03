@@ -2,12 +2,17 @@ package com.example.root.jobify.Views.ProfileEditionPage;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.support.design.widget.FloatingActionButton;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.root.jobify.R;
+
+import java.io.ByteArrayInputStream;
 
 /**
  * Created by root on 09/11/16.
@@ -28,8 +33,15 @@ public class ProfileEditionView {
         this.experiencesButton= (Button) view.findViewById(R.id.experiences_button_access);
         this.saveProfileButton= (FloatingActionButton) view.findViewById(R.id.save_profile);
         this.pickImageButton= (Button) view.findViewById(R.id.pick_image_button);
+        this.userImageImageView=(ImageView) view.findViewById(R.id.profile_image);
     }
 
+
+    public void setUserImage(String userBase64Image) {
+        this.userImageImageView.setImageBitmap(BitmapFactory.decodeStream(new ByteArrayInputStream(Base64.decode(userBase64Image.getBytes(),Base64.DEFAULT))));
+    }
+
+    ImageView userImageImageView;
     EditText userNameInput;
     EditText userCityInput;
     EditText userDateOfBirthInput;
@@ -109,14 +121,4 @@ public class ProfileEditionView {
 
     private ProgressDialog progressDialog;
 
-    public void showProgressDialog() {
-        progressDialog =  ProgressDialog.show(context, "",
-                "Ingresando. Por favor espere...", true);
-    }
-
-    public void hideProgressDialog(){
-        if (progressDialog!=null){
-            progressDialog.dismiss();
-        }
-    }
 }

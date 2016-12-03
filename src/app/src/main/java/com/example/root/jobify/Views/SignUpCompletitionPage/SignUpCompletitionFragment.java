@@ -20,6 +20,7 @@ public class SignUpCompletitionFragment extends WoloxFragment<SignUpCompletition
 
     Context mContext;
     SignUpCompletitionView view;
+    private User user;
 
     @Override
     protected int layout() {
@@ -72,10 +73,12 @@ public class SignUpCompletitionFragment extends WoloxFragment<SignUpCompletition
     @Override
     public void onUserChanged(User user) {
         view.hideProgressDialog();
-        if (user!=null){
+        if (this.user==null && user!=null){
+            this.user=user;
             mContext.startActivity(new Intent(mContext, MainApplicationActivity.class));
-        }else {
-            //Toast.makeText(mContext, R.string.couldnt_signup_string,Toast.LENGTH_LONG).show();
+        } else {
+            this.user = user;
+            //Toast.makeText(getActivity(), R.string.couldnt_login_string,Toast.LENGTH_LONG).show();
         }
     }
 }

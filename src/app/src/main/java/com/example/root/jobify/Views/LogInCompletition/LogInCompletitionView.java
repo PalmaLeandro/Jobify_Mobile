@@ -14,6 +14,8 @@ import com.example.root.jobify.R;
  */
 
 public class LogInCompletitionView {
+    final TextView godModeButton;
+
     public Context getContext() {
         return context;
     }
@@ -27,6 +29,7 @@ public class LogInCompletitionView {
         this.logInButton = (Button) view.findViewById(R.id.credentials_button_login);
         facebookButton = (Button) view.findViewById(R.id.facebook_button);
         signUpButton = (TextView) view.findViewById(R.id.choose_signup_button);
+        godModeButton = (TextView) view.findViewById(R.id.app_title);
     }
 
 
