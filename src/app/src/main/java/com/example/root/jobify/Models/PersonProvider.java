@@ -17,6 +17,4 @@ public interface PersonProvider {
     void recommendFolk(Person personId, Callback callback);
 
     void unrecommendFolk(Person personId, Callback callback);
-
-    void engageChat(String personId, Callback callback);
 }

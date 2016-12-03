@@ -4,10 +4,12 @@ import com.example.root.jobify.Deserializers.PersonDeserializer;
 import com.example.root.jobify.Deserializers.PersonsArrayDeserializer;
 import com.example.root.jobify.Deserializers.ServerArrayResponse;
 import com.example.root.jobify.Deserializers.ServerArrayResponseDeserializer;
+import com.example.root.jobify.Globals;
 import com.example.root.jobify.Models.Experience;
 import com.example.root.jobify.Models.Message;
 import com.example.root.jobify.Models.Person;
 import com.example.root.jobify.R;
+import com.example.root.jobify.Services.Auth.User;
 import com.example.root.jobify.Services.Auth.UserAuthService;
 import com.example.root.jobify.Deserializers.ServerResponse;
 import com.example.root.jobify.Deserializers.ServerResponseDeserializer;
@@ -27,23 +29,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class PeopleService {
 
-<<<<<<< HEAD
-    public static final String API_URL = "http://192.168.1.4:8000/";
-    private static final String RECOMMENDED_FILTER ="recommended" ;
-=======
-//    public static final String API_URL = "http://192.168.43.25:8000/";
-    public static final String API_URL = "http://192.168.0.115:8000/";
     private static final String RECOMMENDED_FILTER ="recommended_by" ;
->>>>>>> master
     private static final String RECOMMENDED_MAX_FILTER = "10";
 
-    private PersonAPIService apiService;
-    private UserAuthService authService;
-
-    public PeopleService(){
-        apiService = new Retrofit
+    private PersonAPIService getApi(){
+        return new Retrofit
                 .Builder()
-                .baseUrl(API_URL)
+                .baseUrl(Globals.getServerAddress())
                 .addConverterFactory(GsonConverterFactory
                         .create(new GsonBuilder()
                                 .registerTypeAdapter(Person.class,new PersonDeserializer())
@@ -55,11 +47,16 @@ public class PeopleService {
                                 .create()))
                 .build()
                 .create(PersonAPIService.class);
+    }
+
+    private UserAuthService authService;
+
+    public PeopleService(){
         authService = UserAuthService.getInstance();
     }
 
     public void getPerson(final String personUsername, final Callback callback){
-        apiService.getPerson(personUsername,authService.getToken()).enqueue(new Callback<ServerArrayResponse<Person>>() {
+        getApi().getPerson(personUsername,authService.getToken()).enqueue(new Callback<ServerArrayResponse<Person>>() {
             @Override
             public void onResponse(Call<ServerArrayResponse<Person>> call, Response<ServerArrayResponse<Person>> response) {
                 if (response.body()!=null&&response.body().data!=null&&response.body().data.size()>=1){
@@ -105,8 +102,8 @@ public class PeopleService {
         });
     }
 
-    public void getRecomendedFolks(final Callback<ArrayList<Person>> callback) {
-        apiService.getRecommendedFolks(RECOMMENDED_FILTER,RECOMMENDED_MAX_FILTER,authService.getToken()).enqueue(new Callback() {
+    public void getRecommendedFolks(final Callback<ArrayList<Person>> callback) {
+        getApi().getRecommendedFolks(RECOMMENDED_FILTER,RECOMMENDED_MAX_FILTER,authService.getToken()).enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
                 ServerArrayResponse<Person> serverResponse = (ServerArrayResponse<Person>) response.body();
@@ -122,7 +119,7 @@ public class PeopleService {
     }
 
     public void getMyPeople(final Callback<ArrayList<Person>> callback) {
-        apiService.getMyPeople(authService.getToken()).enqueue(new Callback() {
+        getApi().getMyPeople(authService.getToken()).enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
                 ServerArrayResponse<Person> serverResponse = (ServerArrayResponse<Person>) response.body();
@@ -138,8 +135,8 @@ public class PeopleService {
     }
 
 
-    public void getPersonSkills(final Callback callback){
-        getPerson(authService.getUser().getEmail(),new Callback<ServerResponse<Person>>() {
+    public void getPersonSkills(final String personId,final Callback callback){
+        getPerson(personId,new Callback<ServerResponse<Person>>() {
             @Override
             public void onResponse(Call<ServerResponse<Person>> call, Response<ServerResponse<Person>> response) {
                 if (response.body()!=null&&response.body().data!=null){
@@ -157,32 +154,44 @@ public class PeopleService {
     }
 
 
-    public void removeProfileSkill(String skill,Callback callback) {
-        authService.getUserProfile().removeSkills(skill);
+    public void removeProfileSkill(String somethingThatISaidThatIKnewAndIDont,Callback callback) {
+        authService.getUserProfile().removeSkills(somethingThatISaidThatIKnewAndIDont);
         savePerson(authService.getUserProfile(),callback);
     }
 
-    public void removeProfileExperience(String experienceId, Callback callback) {
-        authService.getUserProfile().removeExperience(experienceId);
+    public void removeProfileExperience(String somethingThatImNotProudOf, Callback callback) {
+        authService.getUserProfile().removeExperience(somethingThatImNotProudOf);
         savePerson(authService.getUserProfile(),callback);
     }
 
-    public void addSkill(String skill, Callback callback) {
-        authService.getUserProfile().getSkills().add(skill);
+    public void addSkill(String somethingThatIKnow, Callback callback) {
+        authService.getUserProfile().getSkills().add(somethingThatIKnow);
         savePerson(authService.getUserProfile(),callback);
     }
 
-    public void addExperience(Experience experience, Callback callback) {
-        authService.getUserProfile().getPreviousExperience().add(experience);
+    public void addExperience(Experience somethingThatIDid, Callback callback) {
+        authService.getUserProfile().getPreviousExperience().add(somethingThatIDid);
         savePerson(authService.getUserProfile(),callback);
     }
 
-    public void savePerson(Person person, Callback callback) {
-        apiService.savePerson(person,authService.getToken()).enqueue(callback);
+    public void savePerson(final Person person, final Callback callback) {
+        getApi().savePerson(person,authService.getToken()).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                authService.setUserProfile(person);
+                authService.setUser(new User(person.getName(),person.getEmail(),null));
+                callback.onResponse(call,Response.success(response.body()));
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                callback.onFailure(null,t);
+            }
+        });
     }
 
     public void getMyChats(final Callback<ArrayList<Person>> callback) {
-        apiService.getMyChats(authService.getToken()).enqueue(new Callback() {
+        getApi().getMyChats(authService.getToken()).enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
                 ServerArrayResponse<Person> serverResponse = (ServerArrayResponse<Person>) response.body();
@@ -197,20 +206,20 @@ public class PeopleService {
         });
     }
 
-    public void sendMessage(String message, String personId, Callback callback) {
-        apiService.sendMessage(message,personId,authService.getToken()).enqueue(callback);
+    public void sendMessage(final String message, String personId, Callback callback) {
+        getApi().sendMessage(new Message(null,authService.getUserProfile().getName(),message,null),personId,authService.getToken()).enqueue(callback);
     }
 
     public void deleteMessage(String messageId, Callback callback) {
-        apiService.deleteMessage(messageId,authService.getToken()).enqueue(callback);
+        getApi().deleteMessage(messageId,authService.getToken()).enqueue(callback);
     }
 
     public void deleteChat(String personId, Callback callback) {
-        apiService.deleteChat(personId,authService.getToken()).enqueue(callback);
+        getApi().deleteChat(personId,authService.getToken()).enqueue(callback);
     }
 
     public void getChatMessages(String personId, final Callback callback) {
-        apiService.getChatMessages(personId,authService.getToken()).enqueue(new Callback() {
+        getApi().getChatMessages(personId,authService.getToken()).enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
                 ServerArrayResponse<Message> serverResponse = (ServerArrayResponse<Message>) response.body();
@@ -226,12 +235,15 @@ public class PeopleService {
     }
 
     public void searchFolks(final String skill, final String position, final Callback<ArrayList<Person>> callback) {
-        apiService.searchFolks(null,null,position, skill, authService.getToken()).enqueue(new Callback() {
+        getApi().searchFolks(RECOMMENDED_FILTER,RECOMMENDED_MAX_FILTER,position, skill, authService.getToken()).enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
                 ServerArrayResponse<Person> serverResponse = (ServerArrayResponse<Person>) response.body();
-                if (serverResponse!=null && serverResponse.data!=null)
+                if (serverResponse!=null && serverResponse.data!=null){
                     callback.onResponse(call, Response.success(serverResponse.data));
+                } else {
+                    callback.onFailure(null,new Exception());
+                }
             }
 
             @Override
@@ -257,49 +269,73 @@ public class PeopleService {
         return false;
     }
 
-    public void changeProfileAddition(Person mPerson) {
-        boolean thatGuyWasAlreadyAddedToMyPeople = false;
-        ArrayList<String> peopleOfCurrentUser = authService.getUserProfile().getMyPeople();
-        for (String personEmail: peopleOfCurrentUser){
-            if (personEmail.equals(mPerson.getEmail())){
-                authService.getUserProfile().removeFellowFromConacts(mPerson);
-                thatGuyWasAlreadyAddedToMyPeople = true;
-                break;
+    public void addPerson(Person aGreatPersonThatIWantToBeConnectedWith, Callback callback) {
+        authService.getUserProfile().getMyPeople().add(aGreatPersonThatIWantToBeConnectedWith.getEmail());
+        savePerson(authService.getUserProfile(),callback);
+    }
+
+    public void removePerson(Person someMadafakaToRemove, Callback callback) {
+        authService.getUserProfile().removeFellowFromConacts(someMadafakaToRemove);
+        savePerson(authService.getUserProfile(),callback);
+    }
+
+    public void recommendFolk(Person someFolkToRecommend, Callback callback) {
+        someFolkToRecommend.getFellowsWhoRecommendMe().add(authService.getUserProfile().getEmail());
+        getApi().recommendFolk(someFolkToRecommend,authService.getToken()).enqueue(callback);
+    }
+
+    public void unrecommendFolk(Person someJerk, Callback callback) {
+        someJerk.removeFellowFromGuysWhomRecommendedMe(authService.getUserProfile());
+        getApi().unrecommendFolk(someJerk,authService.getToken()).enqueue(callback);
+    }
+
+    public void getSkills(final Callback<ArrayList<String>> callback) {
+        getApi().getSkills(authService.getToken()).enqueue(new Callback<ServerArrayResponse<String>>() {
+            @Override
+            public void onResponse(Call<ServerArrayResponse<String>> call, Response<ServerArrayResponse<String>> response) {
+
+                ArrayList<String> skillsToSelect= new ArrayList<String>();
+                skillsToSelect.add("python");
+                skillsToSelect.add("C++");
+                skillsToSelect.add("Ruby");
+                callback.onResponse(null,Response.success(skillsToSelect));
+                /*
+                if(response.body()!=null&& response.body().data!=null&& response.body().data.size()>0){
+                    callback.onResponse(null,Response.success(response.body().data));
+                } else {
+                    callback.onFailure(null,new Exception("No skills available"));
+                }*/
             }
-        }
-        if(!thatGuyWasAlreadyAddedToMyPeople){
-            authService.getUserProfile().getMyPeople().add(mPerson.getEmail());
-        }
-    }
 
-    public void changeProfileRecomendation(Person mPerson) {
-        boolean thatGuyWasAlreadyRecommendMe = false;
-        ArrayList<String> peopleWhomAlreadyRecommendedThisFellow = mPerson.getFellowsWhoRecommendMe();
-        for (String personEmail: peopleWhomAlreadyRecommendedThisFellow){
-            if (personEmail.equals(mPerson.getEmail())){
-                mPerson.removeFellowFromGuysWhomRecommendedMe(authService.getUserProfile());
-                thatGuyWasAlreadyRecommendMe = true;
-                break;
+            @Override
+            public void onFailure(Call<ServerArrayResponse<String>> call, Throwable t) {
+                callback.onFailure(null,new Exception("No skills available"));
             }
-        }
-        if(!thatGuyWasAlreadyRecommendMe){
-            mPerson.getFellowsWhoRecommendMe().add(authService.getUserProfile().getEmail());
-        }
+        });
     }
 
-    public void addPerson(Person personId, Callback callback) {
-        apiService.addPerson(personId,authService.getToken()).enqueue(callback);
-    }
+    public void getJobPositions(final Callback<ArrayList<String>> callback) {
+        getApi().getJobPositions(authService.getToken()).enqueue(new Callback<ServerArrayResponse<String>>() {
+            @Override
+            public void onResponse(Call<ServerArrayResponse<String>> call, Response<ServerArrayResponse<String>> response) {
 
-    public void removePerson(Person personId, Callback callback) {
-        apiService.removePerson(personId,authService.getToken()).enqueue(callback);
-    }
+                ArrayList<String>jobPositionsToSelect= new ArrayList<String>();
+                jobPositionsToSelect.add("Developer");
+                jobPositionsToSelect.add("Software Engineer");
+                jobPositionsToSelect.add("Data Scientist");
+                callback.onResponse(null,Response.success(jobPositionsToSelect));
+                /*
+                if(response.body()!=null&& response.body().data!=null&& response.body().data.size()>0){
+                    callback.onResponse(null,Response.success(response.body().data));
+                } else {
+                    callback.onFailure(null,new Exception("No job positions available"));
+                }*/
+            }
 
-    public void recommendFolk(Person personId, Callback callback) {
-        apiService.recommendFolk(personId,authService.getToken()).enqueue(callback);
-    }
-
-    public void unrecommendFolk(Person personId, Callback callback) {
-        apiService.unrecommendFolk(personId,authService.getToken()).enqueue(callback);
+            @Override
+            public void onFailure(Call<ServerArrayResponse<String>> call, Throwable t) {
+                callback.onFailure(null,new Exception("No job positions available"));
+            }
+        });
     }
 }

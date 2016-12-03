@@ -58,5 +58,6 @@ public class ProfileEditionPresenter extends BasePresenter<ProfileEditionView> {
         getView().setUserProfileInputText(authService.getUserProfile().getProfile());
         getView().setNumberOfSkills(authService.getUserProfile().getSkills().size());
         getView().setNumberOfExperiences(authService.getUserProfile().getPreviousExperience().size());
+        getView().setUserImage(authService.getUserProfile().getPicture());
     }
 }

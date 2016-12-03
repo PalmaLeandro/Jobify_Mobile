@@ -23,7 +23,7 @@ import static android.app.Activity.RESULT_OK;
 /**
  * Created by root on 09/11/16.
  */
-public class ProfileEditionFragment extends WoloxFragment<ProfileEditionPresenter> implements UserAuthListener, View.OnClickListener {
+public class ProfileEditionFragment extends WoloxFragment<ProfileEditionPresenter> implements View.OnClickListener {
 
     Context mContext;
     public ProfileEditionView view;
@@ -96,16 +96,6 @@ public class ProfileEditionFragment extends WoloxFragment<ProfileEditionPresente
     protected ProfileEditionPresenter createPresenter() {
         return new ProfileEditionPresenter(view);
     }
-
-    @Override
-    public void onUserChanged(User user) {
-        view.hideProgressDialog();
-        if (user!=null){
-            mContext.startActivity(new Intent(mContext, MainApplicationActivity.class));
-        }
-    }
-
-
 
     @Override
     public void onResume() {

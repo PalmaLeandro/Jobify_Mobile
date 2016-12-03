@@ -90,7 +90,8 @@ public class ExperienceListFragment extends ContentListFragment{
                                     new PeopleService().removeProfileExperience(content.getId(), new Callback() {
                                         @Override
                                         public void onResponse(Call call, Response response) {
-                                            Toast.makeText(context,getString(R.string.removed_skill_message),Toast.LENGTH_LONG);
+                                            Toast.makeText(context,getString(R.string.removed_experience_message),Toast.LENGTH_LONG);
+                                            populate();
                                         }
 
                                         @Override

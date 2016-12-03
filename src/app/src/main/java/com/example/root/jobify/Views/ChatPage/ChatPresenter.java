@@ -16,19 +16,14 @@ import retrofit2.Response;
 public class ChatPresenter extends BasePresenter<ChatFragment>{
 
 
-    String personId;
 
     public ChatPresenter(ChatFragment chatFragment) {
         super(chatFragment);
     }
 
-    public void setPersonId(String personId) {
-        this.personId=personId;
-
-    }
 
     public void sendMessage(final String message) {
-        new PeopleService().sendMessage(message,personId, new Callback() {
+        new PeopleService().sendMessage(message,getView().getPersonId(), new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
                 Toast.makeText(getView().getContext(), R.string.message_set_string,Toast.LENGTH_LONG).show();

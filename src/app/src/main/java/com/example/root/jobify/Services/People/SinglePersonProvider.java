@@ -37,8 +37,4 @@ public class SinglePersonProvider implements PersonProvider{
         new PeopleService().unrecommendFolk(personId,callback);
     }
 
-    @Override
-    public void engageChat(String personId, Callback callback) {
-
-    }
 }

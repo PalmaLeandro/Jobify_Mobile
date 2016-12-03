@@ -14,14 +14,19 @@ import com.example.root.jobify.Services.Auth.UserAuthService;
 import com.example.root.jobify.Utilities.WoloxFragment;
 import com.example.root.jobify.Views.ExperiencesListPage.ExperienceListFragment;
 
+import java.util.ArrayList;
+
 /**
  * Created by root on 26/11/16.
  */
 public class ExperiencesEditionFragment extends WoloxFragment<ExperiencesEditionPresenter>{
 
     private static final int MAX_LEGTH_EXPERIENCE = 40;
+    private static final int MAX_LEGTH_JOB_POSITION = 40;
     private FloatingActionButton addExperienceButton;
     ExperienceListFragment experienceListFragment;
+    private ArrayList<String> jobPositionsToSelect;
+
     @Override
     protected int layout() {
         return R.layout.experiences_edition_page;
@@ -42,9 +47,13 @@ public class ExperiencesEditionFragment extends WoloxFragment<ExperiencesEdition
 
     @Override
     protected void populate() {
-        mPresenter=createPresenter();
-        experienceListFragment.populate();
+        mPresenter.getJobPositions();
+        jobPositionsToSelect= new ArrayList<String>();
+        jobPositionsToSelect.add("Developer");
+        jobPositionsToSelect.add("Software Engineer");
+        jobPositionsToSelect.add("Data Scientist");
     }
+
 
     @Override
     protected void setListeners() {
@@ -68,6 +77,39 @@ public class ExperiencesEditionFragment extends WoloxFragment<ExperiencesEdition
                         .findViewById(R.id.experience_company_input);
                 final EditText experiencePositionInput = (EditText) promptsView
                         .findViewById(R.id.experience_position_input);
+
+                final EditText userInput = experiencePositionInput;
+                userInput.setFilters(new InputFilter[] {new InputFilter.LengthFilter(MAX_LEGTH_JOB_POSITION)});
+                userInput.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final EditText input = experiencePositionInput;
+                        if (input.getText().toString().length()==0 && jobPositionsToSelect.size()>0){
+                            final Context context = v.getContext();
+                            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                                    context);
+
+                            // set dialog message
+                            alertDialogBuilder
+                                    .setTitle(R.string.select_job_position)
+                                    .setItems(jobPositionsToSelect.toArray(new String[]{}), new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            input.setText(jobPositionsToSelect.get(which));
+                                        }
+                                    })
+                                    .setCancelable(true);
+
+                            // create alert dialog
+                            AlertDialog alertDialog = alertDialogBuilder.create();
+
+                            // show it
+                            alertDialog.show();
+                        }
+                    }
+                });
+
+
                 final EditText experienceDescriptionInput = (EditText) promptsView
                         .findViewById(R.id.experience_description_input);
                 final EditText experienceDurationInput = (EditText) promptsView
@@ -105,5 +147,9 @@ public class ExperiencesEditionFragment extends WoloxFragment<ExperiencesEdition
     @Override
     protected ExperiencesEditionPresenter createPresenter() {
         return new ExperiencesEditionPresenter(this);
+    }
+
+    public void setJobPositionsToSelect(ArrayList<String> jobPositionsToSelect) {
+        this.jobPositionsToSelect = jobPositionsToSelect;
     }
 }

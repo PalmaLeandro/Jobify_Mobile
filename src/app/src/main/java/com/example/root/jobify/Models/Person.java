@@ -1,5 +1,6 @@
 package com.example.root.jobify.Models;
 
+import com.example.root.jobify.Globals;
 import com.example.root.jobify.Views.GenericContentListPage.Content;
 
 import java.util.ArrayList;
@@ -10,20 +11,20 @@ import java.util.ArrayList;
 public class Person implements Content {
 
 
-    private final String username;
-    private final String city;
-    private final String dob;
-    private final String email;
-    private final String gender;
-    private final String name;
+    private String username;
+    private String city;
+    private String dob;
+    private String email;
+    private String gender;
+    private String name;
 
-    private final String nationality;
-    private final ArrayList<Experience> previous_exp;
-    private final String profile;
-    private final ArrayList<String> skills;
-    private final ArrayList<String> contacts;
-    private final ArrayList<String> recommended_by;
-    private final ArrayList<String> chats;
+    private String nationality;
+    private ArrayList<Experience> previous_exp;
+    private String profile;
+    private ArrayList<String> skills;
+    private ArrayList<String> contacts;
+    private ArrayList<String> recommended_by;
+    private ArrayList<String> chats;
 
     private String picture;
 
@@ -89,31 +90,39 @@ public class Person implements Content {
     }
 
     public ArrayList<Experience> getPreviousExperience() {
-        if (previous_exp!=null)
+        if (previous_exp!=null) {
             return previous_exp;
-        else
-            return new ArrayList<Experience>();
+        } else {
+            this.previous_exp = new ArrayList<Experience>();
+            return this.previous_exp;
+        }
     }
 
     public ArrayList<String> getMyPeople() {
-        if (contacts!=null)
+        if (contacts!=null) {
             return contacts;
-        else
-            return new ArrayList<String>();
+        } else {
+            this.contacts = new ArrayList<String>();
+            return this.contacts;
+        }
     }
 
     public ArrayList<String> getFellowsWhoRecommendMe() {
-        if (recommended_by!=null)
-            return recommended_by;
-        else
-            return new ArrayList<>();
+        if (this.recommended_by!=null) {
+            return this.recommended_by;
+        } else {
+            this.recommended_by = new ArrayList<String>();
+            return this.recommended_by;
+        }
     }
 
     public ArrayList<String> getChats() {
-        if (chats!=null)
-            return chats;
-        else
-            return new ArrayList<>();
+        if (this.chats!=null) {
+            return this.chats;
+        } else {
+            this.chats = new ArrayList<String>();
+            return this.chats;
+        }
     }
 
     public String getProfile() {
@@ -124,11 +133,12 @@ public class Person implements Content {
     }
 
     public ArrayList<String> getSkills() {
-
-        if (skills!=null)
-            return skills;
-        else
-            return new ArrayList<String>();
+        if (this.skills!=null) {
+            return this.skills;
+        } else {
+            this.skills = new ArrayList<String>();
+            return this.skills;
+        }
     }
 
     public String getPosition() {
@@ -142,7 +152,7 @@ public class Person implements Content {
         if (username!=null)
             return username;
         else
-            return "";
+            return getEmail();
     }
 
     @Override
@@ -161,7 +171,10 @@ public class Person implements Content {
     }
 
     public String getPicture() {
-        return picture;
+        if(picture!=null)
+            return picture;
+        else
+            return Globals.defaultBase64Image;
     }
 
     public void removeFellowFromConacts(final Person fellowToRemove){
@@ -174,9 +187,9 @@ public class Person implements Content {
     }
 
     public void removeFellowFromGuysWhomRecommendedMe(final Person fellowToRemove){
-        for(String personEmail: getMyPeople()){
+        for(String personEmail: getFellowsWhoRecommendMe()){
             if(personEmail.equals(fellowToRemove.getEmail())){
-                getMyPeople().remove(getMyPeople().indexOf(personEmail));
+                getFellowsWhoRecommendMe().remove(getFellowsWhoRecommendMe().indexOf(personEmail));
                 break;
             }
         }

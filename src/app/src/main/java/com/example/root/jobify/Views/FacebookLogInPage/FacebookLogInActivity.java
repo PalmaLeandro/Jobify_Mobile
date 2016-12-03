@@ -32,7 +32,7 @@ public class FacebookLogInActivity extends WoloxActivity implements UserAuthList
 
     private void showProgressDialog() {
         progressDialog =  ProgressDialog.show(this, "",
-                "Ingresando. Por favor espere...", true);
+                getString(R.string.loging_in_string), true);
     }
 
     @Override

@@ -5,6 +5,8 @@ import android.widget.Toast;
 import com.example.root.jobify.Models.Person;
 import com.example.root.jobify.R;
 import com.example.root.jobify.Services.People.PeopleService;
+import com.example.root.jobify.Utilities.WoloxActivity;
+import com.example.root.jobify.Views.PersonDetailPage.PersonDetailActivity;
 import com.example.root.jobify.Views.GenericContentListPage.Content;
 import com.example.root.jobify.Views.GenericContentListPage.ContentListFragment;
 import com.example.root.jobify.Views.GenericContentListPage.ContentListProvider;
@@ -52,5 +54,10 @@ public class ProfileSearchResultFragment extends ContentListFragment {
     public void setFilters(String skill, String position) {
         this.skillFilter = skill;
         this.positionFilter=position;
+    }
+
+    @Override
+    public Class<? extends WoloxActivity> getContentDetailActivity() {
+        return PersonDetailActivity.class;
     }
 }

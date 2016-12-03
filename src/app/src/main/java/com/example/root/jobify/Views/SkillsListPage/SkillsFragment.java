@@ -65,7 +65,7 @@ public class SkillsFragment extends ContentListFragment {
         return new ContentListProvider() {
             @Override
             public void getContents(final Callback<ArrayList<Content>> callback) {
-                new PeopleService().getPersonSkills(new Callback<ArrayList<String>>() {
+                new PeopleService().getPersonSkills(personId,new Callback<ArrayList<String>>() {
                     @Override
                     public void onResponse(Call<ArrayList<String>> call, Response<ArrayList<String>> response) {
                         ArrayList<Content> contents = new ArrayList<Content>();
@@ -126,6 +126,7 @@ public class SkillsFragment extends ContentListFragment {
                                         @Override
                                         public void onResponse(Call call, Response response) {
                                             Toast.makeText(context,getString(R.string.removed_skill_message),Toast.LENGTH_LONG).show();
+                                            populate();
                                         }
 
                                         @Override

@@ -12,14 +12,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.cloudrail.si.servicecode.commands.string.Base64Encode;
 import com.example.root.jobify.R;
 import com.example.root.jobify.Services.Auth.User;
 import com.example.root.jobify.Services.Auth.UserAuthListener;
@@ -29,18 +27,10 @@ import com.example.root.jobify.Views.ChatListPage.ChatListFragment;
 import com.example.root.jobify.Views.LogInCompletition.LogInCompletitionActivity;
 import com.example.root.jobify.Views.MyPeoplePage.MyPeopleFragment;
 import com.example.root.jobify.Views.ProfileEditionPage.ProfileEditionFragment;
-import com.example.root.jobify.Views.ProfileSearchFilterPage.ProfileSearchActivity;
 import com.example.root.jobify.Views.ProfileSearchFilterPage.ProfileSearchFragment;
-import com.example.root.jobify.Views.RecomendedFolksPage.RecomendedFolksFragment;
-import com.google.firebase.iid.FirebaseInstanceId;
+import com.example.root.jobify.Views.RecommendedFolksPage.RecommendedFolksFragment;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-
-import static android.R.drawable.ic_menu_search;
-import static android.R.drawable.picture_frame;
 
 
 /**
@@ -78,7 +68,7 @@ public class MainApplicationActivity extends WoloxActivity implements UserAuthLi
 
         userAuthService.getInstance().addUserListener(this);
         onUserChanged(userAuthService.getUser());
-        replaceFragment(R.id.main_content,new RecomendedFolksFragment());
+        replaceFragment(R.id.main_content,new RecommendedFolksFragment());
         ab.setTitle(getString(R.string.recommended_string));
     }
 
@@ -90,7 +80,7 @@ public class MainApplicationActivity extends WoloxActivity implements UserAuthLi
                 switch (menuItem.getItemId()) {
                     case R.id.nav_home: {
                         ab.setTitle(getString(R.string.recommended_string));
-                        replaceFragment(R.id.main_content, new RecomendedFolksFragment());
+                        replaceFragment(R.id.main_content, new RecommendedFolksFragment());
                         break;
                     }
                     case R.id.nav_search: {

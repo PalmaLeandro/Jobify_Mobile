@@ -29,10 +29,10 @@ public interface PersonAPIService {
     @GET("users")
     Call<ServerArrayResponse<Person>> getPerson(@Query("username") final String personUsername, @Header("Token") final String token);
 
-    @GET("users")
+    @GET("users/search")
     Call<ServerArrayResponse<Person>> getRecommendedFolks(@Query("sort") final String order, @Query("filter") final String limit, @Header("Token") final String token);
 
-    @GET("users")
+    @GET("users/search")
     Call<ServerArrayResponse<Person>> searchFolks(@Query("sort") final String order, @Query("filter") final String limit, @Query("job_position") final String position, @Query("skill") final String skill, @Header("Token") final String token);
 
     @GET("users/contacts")
@@ -57,10 +57,10 @@ public interface PersonAPIService {
     Call<ServerArrayResponse<Person>> getMyChats(@Header("Token") final String token);
 
     @DELETE("chats")
-    Call<Void> deleteChat(@Body final String personId, @Header("Token") final String token);
+    Call<Void> deleteChat(@Query("user") final String username, @Header("Token") final String token);
 
-    @POST("message")
-    Call<Void> sendMessage(@Body final String message, @Body final String username, @Header("Token") final String token);
+    @POST("chats")
+    Call<Void> sendMessage(@Body final Message message, @Query("user") final String username, @Header("Token") final String token);
 
     @HTTP(method = "DELETE", path = "messages", hasBody = true)
     Call<Void> deleteMessage(@Body final String messageId, @Header("Token") final String token);
@@ -79,4 +79,11 @@ public interface PersonAPIService {
 
     @HTTP(method = "DELETE", path = "users/recommend", hasBody = true)
     Call<Void> unrecommendFolk(@Body final Person username, @Header("Token") final String token);
+
+
+    @GET("skills")
+    Call<ServerArrayResponse<String>> getSkills(@Header("Token") final String token);
+
+    @GET("job-positions")
+    Call<ServerArrayResponse<String>> getJobPositions(@Header("Token") final String token);
 }

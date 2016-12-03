@@ -16,6 +16,16 @@ public class Globals {
     public static final int DATE_LONG_STYLE = 0;
     public static final int DATE_SHORT_STYLE = 1;
 
+    public static String getServerAddress() {
+        return serverAddress;
+    }
+
+    public static void setServerAddress(String serverAddress) {
+        Globals.serverAddress = serverAddress;
+    }
+
+    public static String serverAddress = "http://192.168.43.25:8000/";
+
     public static Date parseDate(String dateString, int style) {
         String format = (style == DATE_LONG_STYLE) ? "yyyy-MM-dd'T'hh:mm:ss.SSS'Z'" : "yyyy-MM-dd";
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);

@@ -83,4 +83,12 @@
     <string name="unrecommended_succesfully">Fellow unrecommended successfully</string>
     <string name="loging_in_string">Signing in. Please wait...</string>
     <string name="getting_data_string">Getting data. Please wait...</string>
+    <string name="removed_experience_message">Experience removed</string>
+    <string name="couldnt_fetch_available_skills_string">Couldn\'t fetch skills available</string>
+    <string name="select_skill_string">Select skill</string>
+    <string name="select_job_position">Select job position</string>
+    <string name="couldnt_fetch_available_job_positions_string">Couldn\'t fetch available job positions</string>
+    <string name="set_button_string">Set</string>
+    <string name="set_server_address_string">Set server address</string>
+    <string name="d">Ingresando. Por favor espere...</string>
 </resources>

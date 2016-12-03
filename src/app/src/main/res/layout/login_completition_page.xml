@@ -9,6 +9,7 @@
     android:gravity="center">
 
     <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/app_title"
         android:layout_gravity="center"
         android:textColor="@android:color/darker_gray"
         android:text="@string/jobify"
