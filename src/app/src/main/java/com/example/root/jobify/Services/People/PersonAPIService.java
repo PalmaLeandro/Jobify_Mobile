@@ -84,6 +84,6 @@ public interface PersonAPIService {
     @GET("skills")
     Call<ServerArrayResponse<String>> getSkills(@Header("Token") final String token);
 
-    @GET("job-positions")
+    @GET("job_positions")
     Call<ServerArrayResponse<String>> getJobPositions(@Header("Token") final String token);
 }

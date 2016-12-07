@@ -100,6 +100,7 @@ public abstract class ContentListFragment extends WoloxFragment<ContentListPrese
         public void onBindViewHolder(final ContentListCellFragmentViewHolder holder, final int position) {
             holder.ContentListCellFragment.mPresenter.setContentParam(mValues.get(position));
             contentDetailPageBinder.setListener(mValues.get(position),holder.ContentListCellFragment.mContentListCellView.mContentCardView);
+            holder.ContentListCellFragment.mContentListCellView.mContentCardView.setBackground(holder.ContentListCellFragment.mContentListCellView.mContentCardView.getContext().getDrawable(R.drawable.ripple));
         }
 
         @Override

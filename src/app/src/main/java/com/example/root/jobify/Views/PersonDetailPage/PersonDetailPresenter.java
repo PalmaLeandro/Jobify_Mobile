@@ -157,8 +157,7 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
     }
 
     private void showProgressDialog(){
-        progressDialog =  ProgressDialog.show(getView().getContext(), "",
-                "Buscando datos. Por favor espere...", true);
+        progressDialog =  ProgressDialog.show(getView().getContext(), "",getView().getContext().getString(R.string.getting_data_string), true);
     }
 
     private void hideProgressDialog(){
@@ -230,6 +229,10 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
     }
 
     public void sendMessage(final String message) {
+        if(message.length()==0){
+            Toast.makeText(getView().getContext(),R.string.provide_complete_message_string,Toast.LENGTH_LONG).show();
+            return;
+        }
         new PeopleService().sendMessage(message,personId, new Callback() {
             @Override
             public void onResponse(Call call, Response response) {

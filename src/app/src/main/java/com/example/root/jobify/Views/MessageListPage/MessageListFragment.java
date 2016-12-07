@@ -68,7 +68,7 @@ public class MessageListFragment extends ContentListFragment{
 
     @Override
     public void setListener(final Content content, View contentView) {
-        if (content.getTitle().equals(UserAuthService.getInstance().getUserProfile().getName())){
+        if (content.getTitle().equals(UserAuthService.getInstance().getUserProfile().getName())||content.getTitle().equals(UserAuthService.getInstance().getUserProfile().getEmail())){
             contentView.findViewById(R.id.content_title).setTextAlignment(View.TEXT_ALIGNMENT_VIEW_END);
             contentView.findViewById(R.id.content_subtitle).setTextAlignment(View.TEXT_ALIGNMENT_VIEW_END);
             contentView.setOnLongClickListener(new View.OnLongClickListener() {

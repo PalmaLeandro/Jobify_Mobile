@@ -40,7 +40,6 @@ public class LogInCompletitionFragment extends WoloxFragment<LogInCompletitionPr
             mContext.startActivity(new Intent(mContext, MainApplicationActivity.class));
         } else {
             this.user = user;
-            //Toast.makeText(getActivity(), R.string.couldnt_login_string,Toast.LENGTH_LONG).show();
         }
     }
 

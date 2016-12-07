@@ -22,11 +22,27 @@ public class ExperiencesEditionPresenter extends BasePresenter<ExperiencesEditio
         super(experiencesEditionFragment);
     }
 
-    public void addExperience(final String experienceCompany, final String experiencePosition, final String experienceDescription, final String experienceDuratiopn) {
-        new PeopleService().addExperience(new Experience(experienceCompany,experienceDescription,experiencePosition,experienceDuratiopn), new Callback() {
+    public void addExperience(final String experienceCompany, final String experiencePosition, final String experienceDescription, final String experienceDuration) {
+        if(experienceCompany.length()==0){
+            Toast.makeText(getView().getContext(),R.string.provide_complete_company_string,Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(experiencePosition.length()==0){
+            Toast.makeText(getView().getContext(),R.string.provide_complete_position_string,Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(experienceDescription.length()==0){
+            Toast.makeText(getView().getContext(),R.string.provide_complete_description_string,Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(experienceDuration.length()==0){
+            Toast.makeText(getView().getContext(),R.string.provide_complete_duration_string,Toast.LENGTH_LONG).show();
+            return;
+        }
+        new PeopleService().addExperience(new Experience(experienceCompany,experienceDescription,experiencePosition,experienceDuration), new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
-                Toast.makeText(getView().getContext(),R.string.added_skill_message,Toast.LENGTH_LONG).show();
+                Toast.makeText(getView().getContext(),R.string.added_experience_message,Toast.LENGTH_LONG).show();
                 getView().experienceListFragment.populate();
             }
 

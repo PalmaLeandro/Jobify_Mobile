@@ -23,6 +23,10 @@ public class ChatPresenter extends BasePresenter<ChatFragment>{
 
 
     public void sendMessage(final String message) {
+        if(message.length()==0){
+            Toast.makeText(getView().getContext(),R.string.provide_complete_message_string,Toast.LENGTH_LONG).show();
+            return;
+        }
         new PeopleService().sendMessage(message,getView().getPersonId(), new Callback() {
             @Override
             public void onResponse(Call call, Response response) {

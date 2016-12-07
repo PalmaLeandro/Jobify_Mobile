@@ -73,6 +73,7 @@ public class ChatListFragment extends ContentListFragment {
     @Override
     public void setListener(final Content content, View contentView) {
         super.setListener(content,contentView);
+        contentView.setBackground(contentView.getContext().getDrawable(R.drawable.ripple));
         contentView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
