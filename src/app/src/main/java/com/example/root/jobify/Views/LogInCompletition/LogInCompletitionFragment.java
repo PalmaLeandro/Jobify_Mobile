@@ -25,7 +25,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 /**
  * Created by root on 09/11/16.
  */
-public class LogInCompletitionFragment extends WoloxFragment<LogInCompletitionPresenter> implements UserAuthListener, View.OnClickListener {
+public class LogInCompletitionFragment extends WoloxFragment<LogInCompletitionPresenter> implements UserAuthListener, View.OnClickListener{
 
     LogInCompletitionView view;
     Context mContext;
@@ -40,7 +40,6 @@ public class LogInCompletitionFragment extends WoloxFragment<LogInCompletitionPr
             mContext.startActivity(new Intent(mContext, MainApplicationActivity.class));
         } else {
             this.user = user;
-            //Toast.makeText(getActivity(), R.string.couldnt_login_string,Toast.LENGTH_LONG).show();
         }
     }
 
@@ -72,6 +71,7 @@ public class LogInCompletitionFragment extends WoloxFragment<LogInCompletitionPr
         view.logInButton.setOnClickListener(this);
         view.facebookButton.setOnClickListener(this);
         view.signUpButton.setOnClickListener(this);
+        view.signUpButton.setLinkTextColor(getContext().getResources().getColor(R.color.light_gray));
         view.godModeButton.setOnClickListener(this);
     }
 
@@ -184,4 +184,5 @@ public class LogInCompletitionFragment extends WoloxFragment<LogInCompletitionPr
             }
         }
     }
+
 }

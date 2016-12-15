@@ -1,6 +1,7 @@
 package com.example.root.jobify.Views.PersonDetailPage;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,8 @@ import com.example.root.jobify.Services.Auth.UserAuthService;
 import com.example.root.jobify.Services.People.PeopleService;
 import com.example.root.jobify.Services.People.SinglePersonProvider;
 import com.example.root.jobify.Utilities.BasePresenter;
+import com.example.root.jobify.Views.ProfileEditionPage.ProfileEditionActivity;
+import com.example.root.jobify.Views.ProfileEditionPage.ProfileEditionFragment;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,6 +46,7 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
         personDetailView.setPersonGender(mPerson.getGender());
         personDetailView.setPersonNationality(mPerson.getNationality());
         personDetailView.setPersonProfile(mPerson.getProfile());
+        personDetailView.setFellowRecommendations((mPerson.getRecomendations()>0?mPerson.getRecomendations()+" "+getView().getContext().getString(R.string.recomendations_string):"No "+getView().getContext().getString(R.string.recomendations_string))+" ");
         updateRecomendationButons();
         updatePersonPrimaryAction();
     }
@@ -60,78 +64,89 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
 
     public void updatePersonPrimaryAction(){
         PersonDetailView personDetailView = getView();
-        if (new PeopleService().userIsAlreadyAddedByCurrentUser(mPerson)){
-            personDetailView.setPersonInscriptionActionIcon(R.drawable.ic_not_interested_white_24dp);
+        if(mPerson.getId().equals(UserAuthService.getInstance().getUserProfile().getId())){
+            personDetailView.setPersonInscriptionActionIcon(R.drawable.ic_edit);
+            personDetailView.hideProfileActions();
             personDetailView.mPersonActionFAB.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View view) {
-                    new SinglePersonProvider().removePerson(mPerson, new Callback() {
-                        @Override
-                        public void onResponse(Call call, Response response) {
-                            Snackbar.make(view, R.string.person_removed_string, Snackbar.LENGTH_LONG)
-                                    .setAction(R.string.undo_string, new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            new SinglePersonProvider().addPerson(mPerson, new Callback() {
-                                                @Override
-                                                public void onResponse(Call call, Response response) {
-                                                    loadPerson();
-                                                }
-
-                                                @Override
-                                                public void onFailure(Call call, Throwable t) {
-                                                    Snackbar.make(view, R.string.cant_add_person_string, Snackbar.LENGTH_LONG).show();
-                                                }
-                                            });
-                                        }
-                                    }).show();
-                            loadPerson();
-                        }
-
-                        @Override
-                        public void onFailure(Call call, Throwable t) {
-                            Snackbar.make(view, R.string.cant_remove_person_string, Snackbar.LENGTH_LONG).show();
-                        }
-                    });
+                    view.getContext().startActivity(new Intent(view.getContext(), ProfileEditionActivity.class));
                 }
             });
         } else {
-            personDetailView.setPersonInscriptionActionIcon(R.drawable.ic_add_plus_24dp);
-            personDetailView.mPersonActionFAB.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(final View view) {
-                    new SinglePersonProvider().addPerson(mPerson, new Callback() {
-                        @Override
-                        public void onResponse(Call call, Response response) {
-                            Snackbar.make(view, R.string.person_added_string, Snackbar.LENGTH_LONG)
-                                    .setAction(R.string.undo_string, new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            new SinglePersonProvider().removePerson(mPerson, new Callback() {
-                                                @Override
-                                                public void onResponse(Call call, Response response) {
-                                                    loadPerson();
-                                                }
+            personDetailView.showProfileActions();
+            if (new PeopleService().userIsAlreadyAddedByCurrentUser(mPerson)){
+                personDetailView.setPersonInscriptionActionIcon(R.drawable.ic_not_interested_white_24dp);
+                personDetailView.mPersonActionFAB.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(final View view) {
+                        new SinglePersonProvider().removePerson(mPerson, new Callback() {
+                            @Override
+                            public void onResponse(Call call, Response response) {
+                                Snackbar.make(view, R.string.person_removed_string, Snackbar.LENGTH_LONG)
+                                        .setAction(R.string.undo_string, new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                new SinglePersonProvider().addPerson(mPerson, new Callback() {
+                                                    @Override
+                                                    public void onResponse(Call call, Response response) {
+                                                        loadPerson();
+                                                    }
 
-                                                @Override
-                                                public void onFailure(Call call, Throwable t) {
-                                                    Snackbar.make(view, R.string.cant_add_person_string, Snackbar.LENGTH_LONG).show();
-                                                }
-                                            });
-                                        }
-                                    }).show();
-                            loadPerson();
-                        }
+                                                    @Override
+                                                    public void onFailure(Call call, Throwable t) {
+                                                        Snackbar.make(view, R.string.cant_add_person_string, Snackbar.LENGTH_LONG).show();
+                                                    }
+                                                });
+                                            }
+                                        }).show();
+                                loadPerson();
+                            }
 
-                        @Override
-                        public void onFailure(Call call, Throwable t) {
-                            Snackbar.make(view, R.string.cant_remove_person_string, Snackbar.LENGTH_LONG).show();
-                        }
-                    });
-                }
-            });
+                            @Override
+                            public void onFailure(Call call, Throwable t) {
+                                Snackbar.make(view, R.string.cant_remove_person_string, Snackbar.LENGTH_LONG).show();
+                            }
+                        });
+                    }
+                });
+            } else {
+                personDetailView.setPersonInscriptionActionIcon(R.drawable.ic_add_plus_24dp);
+                personDetailView.mPersonActionFAB.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(final View view) {
+                        new SinglePersonProvider().addPerson(mPerson, new Callback() {
+                            @Override
+                            public void onResponse(Call call, Response response) {
+                                Snackbar.make(view, R.string.person_added_string, Snackbar.LENGTH_LONG)
+                                        .setAction(R.string.undo_string, new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                new SinglePersonProvider().removePerson(mPerson, new Callback() {
+                                                    @Override
+                                                    public void onResponse(Call call, Response response) {
+                                                        loadPerson();
+                                                    }
+
+                                                    @Override
+                                                    public void onFailure(Call call, Throwable t) {
+                                                        Snackbar.make(view, R.string.cant_add_person_string, Snackbar.LENGTH_LONG).show();
+                                                    }
+                                                });
+                                            }
+                                        }).show();
+                                loadPerson();
+                            }
+
+                            @Override
+                            public void onFailure(Call call, Throwable t) {
+                                Snackbar.make(view, R.string.cant_remove_person_string, Snackbar.LENGTH_LONG).show();
+                            }
+                        });
+                    }
+                });
+            }
         }
-
     }
 
     public void setPersonId(String personId) {
@@ -157,8 +172,7 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
     }
 
     private void showProgressDialog(){
-        progressDialog =  ProgressDialog.show(getView().getContext(), "",
-                "Buscando datos. Por favor espere...", true);
+        progressDialog =  ProgressDialog.show(getView().getContext(), "",getView().getContext().getString(R.string.getting_data_string), true);
     }
 
     private void hideProgressDialog(){
@@ -178,7 +192,7 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
                                 new SinglePersonProvider().unrecommendFolk(mPerson, new Callback() {
                                     @Override
                                     public void onResponse(Call call, Response response) {
-                                        updateRecomendationButons();
+                                        loadPerson();
                                     }
 
                                     @Override
@@ -210,7 +224,7 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
                                 new SinglePersonProvider().recommendFolk(mPerson, new Callback() {
                                     @Override
                                     public void onResponse(Call call, Response response) {
-                                        updateRecomendationButons();
+                                        loadPerson();
                                     }
 
                                     @Override
@@ -230,6 +244,10 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
     }
 
     public void sendMessage(final String message) {
+        if(message.length()==0){
+            Toast.makeText(getView().getContext(),R.string.provide_complete_message_string,Toast.LENGTH_LONG).show();
+            return;
+        }
         new PeopleService().sendMessage(message,personId, new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
@@ -242,4 +260,5 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
             }
         });
     }
+
 }

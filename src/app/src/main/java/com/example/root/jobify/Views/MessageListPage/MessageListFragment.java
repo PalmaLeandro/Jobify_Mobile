@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.root.jobify.Models.Message;
+import com.example.root.jobify.Models.Person;
 import com.example.root.jobify.R;
 import com.example.root.jobify.Services.Auth.UserAuthService;
 import com.example.root.jobify.Services.People.PeopleService;
@@ -17,6 +18,9 @@ import com.example.root.jobify.Views.GenericContentListPage.ContentListProvider;
 import com.example.root.jobify.Views.GenericContentListPage.SimpleDividerItemDecoration;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,6 +31,7 @@ import retrofit2.Response;
  */
 public class MessageListFragment extends ContentListFragment{
 
+    private static final long REFRESH_PERIOD = 60 * 1000; //60 seconds
     private String personId;
     private TextView subcontentTextView;
 
@@ -48,27 +53,36 @@ public class MessageListFragment extends ContentListFragment{
         return new ContentListProvider() {
             @Override
             public void getContents(final Callback<ArrayList<Content>> callback) {
-                new PeopleService().getChatMessages(personId, new Callback<ArrayList<Message>>() {
-                    @Override
-                    public void onResponse(Call<ArrayList<Message>> call, Response<ArrayList<Message>> response) {
-                        ArrayList<Content> contents = new ArrayList<Content>();
-                        for (Content content : response.body())
-                            contents.add(content);
-                        callback.onResponse(null, Response.success(contents));
-                    }
+                Timer timer= new Timer();
+                timer.schedule(new TimerTask() {
+                                   @Override
+                                   public void run() {
+                                       new PeopleService().getChatMessages(personId, new Callback<ArrayList<Message>>() {
+                                           @Override
+                                           public void onResponse(Call<ArrayList<Message>> call, Response<ArrayList<Message>> response) {
+                                               ArrayList<Content> contents = new ArrayList<Content>();
+                                               for (Content content : response.body())
+                                                   contents.add(content);
+                                               callback.onResponse(null, Response.success(contents));
+                                           }
 
-                    @Override
-                    public void onFailure(Call<ArrayList<Message>> call, Throwable t) {
-                        callback.onFailure(null,t);
-                    }
-                });
+                                           @Override
+                                           public void onFailure(Call<ArrayList<Message>> call, Throwable t) {
+                                               callback.onFailure(null,t);
+                                           }
+                                       });
+                                   }
+                               },
+                        new Date(),
+                        REFRESH_PERIOD);
+
             }
         };
     }
 
     @Override
     public void setListener(final Content content, View contentView) {
-        if (content.getTitle().equals(UserAuthService.getInstance().getUserProfile().getName())){
+        if (content.getTitle().equals(UserAuthService.getInstance().getUserProfile().getName())||content.getTitle().equals(UserAuthService.getInstance().getUserProfile().getEmail())){
             contentView.findViewById(R.id.content_title).setTextAlignment(View.TEXT_ALIGNMENT_VIEW_END);
             contentView.findViewById(R.id.content_subtitle).setTextAlignment(View.TEXT_ALIGNMENT_VIEW_END);
             contentView.setOnLongClickListener(new View.OnLongClickListener() {

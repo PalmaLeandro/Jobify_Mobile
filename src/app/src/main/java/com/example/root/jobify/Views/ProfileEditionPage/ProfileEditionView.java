@@ -21,6 +21,12 @@ import java.io.ByteArrayInputStream;
 public class ProfileEditionView {
     private Context context;
 
+    public String getProfileCoordinates() {
+        return profileCoordinates;
+    }
+
+    public String profileCoordinates;
+
     public ProfileEditionView (View view) {
         context=view.getContext();
         this.userNameInput = (EditText) view.findViewById(R.id.user_name_input);
@@ -121,4 +127,7 @@ public class ProfileEditionView {
 
     private ProgressDialog progressDialog;
 
+    public void setProfileCoordinates(String fetchedCoordinates) {
+        profileCoordinates=fetchedCoordinates;
+    }
 }

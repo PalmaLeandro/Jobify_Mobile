@@ -17,6 +17,7 @@ import com.example.root.jobify.Views.SignUpCompletitionPage.SignUpCompletitionAc
 
 public class FacebookLogInActivity extends WoloxActivity implements UserAuthListener{
     private ProgressDialog progressDialog;
+    private User user;
 
     @Override
     protected int layout() {
@@ -38,10 +39,11 @@ public class FacebookLogInActivity extends WoloxActivity implements UserAuthList
     @Override
     public void onUserChanged(User user) {
         progressDialog.dismiss();
-        if(user!=null){
-            this.startActivity(new Intent(this, MainApplicationActivity.class));
-        } else{
-            this.startActivity(new Intent(this, SignUpCompletitionActivity.class));
+        if (this.user==null && user!=null){
+            this.user=user;
+            startActivity(new Intent(this, MainApplicationActivity.class));
+        } else {
+            this.user = user;
         }
     }
 }

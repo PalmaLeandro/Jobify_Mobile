@@ -22,6 +22,7 @@ import java.io.ByteArrayInputStream;
 public class PersonDetailView {
 
     private static String SessionDateFormat = "dd/MM/yyyy";
+    private final CardView actionsCardView;
     private Context context;
 
     private ImageView mPersonImageView;
@@ -40,6 +41,7 @@ public class PersonDetailView {
     private CardView mPersonProfileCardView;
     private TextView mPersonProfileTextView;
     FloatingActionButton mPersonActionFAB;
+    private TextView profileRecommendationsTextView;
 
     public void showRecommendProfileButtton() {
         recommendProfileButtton.setVisibility(View.VISIBLE);
@@ -81,6 +83,16 @@ public class PersonDetailView {
         this.recommendProfileButtton=  (Button) view.findViewById(R.id.person_recommend_button);
         this.unrecommendProfileButtton =  (Button) view.findViewById(R.id.person_unrecommend_button);
         this.engageChatButtton=  (Button) view.findViewById(R.id.person_chat_button);
+        this.profileRecommendationsTextView= (TextView) view.findViewById(R.id.profile_recommendations);
+        this.actionsCardView = (CardView) view.findViewById(R.id.profile_actions_card);
+    }
+
+    public void hideProfileActions(){
+        this.actionsCardView.setVisibility(View.GONE);
+    }
+
+    public void showProfileActions(){
+        this.actionsCardView.setVisibility(View.VISIBLE);
     }
 
     public void setPersonImageURL(String base64Image) {
@@ -157,6 +169,10 @@ public class PersonDetailView {
 
     public void setPersonInscriptionActionIcon(int resId) {
         this.mPersonActionFAB.setImageResource(resId);
+    }
+
+    public void setFellowRecommendations(String thisFellowsRecomendations){
+        this.profileRecommendationsTextView.setText(thisFellowsRecomendations);
     }
 }
 

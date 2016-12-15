@@ -51,8 +51,7 @@ public class SignUpCompletitionView {
     private ProgressDialog progressDialog;
 
     public void showProgressDialog() {
-        progressDialog =  ProgressDialog.show(context, "",
-                "Ingresando. Por favor espere...", true);
+        progressDialog =  ProgressDialog.show(context, "",context.getString(R.string.signup_suggestion_text), true);
     }
 
     public void hideProgressDialog(){

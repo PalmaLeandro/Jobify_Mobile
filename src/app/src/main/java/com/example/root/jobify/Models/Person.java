@@ -17,6 +17,9 @@ public class Person implements Content {
     private String email;
     private String gender;
     private String name;
+    private String coordenates;
+
+    private String firebase_token;
 
     private String nationality;
     private ArrayList<Experience> previous_exp;
@@ -28,13 +31,14 @@ public class Person implements Content {
 
     private String picture;
 
-    public Person(String email, String name, String city, String dateOfBirth, String gender, String nationality, String profile, ArrayList<String> skills, ArrayList<Experience> experience, ArrayList<String> contacts, ArrayList<String> recommended_by, ArrayList<String> chats, String base64Image) {
+    public Person(String email, String name, String city, String dateOfBirth, String gender, String coordenates, String nationality, String profile, ArrayList<String> skills, ArrayList<Experience> experience, ArrayList<String> contacts, ArrayList<String> recommended_by, ArrayList<String> chats, String base64Image) {
         this.username = email;
         this.city = city;
         this.dob = dateOfBirth;
         this.email = email;
         this.gender = gender;
         this.name = name;
+        this.coordenates = coordenates;
         this.nationality = nationality;
         this.profile = profile;
         this.skills = skills;
@@ -207,7 +211,20 @@ public class Person implements Content {
         for(Experience experience: getPreviousExperience()){
             if(experience.getId().equals(experienceId)){
                 previous_exp.remove(experience);
+                break;
             }
         }
+    }
+
+    public String getCoordenates() {
+        return coordenates;
+    }
+
+    public void setFirebaseToken(String firebase_token) {
+        this.firebase_token = firebase_token;
+    }
+
+    public Integer getRecomendations() {
+        return getFellowsWhoRecommendMe().size();
     }
 }

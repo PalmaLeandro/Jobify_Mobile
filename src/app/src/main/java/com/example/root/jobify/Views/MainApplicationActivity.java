@@ -26,6 +26,7 @@ import com.example.root.jobify.Utilities.WoloxActivity;
 import com.example.root.jobify.Views.ChatListPage.ChatListFragment;
 import com.example.root.jobify.Views.LogInCompletition.LogInCompletitionActivity;
 import com.example.root.jobify.Views.MyPeoplePage.MyPeopleFragment;
+import com.example.root.jobify.Views.PersonDetailPage.PersonDetailFragment;
 import com.example.root.jobify.Views.ProfileEditionPage.ProfileEditionFragment;
 import com.example.root.jobify.Views.ProfileSearchFilterPage.ProfileSearchFragment;
 import com.example.root.jobify.Views.RecommendedFolksPage.RecommendedFolksFragment;
@@ -79,35 +80,32 @@ public class MainApplicationActivity extends WoloxActivity implements UserAuthLi
                 menuItem.setChecked(true);
                 switch (menuItem.getItemId()) {
                     case R.id.nav_home: {
-                        ab.setTitle(getString(R.string.recommended_string));
-                        replaceFragment(R.id.main_content, new RecommendedFolksFragment());
+                        setHomeViewVisible();
                         break;
                     }
                     case R.id.nav_search: {
                         ab.setTitle(R.string.search_string);
+                        ab.show();
                         replaceFragment(R.id.main_content, new ProfileSearchFragment());
                         break;
                     }
                     case R.id.nav_mypeople: {
                         ab.setTitle(getString(R.string.contacts_string));
+                        ab.show();
                         replaceFragment(R.id.main_content, new MyPeopleFragment());
                         break;
                     }
                     case R.id.nav_chats: {
                         ab.setTitle(getString(R.string.chats_string));
+                        ab.show();
                         replaceFragment(R.id.main_content,new ChatListFragment());
                         break;
                     }
                     case R.id.nav_profile: {
-                        ab.setTitle(getString(R.string.profile_string));
-                        ProfileEditionFragment profileEditionFragment= new ProfileEditionFragment();
-                        profileEditionFragment.setImageButtonClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                pickUpImage();
-                            }
-                        });
-                        replaceFragment(R.id.main_content,profileEditionFragment);
+                        ab.hide();
+                        PersonDetailFragment personDetailFragment= new PersonDetailFragment();
+                        personDetailFragment.setPersonId(UserAuthService.getInstance().getUserProfile().getId());
+                        replaceFragment(R.id.main_content,personDetailFragment);
                         break;
                     }
                     case R.id.nav_exit: {
@@ -128,6 +126,12 @@ public class MainApplicationActivity extends WoloxActivity implements UserAuthLi
         mNavigationView.getMenu().getItem(0).setChecked(true);
     }
 
+    private void setHomeViewVisible() {
+        ab.setTitle(getString(R.string.recommended_string));
+        ab.show();
+        replaceFragment(R.id.main_content, new RecommendedFolksFragment());
+    }
+
 
     @Override
     public void onUserChanged(User user) {
@@ -143,20 +147,14 @@ public class MainApplicationActivity extends WoloxActivity implements UserAuthLi
     }
 
     @Override
-    public void onBackPressed() {}
+    public void onBackPressed() {
+        setHomeViewVisible();
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         mDrawerLayout.openDrawer(GravityCompat.START);
         return true;
-    }
-
-    private void pickUpImage() {
-        // Create intent to Open Image applications like Gallery, Google Photos
-        Intent galleryIntent = new Intent(Intent.ACTION_PICK,
-                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        // Start the Intent
-        startActivityForResult(galleryIntent, RESULT_LOAD_IMG);
     }
 
     @Override

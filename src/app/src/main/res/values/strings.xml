@@ -50,7 +50,7 @@
     <string name="logout_string">Logout</string>
     <string name="profile_saved">Profile saved</string>
     <string name="couldnt_save_profile">Couldn\'t save profile</string>
-    <string name="engage_chat_button_text_string">Engage chat</string>
+    <string name="engage_chat_button_text_string">Send message</string>
     <string name="message_set_string">Message sent</string>
     <string name="message_not_sent_string">Couldn\'t send message</string>
     <string name="message_deleted_text_string">Message deleted</string>
@@ -68,7 +68,7 @@
     <string name="search_string">Search</string>
     <string name="recommended_string">Recommended</string>
     <string name="signup_button_text">Signup</string>
-    <string name="signup_suggestion_text">Not a memeber? Signup</string>
+    <string name="signup_suggestion_text"><u>Not a memeber? Signup</u></string>
     <string name="search_result_error_string">Couldn\'t search for people matching filters</string>
     <string name="credentials_auth_not_fullfilled_string">You must fill both fields</string>
     <string name="invalid_email_string">You must use a valid email address</string>
@@ -90,5 +90,14 @@
     <string name="couldnt_fetch_available_job_positions_string">Couldn\'t fetch available job positions</string>
     <string name="set_button_string">Set</string>
     <string name="set_server_address_string">Set server address</string>
-    <string name="d">Ingresando. Por favor espere...</string>
+    <string name="save_profile_message">Saving your profile will allow us to use your current location in order to improve search results.\nPress SEND to provide your profile information and your location or CANCEL to abort this operation.</string>
+    <string name="provide_complete_skill_message">You must provide a complete skill</string>
+    <string name="provide_complete_company_string">You must provide a complete company name</string>
+    <string name="provide_complete_position_string">You must provide a complete job position</string>
+    <string name="provide_complete_description_string">You must provide a complete description of the experience</string>
+    <string name="provide_complete_duration_string">You must provide a complete experience dutarion</string>
+    <string name="provide_complete_message_string">You must provide a complete message</string>
+    <string name="skill_already_added_string">This profile already include that skill</string>
+    <string name="added_experience_message">Experience added</string>
+    <string name="recomendations_string">Recomendations</string>
 </resources>

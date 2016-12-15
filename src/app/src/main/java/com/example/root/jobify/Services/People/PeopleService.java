@@ -108,7 +108,7 @@ public class PeopleService {
             public void onResponse(Call call, Response response) {
                 ServerArrayResponse<Person> serverResponse = (ServerArrayResponse<Person>) response.body();
                 if (serverResponse!=null && serverResponse.data!=null)
-                    callback.onResponse(call, Response.success(serverResponse.data));
+                    callback.onResponse(call, Response.success(removeCurrentUserFromThisFolks(serverResponse.data)));
             }
 
             @Override
@@ -124,7 +124,7 @@ public class PeopleService {
             public void onResponse(Call call, Response response) {
                 ServerArrayResponse<Person> serverResponse = (ServerArrayResponse<Person>) response.body();
                 if (serverResponse!=null && serverResponse.data!=null)
-                    callback.onResponse(call, Response.success(serverResponse.data));
+                    callback.onResponse(call, Response.success(removeCurrentUserFromThisFolks(serverResponse.data)));
             }
 
             @Override
@@ -175,6 +175,7 @@ public class PeopleService {
     }
 
     public void savePerson(final Person person, final Callback callback) {
+        person.setFirebaseToken(authService.getFirebaseToken());
         getApi().savePerson(person,authService.getToken()).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -196,7 +197,7 @@ public class PeopleService {
             public void onResponse(Call call, Response response) {
                 ServerArrayResponse<Person> serverResponse = (ServerArrayResponse<Person>) response.body();
                 if (serverResponse!=null && serverResponse.data!=null)
-                    callback.onResponse(call, Response.success(serverResponse.data));
+                    callback.onResponse(call, Response.success(removeCurrentUserFromThisFolks(serverResponse.data)));
             }
 
             @Override
@@ -240,7 +241,7 @@ public class PeopleService {
             public void onResponse(Call call, Response response) {
                 ServerArrayResponse<Person> serverResponse = (ServerArrayResponse<Person>) response.body();
                 if (serverResponse!=null && serverResponse.data!=null){
-                    callback.onResponse(call, Response.success(serverResponse.data));
+                    callback.onResponse(call, Response.success(removeCurrentUserFromThisFolks(serverResponse.data)));
                 } else {
                     callback.onFailure(null,new Exception());
                 }
@@ -293,18 +294,11 @@ public class PeopleService {
         getApi().getSkills(authService.getToken()).enqueue(new Callback<ServerArrayResponse<String>>() {
             @Override
             public void onResponse(Call<ServerArrayResponse<String>> call, Response<ServerArrayResponse<String>> response) {
-
-                ArrayList<String> skillsToSelect= new ArrayList<String>();
-                skillsToSelect.add("python");
-                skillsToSelect.add("C++");
-                skillsToSelect.add("Ruby");
-                callback.onResponse(null,Response.success(skillsToSelect));
-                /*
                 if(response.body()!=null&& response.body().data!=null&& response.body().data.size()>0){
                     callback.onResponse(null,Response.success(response.body().data));
                 } else {
                     callback.onFailure(null,new Exception("No skills available"));
-                }*/
+                }
             }
 
             @Override
@@ -318,18 +312,11 @@ public class PeopleService {
         getApi().getJobPositions(authService.getToken()).enqueue(new Callback<ServerArrayResponse<String>>() {
             @Override
             public void onResponse(Call<ServerArrayResponse<String>> call, Response<ServerArrayResponse<String>> response) {
-
-                ArrayList<String>jobPositionsToSelect= new ArrayList<String>();
-                jobPositionsToSelect.add("Developer");
-                jobPositionsToSelect.add("Software Engineer");
-                jobPositionsToSelect.add("Data Scientist");
-                callback.onResponse(null,Response.success(jobPositionsToSelect));
-                /*
                 if(response.body()!=null&& response.body().data!=null&& response.body().data.size()>0){
                     callback.onResponse(null,Response.success(response.body().data));
                 } else {
                     callback.onFailure(null,new Exception("No job positions available"));
-                }*/
+                }
             }
 
             @Override
@@ -337,5 +324,17 @@ public class PeopleService {
                 callback.onFailure(null,new Exception("No job positions available"));
             }
         });
+    }
+
+    private ArrayList<Person> removeCurrentUserFromThisFolks(ArrayList<Person> fetchedFolks){
+        if(fetchedFolks!=null){
+            for(Person someGuy : fetchedFolks){
+                if(someGuy.getId().equals(authService.getUserProfile().getId())){
+                    fetchedFolks.remove(someGuy);
+                    break;
+                }
+            }
+        }
+        return fetchedFolks;
     }
 }
