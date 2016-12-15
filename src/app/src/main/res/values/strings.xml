@@ -68,7 +68,7 @@
     <string name="search_string">Search</string>
     <string name="recommended_string">Recommended</string>
     <string name="signup_button_text">Signup</string>
-    <string name="signup_suggestion_text">Not a memeber? Signup</string>
+    <string name="signup_suggestion_text"><u>Not a memeber? Signup</u></string>
     <string name="search_result_error_string">Couldn\'t search for people matching filters</string>
     <string name="credentials_auth_not_fullfilled_string">You must fill both fields</string>
     <string name="invalid_email_string">You must use a valid email address</string>
@@ -99,4 +99,5 @@
     <string name="provide_complete_message_string">You must provide a complete message</string>
     <string name="skill_already_added_string">This profile already include that skill</string>
     <string name="added_experience_message">Experience added</string>
+    <string name="recomendations_string">Recomendations</string>
 </resources>

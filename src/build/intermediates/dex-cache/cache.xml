@@ -106,7 +106,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="e04e8153c87b76e6627ce09bf2297a7460f24aec">
+        sha1="00d9494d86f5fc402aa92250f0bc537084a6fe01">
         <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_daa87f4cbd4c1d2ad72941423d67d7781a239e68/classes.dex" />
     </item>
     <item
@@ -124,7 +124,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="3fe873bac19d06c36fcdd9171c270e8516320d92">
+        sha1="66f0a0039f9d970c985f0a22a58b74e2b5a2b453">
         <dex dex="/home/leandro/Documents/Repositories/Jobify_Mobile/src/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_8ddfdeed694ae3d81720e1b277fafafbae3004db/classes.dex" />
     </item>
     <item

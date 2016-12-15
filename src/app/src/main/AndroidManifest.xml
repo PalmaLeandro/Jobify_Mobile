@@ -29,23 +29,28 @@
         <activity android:name=".Views.FacebookLogInPage.FacebookLogInActivity"/>
         <activity android:name=".Views.MainApplicationActivity"/>
         <activity android:name=".Views.PersonDetailPage.PersonDetailActivity"/>
+        <activity android:name=".Views.ProfileEditionPage.ProfileEditionActivity"/>
         <activity android:name=".Views.SkillsEditionPage.SkillsEditionActivity"/>
         <activity android:name=".Views.ExperiencesEditionPage.ExperiencesEditionActivity"/>
         <activity android:name=".Views.ChatPage.ChatActivity"/>
         <activity android:name=".Views.ProfileSearchFilterPage.ProfileSearchActivity"/>
-    </application>
-    <service
-        android:name=".MyFirebaseMessagingService">
-        <intent-filter>
-            <action android:name="com.google.firebase.MESSAGING_EVENT"/>
-        </intent-filter>
-    </service>
-    <!-- FirebaseInstanceIdService performs security checks at runtime,
-      no need for explicit permissions despite exported="true"             -->
-    <service android:name=".MyFirebaseInstanceIdService" android:exported="true">
-        <intent-filter>
-            <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
-        </intent-filter>
-    </service>
+        <service
+            android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="OPEN_ACTIVITY_1" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+        <!-- FirebaseInstanceIdService performs security checks at runtime,
+          no need for explicit permissions despite exported="true"             -->
+        <service android:name=".MyFirebaseInstanceIdService" android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
 
+    </application>
 </manifest>

@@ -17,6 +17,9 @@ import com.example.root.jobify.Views.GenericContentListPage.ContentListFragment;
 import com.example.root.jobify.Views.GenericContentListPage.ContentListProvider;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,44 +30,54 @@ import retrofit2.Response;
  */
 public class ChatListFragment extends ContentListFragment {
 
+    private static final long REFRESH_PERIOD = 1000 *60; // 60 seconds
+
     @Override
     protected ContentListProvider createService() {
         return new ContentListProvider() {
             @Override
             public void getContents(final Callback<ArrayList<Content>> callback) {
-                new PeopleService().getMyChats(new Callback<ArrayList<Person>>() {
+                Timer timer= new Timer();
+                timer.schedule(new TimerTask() {
                     @Override
-                    public void onResponse(Call<ArrayList<Person>> call, Response<ArrayList<Person>> response) {
-                        ArrayList<Content> contents = new ArrayList<Content>();
-                        for (final Content content : response.body())
-                            contents.add(new Content() {
-                                @Override
-                                public String getId() {
-                                    return content.getId();
-                                }
+                    public void run() {
+                        new PeopleService().getMyChats(new Callback<ArrayList<Person>>() {
+                            @Override
+                            public void onResponse(Call<ArrayList<Person>> call, Response<ArrayList<Person>> response) {
+                                ArrayList<Content> contents = new ArrayList<Content>();
+                                for (final Content content : response.body())
+                                    contents.add(new Content() {
+                                        @Override
+                                        public String getId() {
+                                            return content.getId();
+                                        }
 
-                                @Override
-                                public String getTitle() {
-                                    return content.getTitle();
-                                }
+                                        @Override
+                                        public String getTitle() {
+                                            return content.getTitle();
+                                        }
 
-                                @Override
-                                public String getSubTitle() {
-                                    return null;
-                                }
+                                        @Override
+                                        public String getSubTitle() {
+                                            return null;
+                                        }
 
-                                public String getPicture() {
-                                    return content.getPicture();
-                                }
-                            });
-                        callback.onResponse(null, Response.success(contents));
+                                        public String getPicture() {
+                                            return content.getPicture();
+                                        }
+                                    });
+                                callback.onResponse(null, Response.success(contents));
+                            }
+
+                            @Override
+                            public void onFailure(Call<ArrayList<Person>> call, Throwable t) {
+                                callback.onFailure(null,t);
+                            }
+                        });
                     }
-
-                    @Override
-                    public void onFailure(Call<ArrayList<Person>> call, Throwable t) {
-                       callback.onFailure(null,t);
-                    }
-                });
+                },
+                new Date(),
+                REFRESH_PERIOD);
             }
         };
     }

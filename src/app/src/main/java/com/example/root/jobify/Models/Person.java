@@ -223,4 +223,8 @@ public class Person implements Content {
     public void setFirebaseToken(String firebase_token) {
         this.firebase_token = firebase_token;
     }
+
+    public Integer getRecomendations() {
+        return getFellowsWhoRecommendMe().size();
+    }
 }
