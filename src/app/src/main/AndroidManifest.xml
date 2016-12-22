@@ -5,9 +5,9 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <uses-sdk
         tools:node="merge"
@@ -27,7 +27,12 @@
         <activity android:name=".Views.SignUpCompletitionPage.SignUpCompletitionActivity"/>
         <activity android:name=".Views.FacebookSignUpPage.FacebookSignUpActivity"/>
         <activity android:name=".Views.FacebookLogInPage.FacebookLogInActivity"/>
-        <activity android:name=".Views.MainApplicationActivity"/>
+        <activity android:name=".Views.MainApplicationActivity">
+            <intent-filter>
+                <action android:name="OPEN_ACTIVITY_1" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity android:name=".Views.PersonDetailPage.PersonDetailActivity"/>
         <activity android:name=".Views.ProfileEditionPage.ProfileEditionActivity"/>
         <activity android:name=".Views.SkillsEditionPage.SkillsEditionActivity"/>
@@ -35,7 +40,7 @@
         <activity android:name=".Views.ChatPage.ChatActivity"/>
         <activity android:name=".Views.ProfileSearchFilterPage.ProfileSearchActivity"/>
         <service
-            android:name=".MyFirebaseMessagingService">
+            android:name=".Services.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
@@ -46,7 +51,7 @@
         </service>
         <!-- FirebaseInstanceIdService performs security checks at runtime,
           no need for explicit permissions despite exported="true"             -->
-        <service android:name=".MyFirebaseInstanceIdService" android:exported="true">
+        <service android:name=".Services.MyFirebaseInstanceIdService" android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
             </intent-filter>

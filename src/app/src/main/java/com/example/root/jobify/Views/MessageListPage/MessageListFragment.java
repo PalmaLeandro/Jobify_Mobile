@@ -98,7 +98,7 @@ public class MessageListFragment extends ContentListFragment{
                             .setItems(new String[]{context.getString(R.string.remove_dialog_option_string)}, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    new PeopleService().deleteMessage(content.getId(), new Callback() {
+                                    new PeopleService().deleteMessage(personId,new Message(content.getId(),null,null,null), new Callback() {
                                         @Override
                                         public void onResponse(Call call, Response response) {
                                             Toast.makeText(context, R.string.message_deleted_text_string,Toast.LENGTH_LONG).show();

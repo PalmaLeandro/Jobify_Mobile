@@ -22,9 +22,13 @@ import com.example.root.jobify.R;
 import com.example.root.jobify.Services.Auth.User;
 import com.example.root.jobify.Services.Auth.UserAuthListener;
 import com.example.root.jobify.Services.Auth.UserAuthService;
+import com.example.root.jobify.Services.MyFirebaseMessagingService;
 import com.example.root.jobify.Utilities.WoloxActivity;
 import com.example.root.jobify.Views.ChatListPage.ChatListFragment;
+import com.example.root.jobify.Views.ChatPage.ChatActivity;
+import com.example.root.jobify.Views.GenericContentListPage.ContentListFragment;
 import com.example.root.jobify.Views.LogInCompletition.LogInCompletitionActivity;
+import com.example.root.jobify.Views.LogInCompletition.LogInCompletitionFragment;
 import com.example.root.jobify.Views.MyPeoplePage.MyPeopleFragment;
 import com.example.root.jobify.Views.PersonDetailPage.PersonDetailFragment;
 import com.example.root.jobify.Views.ProfileEditionPage.ProfileEditionFragment;
@@ -71,6 +75,12 @@ public class MainApplicationActivity extends WoloxActivity implements UserAuthLi
         onUserChanged(userAuthService.getUser());
         replaceFragment(R.id.main_content,new RecommendedFolksFragment());
         ab.setTitle(getString(R.string.recommended_string));
+
+        if(getIntent().getExtras()!=null && getIntent().getExtras().get(MyFirebaseMessagingService.NOTIFICATION_USERNAME_KEY)!=null){
+            Intent intent = new Intent(this, ChatActivity.class);
+            intent.putExtra(ContentListFragment.CONTENT_ID,(String)getIntent().getExtras().get(MyFirebaseMessagingService.NOTIFICATION_USERNAME_KEY));
+            startActivity(intent);
+        }
     }
 
     private void setupDrawerContent(NavigationView navigationView) {
@@ -155,47 +165,5 @@ public class MainApplicationActivity extends WoloxActivity implements UserAuthLi
     public boolean onOptionsItemSelected(MenuItem item) {
         mDrawerLayout.openDrawer(GravityCompat.START);
         return true;
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        try {
-            // When an Image is picked
-            String imgDecodableString;
-            if (requestCode == RESULT_LOAD_IMG && resultCode == RESULT_OK
-                    && null != data) {
-                // Get the Image from data
-
-                Uri selectedImage = data.getData();
-                String[] filePathColumn = { MediaStore.Images.Media.DATA };
-
-                // Get the cursor
-                Cursor cursor = getContentResolver().query(selectedImage,
-                        filePathColumn, null, null, null);
-                // Move to first row
-                cursor.moveToFirst();
-
-                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                imgDecodableString = cursor.getString(columnIndex);
-                cursor.close();
-                ImageView imgView = (ImageView) findViewById(R.id.profile_image);
-                // Set the Image in ImageView after decoding the String
-                Bitmap picture = BitmapFactory
-                        .decodeFile(imgDecodableString);
-                imgView.setImageBitmap(picture);
-                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                picture.compress(Bitmap.CompressFormat.PNG,100,byteArrayOutputStream);
-                userAuthService.getUserProfile().setProfileImage(Base64.encodeToString(byteArrayOutputStream.toByteArray(),Base64.DEFAULT));
-
-            } else {
-                Toast.makeText(this, getString(R.string.no_image_selected_string),
-                        Toast.LENGTH_LONG).show();
-            }
-        } catch (Exception e) {
-            Toast.makeText(this, getString(R.string.couldnt_load_image_string), Toast.LENGTH_LONG)
-                    .show();
-        }
-
     }
 }

@@ -63,7 +63,7 @@ public interface PersonAPIService {
     Call<Void> sendMessage(@Body final Message message, @Query("user") final String username, @Header("Token") final String token);
 
     @HTTP(method = "DELETE", path = "messages", hasBody = true)
-    Call<Void> deleteMessage(@Body final String messageId, @Header("Token") final String token);
+    Call<Void> deleteMessage(@Query("user") final String username, @Body final Message messageId, @Header("Token") final String token);
 
     @GET("chats")
     Call<ServerArrayResponse<Message>> getChatMessages(@Query("user") final String personId, @Header("Token") final String token);

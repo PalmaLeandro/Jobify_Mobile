@@ -211,8 +211,8 @@ public class PeopleService {
         getApi().sendMessage(new Message(null,authService.getUserProfile().getName(),message,null),personId,authService.getToken()).enqueue(callback);
     }
 
-    public void deleteMessage(String messageId, Callback callback) {
-        getApi().deleteMessage(messageId,authService.getToken()).enqueue(callback);
+    public void deleteMessage(String fellowUsername, Message messageId, Callback callback) {
+        getApi().deleteMessage(fellowUsername,messageId,authService.getToken()).enqueue(callback);
     }
 
     public void deleteChat(String personId, Callback callback) {

@@ -1,5 +1,7 @@
 package com.example.root.jobify.Models;
 
+import android.content.Intent;
+
 import com.example.root.jobify.Globals;
 import com.example.root.jobify.Views.GenericContentListPage.Content;
 
@@ -224,7 +226,11 @@ public class Person implements Content {
         this.firebase_token = firebase_token;
     }
 
-    public Integer getRecomendations() {
+    public Integer getRecomendationsCount() {
         return getFellowsWhoRecommendMe().size();
+    }
+
+    public Integer getContactsCount() {
+        return getMyPeople().size();
     }
 }

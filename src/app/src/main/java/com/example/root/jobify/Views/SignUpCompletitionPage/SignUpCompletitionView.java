@@ -51,7 +51,7 @@ public class SignUpCompletitionView {
     private ProgressDialog progressDialog;
 
     public void showProgressDialog() {
-        progressDialog =  ProgressDialog.show(context, "",context.getString(R.string.signup_suggestion_text), true);
+        progressDialog =  ProgressDialog.show(context, "",context.getString(R.string.loging_in_string), true);
     }
 
     public void hideProgressDialog(){

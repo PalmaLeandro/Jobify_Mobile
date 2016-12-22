@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.root.jobify.Deserializers.ServerResponse;
-import com.example.root.jobify.Models.Message;
 import com.example.root.jobify.Models.Person;
 import com.example.root.jobify.R;
 import com.example.root.jobify.Services.Auth.UserAuthService;
@@ -16,11 +15,12 @@ import com.example.root.jobify.Services.People.PeopleService;
 import com.example.root.jobify.Services.People.SinglePersonProvider;
 import com.example.root.jobify.Utilities.BasePresenter;
 import com.example.root.jobify.Views.ProfileEditionPage.ProfileEditionActivity;
-import com.example.root.jobify.Views.ProfileEditionPage.ProfileEditionFragment;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.example.root.jobify.R.string.contacts_string;
 
 
 /**
@@ -46,7 +46,8 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
         personDetailView.setPersonGender(mPerson.getGender());
         personDetailView.setPersonNationality(mPerson.getNationality());
         personDetailView.setPersonProfile(mPerson.getProfile());
-        personDetailView.setFellowRecommendations((mPerson.getRecomendations()>0?mPerson.getRecomendations()+" "+getView().getContext().getString(R.string.recomendations_string):"No "+getView().getContext().getString(R.string.recomendations_string))+" ");
+        personDetailView.setFellowRecommendationsCount((mPerson.getRecomendationsCount()>0?mPerson.getRecomendationsCount()+" "+getView().getContext().getString(R.string.recomendations_string):"No "+getView().getContext().getString(R.string.recomendations_string))+" ");
+        personDetailView.setFellowContactsCount((mPerson.getContactsCount()>0?mPerson.getContactsCount()+" "+getView().getContext().getString(contacts_string):"No "+getView().getContext().getString(R.string.contacts_string))+" ");
         updateRecomendationButons();
         updatePersonPrimaryAction();
     }
@@ -184,7 +185,6 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
         new SinglePersonProvider().recommendFolk(mPerson, new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
-                updateRecomendationButons();
                 Snackbar.make(getView().recommendProfileButtton, R.string.recomended_succesfully_sring, Snackbar.LENGTH_LONG)
                         .setAction(R.string.undo_string, new View.OnClickListener() {
                             @Override
@@ -202,6 +202,7 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
                                 });
                             }
                         }).show();
+                loadPerson();
             }
 
             @Override
@@ -216,7 +217,6 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
         new SinglePersonProvider().unrecommendFolk(mPerson, new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
-                updateRecomendationButons();
                 Snackbar.make(getView().recommendProfileButtton, R.string.unrecommended_succesfully, Snackbar.LENGTH_LONG)
                         .setAction(R.string.undo_string, new View.OnClickListener() {
                             @Override
@@ -234,6 +234,7 @@ public class PersonDetailPresenter extends BasePresenter<PersonDetailView> {
                                 });
                             }
                         }).show();
+                loadPerson();
             }
 
             @Override
